@@ -14,17 +14,14 @@ export function Header() {
         <img src={logoCoffeeDelivery} alt="" />
       </NavLink>
       <nav>
-        <NavLink to="/" title="Home">
-          <LocationContainer>
-            <MapPin weight="fill" />
-            Porto Alegre, RS
-          </LocationContainer>
-        </NavLink>
-        <NavLink to="/checkout" title="Home">
-          <ShoppingCartContainer>
-            <ShoppingCart weight="fill" />
-          </ShoppingCartContainer>
-        </NavLink>
+        <LocationContainer to="/" title="Home">
+          <MapPin weight="fill" />
+          Porto Alegre, RS
+        </LocationContainer>
+
+        <ShoppingCartContainer to="/checkout" title="Home">
+          <ShoppingCart weight="fill" />
+        </ShoppingCartContainer>
       </nav>
     </HeaderContainer>
   )

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { NavLink } from 'react-router-dom'
 
 export const HeaderContainer = styled.header`
   display: flex;
@@ -6,6 +7,8 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
 
   padding: 2rem 10rem;
+  max-width: 1440px;
+  margin: auto;
 
   nav {
     display: flex;
@@ -19,7 +22,7 @@ export const HeaderContainer = styled.header`
   }
 `
 
-export const LocationContainer = styled.a`
+export const LocationContainer = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,7 +43,7 @@ export const LocationContainer = styled.a`
   }
 `
 
-export const ShoppingCartContainer = styled.a`
+export const ShoppingCartContainer = styled(NavLink)`
   display: flex;
   justify-content: center;
 

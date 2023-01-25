@@ -7,12 +7,16 @@ interface IconContainerProps {
 }
 
 export const HomeContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 3.5rem;
+  padding: 0 10rem;
+  margin: auto;
 
-  padding: 2rem 10rem;
+  max-width: 1440px;
+`
+
+export const MainContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 5.75rem 0;
 `
 
 export const Title = styled.h1`
@@ -21,13 +25,14 @@ export const Title = styled.h1`
 
   color: ${(props) => props.theme['base-title']};
 `
-export const Subtitle = styled.p`
+export const MainText = styled.p`
   font-family: 'Roboto', sans-serif;
   font-size: 1.25rem;
   color: ${(props) => props.theme['base-subtitle']};
 `
 export const ItemsContainer = styled.div`
   display: flex;
+  flex-direction: row;
   gap: 40px;
 
   p {
@@ -73,4 +78,10 @@ export const IconContainer = styled.div<IconContainerProps>`
   svg {
     font-size: 1rem;
   }
+`
+export const Subtitle = styled.h3`
+  font-size: 2rem;
+  font-family: 'Baloo 2', cursive;
+  font-weight: 800;
+  color: ${(props) => props.theme['base-subtitle']};
 `
