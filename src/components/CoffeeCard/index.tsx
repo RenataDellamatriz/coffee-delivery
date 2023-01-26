@@ -11,6 +11,7 @@ import {
   CardContainer,
   Footer,
   BuyContainer,
+  TagContainer,
 } from './style'
 
 interface CoffeeCardProps {
@@ -34,11 +35,17 @@ export function CoffeeCard() {
 
   return (
     <>
-      {coffees?.map((coffee, i) => {
+      {coffees?.map((coffee, index) => {
         return (
-          <CardContainer key={`${coffee} - ${i}`}>
+          <CardContainer key={`${coffee} - ${index}`}>
             <img src={coffee.image} alt="" />
-            <Tag>{coffee.tag}</Tag>
+
+            <TagContainer>
+              {coffee.tag.map((item, index) => {
+                return <Tag key={index}>{item.toUpperCase()}</Tag>
+              })}
+            </TagContainer>
+
             <Title>{coffee.name}</Title>
             <Description>{coffee.description}</Description>
 

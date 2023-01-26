@@ -19,6 +19,10 @@ export const CardContainer = styled.div`
   }
 `
 
+export const TagContainer = styled.div`
+  display: flex;
+  gap: 4px;
+`
 export const Tag = styled.span`
   font-family: 'Roboto', sans-serif;
   font-size: 0.625rem;
