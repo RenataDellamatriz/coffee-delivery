@@ -1,4 +1,5 @@
 import {
+  CoffeeCardContainer,
   HomeContainer,
   IconContainer,
   ItemsContainer,
@@ -22,19 +23,21 @@ export function Home() {
             Com o Coffee Delivery você recebe seu café onde estiver, a qualquer
             hora
           </MainText>
+
           <ItemsContainer>
             <div>
               <ItemsWrapper>
                 <IconContainer variant="darkYellow">
                   <ShoppingCart weight="fill" />
                 </IconContainer>
-                <p>Compra simples e segura</p>
+                <span>Compra simples e segura</span>
               </ItemsWrapper>
+
               <ItemsWrapper>
                 <IconContainer variant="yellow">
                   <Timer weight="fill" />
                 </IconContainer>
-                <p>Entrega rápida e rastreada</p>
+                <span>Entrega rápida e rastreada</span>
               </ItemsWrapper>
             </div>
 
@@ -43,17 +46,19 @@ export function Home() {
                 <IconContainer variant="gray">
                   <Package weight="fill" />
                 </IconContainer>
-                <p>Embalagem mantém o café intacto</p>
+                <span>Embalagem mantém o café intacto</span>
               </ItemsWrapper>
+
               <ItemsWrapper>
                 <IconContainer variant="purple">
                   <Coffee weight="fill" />
                 </IconContainer>
-                <p>O café chega fresquinho até você</p>
+                <span>O café chega fresquinho até você</span>
               </ItemsWrapper>
             </div>
           </ItemsContainer>
         </div>
+
         <div>
           <img src={mainImage} alt="" />
         </div>
@@ -63,7 +68,9 @@ export function Home() {
         <Subtitle>Nossos cafés</Subtitle>
       </div>
 
-      <CoffeeCard />
+      <CoffeeCardContainer>
+        <CoffeeCard />
+      </CoffeeCardContainer>
     </HomeContainer>
   )
 }

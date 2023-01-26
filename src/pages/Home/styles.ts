@@ -7,7 +7,7 @@ interface IconContainerProps {
 }
 
 export const HomeContainer = styled.div`
-  padding: 0 10rem;
+  padding: 0 10rem 5rem 10rem;
   margin: auto;
 
   max-width: 1440px;
@@ -34,16 +34,6 @@ export const ItemsContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 40px;
-
-  p {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
-    color: ${(props) => props.theme['base-text']};
-  }
-
-  svg {
-    font-size: 1rem;
-  }
 `
 
 export const ItemsWrapper = styled.div`
@@ -83,5 +73,15 @@ export const Subtitle = styled.h3`
   font-size: 2rem;
   font-family: 'Baloo 2', cursive;
   font-weight: 800;
+
   color: ${(props) => props.theme['base-subtitle']};
+
+  margin-bottom: 3.125rem;
+`
+export const CoffeeCardContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  grid-column-gap: 32px;
+  grid-row-gap: 50px;
 `

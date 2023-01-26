@@ -1,4 +1,6 @@
-import { ShoppingCart } from 'phosphor-react'
+import { Minus, Plus, ShoppingCartSimple } from 'phosphor-react'
+import { useEffect, useState } from 'react'
+import { fetchCoffeeData } from '../../services/api'
 import {
   Tag,
   Description,
@@ -8,34 +10,65 @@ import {
   ShoppingCartContainer,
   CardContainer,
   Footer,
+  BuyContainer,
 } from './style'
 
+interface CoffeeCardProps {
+  name: string
+  image: string
+  tag: [string]
+  description: string
+  price: string
+}
+
 export function CoffeeCard() {
+  const [coffees, setCoffees] = useState<CoffeeCardProps[]>()
+
+  useEffect(() => {
+    async function getCoffeeData() {
+      const coffee = await fetchCoffeeData()
+      setCoffees(coffee)
+    }
+    getCoffeeData()
+  }, [])
+
   return (
-    <CardContainer>
-      <img src="https://iili.io/Hax0Xh7.png" alt="" />
-      <Tag>TRADICIONAL</Tag>
-      <Title>Expresso Tradicional</Title>
-      <Description>
-        O tradicional café feito com água quente e grãos moídos
-      </Description>
+    <>
+      {coffees?.map((coffee, i) => {
+        return (
+          <CardContainer key={`${coffee} - ${i}`}>
+            <img src={coffee.image} alt="" />
+            <Tag>{coffee.tag}</Tag>
+            <Title>{coffee.name}</Title>
+            <Description>{coffee.description}</Description>
 
-      <Footer>
-        <Price>
-          <span>R$</span>
-          9,90
-        </Price>
+            <Footer>
+              <Price>
+                <span>R$</span>
+                {coffee.price}
+              </Price>
 
-        <QuantityInput>
-          <button>-</button>
-          <input type="number" size={2} min={0} max={10} defaultValue={0} />
-          <button>+</button>
-        </QuantityInput>
+              <BuyContainer>
+                <QuantityInput>
+                  <Minus weight="bold" />
+                  <input
+                    type="number"
+                    size={2}
+                    min={0}
+                    max={10}
+                    defaultValue={0}
+                  />
+                  <Plus weight="bold" />
+                </QuantityInput>
 
-        <ShoppingCartContainer to="/checkout" title="Home">
-          <ShoppingCart weight="fill" />
-        </ShoppingCartContainer>
-      </Footer>
-    </CardContainer>
+                <ShoppingCartContainer to="/checkout" title="Checkout">
+                  <ShoppingCartSimple weight="fill" />
+                </ShoppingCartContainer>
+              </BuyContainer>
+            </Footer>
+          </CardContainer>
+        )
+      })}
+    </>
   )
 }

@@ -2,13 +2,14 @@ import axios from 'axios'
 
 const url = 'http://localhost:3000/coffees'
 
-function getCoffeeData() {
-  axios
-    .get(url)
-    .then((response) => {
-      console.log(response)
-    })
-    .catch((error) => console.log(error))
-}
+export async function fetchCoffeeData() {
+  try {
+    const { data } = await axios(url)
 
-getCoffeeData()
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}
+console.log(fetchCoffeeData)
+fetchCoffeeData()
