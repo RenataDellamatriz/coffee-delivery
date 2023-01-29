@@ -1,10 +1,5 @@
 import styled from 'styled-components'
-
-export type IconVariant = 'darkYellow' | 'yellow' | 'gray' | 'purple'
-
-interface IconContainerProps {
-  variant: IconVariant
-}
+import { IconContainerProps } from '../../@types/types/global'
 
 export const HomeContainer = styled.div`
   padding: 0 10rem 5rem 10rem;
