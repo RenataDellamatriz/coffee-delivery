@@ -11,7 +11,7 @@ import {
 } from './styles'
 import mainImage from '../../assets/mainImage.svg'
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
-import { CoffeeCard } from '../../components/CoffeeCard'
+import { HomeCoffeeCard } from './components/HomeCoffeeCard'
 
 export function Home() {
   return (
@@ -69,7 +69,7 @@ export function Home() {
       </div>
 
       <CoffeeCardContainer>
-        <CoffeeCard />
+        <HomeCoffeeCard />
       </CoffeeCardContainer>
     </HomeContainer>
   )

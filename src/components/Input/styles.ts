@@ -20,5 +20,12 @@ export const InputStyled = styled.input<InputSizeProps>`
 
   padding: 12px;
   border: none;
+  border-radius: 6px;
   width: ${(props) => InputSizeVariants.size[props.variant]};
+
+  ::-webkit-inner-spin-button,
+  ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `

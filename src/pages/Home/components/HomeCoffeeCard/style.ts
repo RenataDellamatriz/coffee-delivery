@@ -4,12 +4,13 @@ import styled from 'styled-components'
 export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  text-align: center;
 
   width: 16rem;
   height: 310px;
-  border-radius: 6px;
+  border-radius: 6px 44px 6px 44px;
   padding: 0 24px 20px 24px;
 
   background-color: ${(props) => props.theme['base-card']};

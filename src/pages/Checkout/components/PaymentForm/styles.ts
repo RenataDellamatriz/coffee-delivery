@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { IconContainerProps } from '../../../../../@types/types/global'
+import { IconContainerProps } from '../../../../@types/types/global'
 import { IconColorsVariant } from '../RegisterForm/style'
 
 export const FormWrapper = styled.div`

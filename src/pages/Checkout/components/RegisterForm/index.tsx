@@ -1,5 +1,5 @@
 import { MapPinLine } from 'phosphor-react'
-import { Input } from '../../../../../components/Input'
+import { Input } from '../../../../components/Input'
 
 import {
   FormInputWrapper,

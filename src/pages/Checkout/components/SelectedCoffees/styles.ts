@@ -12,21 +12,43 @@ export const CoffeeSelectedContainer = styled.div`
   height: auto;
   min-height: 500px;
 `
-export const EmptyCards = styled.div`
+
+export const CartInfoContainer = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 1.5rem;
 
   font-size: 0.875rem;
+`
+
+export const CartInfoWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+export const CartTotalInfoWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
   font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-
+  font-size: 1.25rem;
+`
+export const ConfirmButton = styled.button`
+  text-align: center;
   width: 100%;
-  border: 1px dashed ${(props) => props.theme.purple};
-  border-radius: 6px 44px 6px 44px;
-  min-height: 300px;
+  padding: 12px 0;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
 
-  span {
-    color: ${(props) => props.theme.purple};
+  font-size: 0.875rem;
+  font-weight: 700;
+
+  color: ${(props) => props.theme.white};
+  background: ${(props) => props.theme.yellow};
+
+  :hover {
+    background: ${(props) => props.theme['yellow-dark']};
   }
 `

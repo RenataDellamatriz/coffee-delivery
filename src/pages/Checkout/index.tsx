@@ -1,5 +1,5 @@
-import { PaymentForm } from './components/Forms/PaymentForm'
-import { RegisterForm } from './components/Forms/RegisterForm'
+import { PaymentForm } from './components/PaymentForm'
+import { RegisterForm } from './components/RegisterForm'
 import { SelectedCoffees } from './components/SelectedCoffees'
 import { CheckoutContainer } from './styles'
 

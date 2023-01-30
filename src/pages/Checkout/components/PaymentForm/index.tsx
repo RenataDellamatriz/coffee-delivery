@@ -1,5 +1,6 @@
 import { Bank, CreditCard, CurrencyDollar, Money } from 'phosphor-react'
-import { PaymentMethod } from '../../PaymentMethod'
+import { SelectButton } from '../SelectButton'
+
 import {
   FormWrapper,
   IconContainer,
@@ -21,18 +22,18 @@ export function PaymentForm() {
           O pagamento é feito na entrega. Escolha a forma que deseja pagar
         </span>
         <PaymentMethodWrapper>
-          <PaymentMethod>
+          <SelectButton>
             <CreditCard />
             CARTÃO DE CRÉDITO
-          </PaymentMethod>
-          <PaymentMethod>
+          </SelectButton>
+          <SelectButton>
             <Bank />
             CARTÃO DE DÉBITO
-          </PaymentMethod>
-          <PaymentMethod>
+          </SelectButton>
+          <SelectButton>
             <Money />
             DINHEIRO
-          </PaymentMethod>
+          </SelectButton>
         </PaymentMethodWrapper>
       </FormWrapper>
     </>

@@ -5,6 +5,6 @@ interface PaymentMethodProps {
   children?: ReactNode | string
 }
 
-export function PaymentMethod({ children }: PaymentMethodProps) {
+export function SelectButton({ children }: PaymentMethodProps) {
   return <PaymentMethodContainer>{children}</PaymentMethodContainer>
 }
