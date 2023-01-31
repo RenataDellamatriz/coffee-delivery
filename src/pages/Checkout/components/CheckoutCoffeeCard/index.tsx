@@ -1,13 +1,13 @@
-import { Minus, Plus, Trash } from 'phosphor-react'
+import { Trash } from 'phosphor-react'
 import { useEffect, useState } from 'react'
 import { CoffeeCardProps } from '../../../../@types/types/global'
+import { QuantityInput } from '../../../../components/QuantityInput'
 import { fetchCoffeeData } from '../../../../services/api'
 import {
   CardContainer,
   Footer,
   MainContent,
   Price,
-  QuantityInput,
   RemoveButton,
   Title,
 } from './styles'
@@ -34,17 +34,8 @@ export function CheckoutCoffeeCard() {
                 <Title>{coffee.name}</Title>
 
                 <Footer>
-                  <QuantityInput>
-                    <Minus weight="bold" />
-                    <input
-                      type="number"
-                      size={2}
-                      min={0}
-                      max={10}
-                      defaultValue={0}
-                    />
-                    <Plus weight="bold" />
-                  </QuantityInput>
+                  <QuantityInput />
+
                   <RemoveButton>
                     <Trash /> REMOVER
                   </RemoveButton>

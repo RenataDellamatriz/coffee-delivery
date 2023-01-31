@@ -43,29 +43,6 @@ export const BuyContainer = styled.div`
   gap: 4px;
 `
 
-export const QuantityInput = styled.div`
-  display: flex;
-  padding: 8px;
-  border-radius: 6px;
-  max-height: 80px;
-
-  background-color: ${(props) => props.theme['base-button']};
-
-  svg {
-    background-color: transparent;
-    color: ${(props) => props.theme.purple};
-  }
-
-  input,
-  input[type='number']::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-
-    border: none;
-    text-align: center;
-
-    background-color: transparent;
-  }
-`
 export const RemoveButton = styled.button`
   display: flex;
   gap: 4px;

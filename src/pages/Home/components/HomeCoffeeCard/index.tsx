@@ -1,13 +1,14 @@
-import { Minus, Plus, ShoppingCartSimple } from 'phosphor-react'
+import { ShoppingCartSimple } from 'phosphor-react'
 import { useEffect, useState } from 'react'
 import { CoffeeCardProps } from '../../../../@types/types/global'
+import { QuantityInput } from '../../../../components/QuantityInput'
 import { fetchCoffeeData } from '../../../../services/api'
+
 import {
   Tag,
   Description,
   Title,
   Price,
-  QuantityInput,
   ShoppingCartContainer,
   CardContainer,
   Footer,
@@ -50,17 +51,7 @@ export function HomeCoffeeCard() {
                 </Price>
 
                 <BuyContainer>
-                  <QuantityInput>
-                    <Minus weight="bold" />
-                    <input
-                      type="number"
-                      size={2}
-                      min={0}
-                      max={10}
-                      defaultValue={0}
-                    />
-                    <Plus weight="bold" />
-                  </QuantityInput>
+                  <QuantityInput />
 
                   <ShoppingCartContainer to="/checkout" title="Checkout">
                     <ShoppingCartSimple weight="fill" />
