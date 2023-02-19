@@ -1,29 +1,27 @@
-import { Minus, Plus } from 'phosphor-react'
+import { Minus, Plus } from "phosphor-react";
 import {
   AddQuantityButton,
   QuantityInputContainer,
   RemoveQuantityButton,
-} from './styles'
-import { useState } from 'react'
+} from "./styles";
+import { useContext } from "react";
+import { CoffeesContext } from "../../contexts/CoffeeContext";
 
 export function QuantityInput() {
-  const [quantity, setQuantity] = useState(0)
+  
+  const {order, quantity ,updateCoffee, addQuantity, removeQuantity} = useContext(CoffeesContext)
 
-  function AddQuantity() {
-    setQuantity((quantity) => {
-      return quantity + 1
-    })
+
+  function handleInputChange( data : any) {
+      if(quantity > 1) {
+        return updateCoffee(data)
+      }
   }
 
-  function RemoveQuantity() {
-    setQuantity((quantity) => {
-      return quantity - 1
-    })
-  }
 
   return (
     <QuantityInputContainer>
-      <RemoveQuantityButton onClick={RemoveQuantity}>
+      <RemoveQuantityButton onClick={removeQuantity}>
         <Minus weight="bold" />
       </RemoveQuantityButton>
       <input
@@ -31,12 +29,12 @@ export function QuantityInput() {
         size={2}
         min={0}
         max={10}
-        defaultValue={0}
         value={quantity}
+        onChange={handleInputChange}
       />
-      <AddQuantityButton onClick={AddQuantity}>
+      <AddQuantityButton onClick={addQuantity}>
         <Plus weight="bold" />
       </AddQuantityButton>
     </QuantityInputContainer>
-  )
+  );
 }

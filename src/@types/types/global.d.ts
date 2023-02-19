@@ -5,6 +5,7 @@ export interface IconContainerProps {
 }
 
 export interface CoffeeCardProps {
+  id: string
   name: string
   image: string
   tag: [string]

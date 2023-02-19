@@ -1,15 +1,26 @@
-import { Quantity } from './reducer'
+import { CoffeeCardProps } from '../@types/types/global'
+import { Coffee} from './reducer'
 
 export enum ActionTypes {
-  ADD_QUANTITY = 'ADD_QUANTITY',
-  REMOVE_QUANTITY = 'REMOVE_QUANTITY',
+  UPDATE_ORDER = 'UPDATE_ORDER',
+  REMOVE_COFFEE = 'REMOVE_COFFEE',
+  SET_COFFEES = 'SET_COFFEES'
 }
 
-export function addQuantity(newQuantity: Quantity) {
+export function updateCoffeeAction(coffee: Coffee) {
   return {
-    type: ActionTypes.ADD_QUANTITY,
+    type: ActionTypes.UPDATE_ORDER,
     payload: {
-      newQuantity,
+      coffee,
+    },
+  }
+}
+
+export function removeCoffeeAction(coffeId: string) {
+  return {
+    type: ActionTypes.REMOVE_COFFEE,
+    payload: {
+      coffeId,
     },
   }
 }

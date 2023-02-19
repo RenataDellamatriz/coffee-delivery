@@ -84,14 +84,4 @@ export const BuyContainer = styled.div`
   gap: 4px;
 `
 
-export const ShoppingCartContainer = styled(NavLink)`
-  background-color: ${(props) => props.theme['purple-dark']};
-  color: ${(props) => props.theme['base-card']};
 
-  padding: 7.5px 8px 3.5px 8px;
-  border-radius: 6px;
-
-  svg {
-    font-size: 20px;
-  }
-`

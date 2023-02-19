@@ -1,37 +1,27 @@
-import { ShoppingCartSimple } from 'phosphor-react'
-import { useEffect, useState } from 'react'
-import { CoffeeCardProps } from '../../../../@types/types/global'
+import { useContext} from 'react'
 import { QuantityInput } from '../../../../components/QuantityInput'
-import { fetchCoffeeData } from '../../../../services/api'
+import { CoffeesContext } from '../../../../contexts/CoffeeContext'
+import { AddCoffeeCartButton } from '../AddCoffeeCartButton'
 
 import {
   Tag,
   Description,
   Title,
   Price,
-  ShoppingCartContainer,
   CardContainer,
   Footer,
   BuyContainer,
   TagContainer,
-} from './style'
+} from './styles'
 
 export function HomeCoffeeCard() {
-  const [coffees, setCoffees] = useState<CoffeeCardProps[]>()
-
-  useEffect(() => {
-    async function getCoffeeData() {
-      const coffee = await fetchCoffeeData()
-      setCoffees(coffee)
-    }
-    getCoffeeData()
-  }, [])
+  const {availableCoffees, updateCoffee} =useContext(CoffeesContext)
 
   return (
     <>
-      {coffees?.map((coffee, index) => {
+      {availableCoffees?.map((coffee, index) => {
         return (
-          <CardContainer key={`${coffee} - ${index}`}>
+          <CardContainer key={coffee.id}>
             <img src={coffee.image} alt="" />
 
             <TagContainer>
@@ -52,10 +42,7 @@ export function HomeCoffeeCard() {
 
                 <BuyContainer>
                   <QuantityInput />
-
-                  <ShoppingCartContainer to="/checkout" title="Checkout">
-                    <ShoppingCartSimple weight="fill" />
-                  </ShoppingCartContainer>
+                  {/* <AddCoffeeCartButton onClick={updateCoffee({coffeeTitle: coffee.name, id: coffee.id, price: coffee.price, quantity:})}/> */}
                 </BuyContainer>
               </Footer>
             </div>

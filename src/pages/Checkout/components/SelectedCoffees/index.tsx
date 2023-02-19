@@ -7,15 +7,19 @@ import {
   Title,
 } from './styles'
 import { CheckoutCoffeeCard } from '../CheckoutCoffeeCard/index'
+import { useContext } from 'react'
+import { CoffeesContext } from '../../../../contexts/CoffeeContext'
 // import { EmptyCoffees } from '../EmptyCoffees'
 
 export function SelectedCoffees() {
+  const {order} = useContext(CoffeesContext)
+ console.log(order)
   return (
     <div>
       <Title>Cafés selecionados</Title>
       <CoffeeSelectedContainer>
         {/* <EmptyCoffees /> */}
-        <CheckoutCoffeeCard />
+        {order?.map((coffee) => { return <CheckoutCoffeeCard />})}
         <CartInfoContainer>
           <CartInfoWrapper>
             <span>Total de itens</span>

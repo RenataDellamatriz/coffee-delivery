@@ -1,23 +1,48 @@
-import produce from 'immer'
-import { ActionTypes } from './actions'
+import { produce } from "immer";
+import { CoffeeCardProps } from "../@types/types/global";
+import { ActionTypes } from "./actions";
 
 export interface Coffee {
-  id: string
-  coffeeTitle: string
-  quantity: number
-  price: string
+  id: string;
+  coffeeTitle: string;
+  quantity: number;
+  price: string;
 }
 
-interface QuantityState {
-  quantitys: Coffee[]
+export interface CoffeeOrder {
+  order: Coffee[];
 }
 
-export function quantityReducer(state: QuantityState, action: any) {
+export interface AvailableCoffees {
+  coffees: CoffeeCardProps[];
+}
+
+export function coffeeReducer(state: CoffeeOrder, action: any) {
   switch (action.type) {
-    case ActionTypes.ADD_QUANTITY:
+    case ActionTypes.UPDATE_ORDER:
       return produce(state, (draft) => {
-        draft.quantitys.push(action.payload.quantity)
-      })
-    // case ActionTypes.REMOVE_QUANTITY:
+        const selectedCoffeeIdx = state.order.findIndex(
+          (element) => element.id === action.payload.coffee
+        );
+        if (selectedCoffeeIdx === -1) {
+          draft.order.push(action.payload.coffee);
+        } else {
+          draft.order[selectedCoffeeIdx].quantity =
+            action.payload.coffee.quantity;
+        }
+      });
+
+    case ActionTypes.REMOVE_COFFEE:
+      return produce(state, (draft) => {
+        const selectedCoffeeIdx = state.order.findIndex(
+          (element) => element.id === action.payload.id
+        );
+
+        if (selectedCoffeeIdx !== -1) {
+          draft.order.splice(selectedCoffeeIdx, 1);
+        }
+      });
+    default:
+      return state;
   }
 }
