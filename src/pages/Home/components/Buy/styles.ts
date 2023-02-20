@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const QuantityInputContainer = styled.div`
   display: flex;
@@ -37,4 +37,11 @@ export const AddQuantityButton = styled.button`
   border: none;
   background: transparent;
   cursor: pointer;
+`
+
+
+export const BuyContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
 `

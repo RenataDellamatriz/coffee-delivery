@@ -7,6 +7,7 @@ export interface Coffee {
   coffeeTitle: string;
   quantity: number;
   price: string;
+  image: string;
 }
 
 export interface CoffeeOrder {
@@ -21,9 +22,9 @@ export function coffeeReducer(state: CoffeeOrder, action: any) {
   switch (action.type) {
     case ActionTypes.UPDATE_ORDER:
       return produce(state, (draft) => {
-        const selectedCoffeeIdx = state.order.findIndex(
-          (element) => element.id === action.payload.coffee
-        );
+        const selectedCoffeeIdx = draft.order
+          .map((i) => i.id)
+          .indexOf(action.payload.coffee.id);
         if (selectedCoffeeIdx === -1) {
           draft.order.push(action.payload.coffee);
         } else {

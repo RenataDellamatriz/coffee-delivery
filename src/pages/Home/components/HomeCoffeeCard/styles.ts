@@ -78,10 +78,5 @@ export const Price = styled.span`
   }
 `
 
-export const BuyContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 4px;
-`
 
 

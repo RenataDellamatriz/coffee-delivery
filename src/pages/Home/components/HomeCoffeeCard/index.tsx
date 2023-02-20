@@ -1,8 +1,6 @@
-import { useContext} from 'react'
-import { CoffeeCardProps } from '../../../../@types/types/global'
-import { QuantityInput } from '../../../../components/QuantityInput'
-import { CoffeesContext } from '../../../../contexts/CoffeeContext'
-import { AddCoffeeCartButton } from '../AddCoffeeCartButton'
+import { useContext } from "react";
+import { CoffeesContext } from "../../../../contexts/CoffeeContext";
+import { Buy } from "../Buy";
 
 import {
   Tag,
@@ -11,21 +9,11 @@ import {
   Price,
   CardContainer,
   Footer,
-  BuyContainer,
   TagContainer,
-} from './styles'
+} from "./styles";
 
 export function HomeCoffeeCard() {
-  const {availableCoffees, updateCoffee, order} =useContext(CoffeesContext)
-
-  function getOrderQuantity(coffee: CoffeeCardProps) {
-    const coffeeOrder = order?.find((item) => item.id === coffee.id)
-    if(coffeeOrder) {
-      return coffeeOrder.quantity
-    } else {
-      return 0
-    }
-  }
+  const { availableCoffees } = useContext(CoffeesContext);
 
   return (
     <>
@@ -36,7 +24,7 @@ export function HomeCoffeeCard() {
 
             <TagContainer>
               {coffee.tag.map((item, index) => {
-                return <Tag key={index}>{item.toUpperCase()}</Tag>
+                return <Tag key={index}>{item.toUpperCase()}</Tag>;
               })}
             </TagContainer>
             <div>
@@ -50,15 +38,12 @@ export function HomeCoffeeCard() {
                   {coffee.price}
                 </Price>
 
-                <BuyContainer>
-                  <QuantityInput value={getOrderQuantity(coffee)}/>
-                  {/* <AddCoffeeCartButton onClick={updateCoffee({coffeeTitle: coffee.name, id: coffee.id, price: coffee.price, quantity:})}/> */}
-                </BuyContainer>
+                {/* <Buy coffee={coffee}/> */}
               </Footer>
             </div>
           </CardContainer>
-        )
+        );
       })}
     </>
-  )
+  );
 }

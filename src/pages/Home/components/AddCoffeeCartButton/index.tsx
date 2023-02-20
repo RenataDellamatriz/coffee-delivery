@@ -1,9 +1,11 @@
 import { ShoppingCartSimple } from "phosphor-react";
-import { useContext } from "react";
-import { CoffeesContext } from "../../../../contexts/CoffeeContext";
 import { ShoppingCartContainer } from "./styles";
 
-export function AddCoffeeCartButton({ onClick }: { onClick: () => void }) {
+interface AddCoffeeCartButtonProps {
+  onClick: () => void;  
+}
+
+export function AddCoffeeCartButton({onClick}: AddCoffeeCartButtonProps) {
   return (
     <ShoppingCartContainer onClick={onClick} title="Checkout">
       <ShoppingCartSimple weight="fill" />

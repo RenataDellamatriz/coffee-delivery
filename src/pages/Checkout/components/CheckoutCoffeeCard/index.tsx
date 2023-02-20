@@ -1,8 +1,10 @@
-import { Trash } from 'phosphor-react'
-import { useEffect, useState } from 'react'
-import { CoffeeCardProps } from '../../../../@types/types/global'
-import { QuantityInput } from '../../../../components/QuantityInput'
-import { fetchCoffeeData } from '../../../../services/api'
+import { Trash } from "phosphor-react";
+import { useContext, useEffect, useState } from "react";
+import { CoffeeCardProps } from "../../../../@types/types/global";
+import { CoffeesContext } from "../../../../contexts/CoffeeContext";
+
+import { fetchCoffeeData } from "../../../../services/api";
+import { Buy } from "../../../Home/components/Buy";
 import {
   CardContainer,
   Footer,
@@ -10,32 +12,33 @@ import {
   Price,
   RemoveButton,
   Title,
-} from './styles'
+} from "./styles";
 
 export function CheckoutCoffeeCard() {
+  const { order, availableCoffees } = useContext(CoffeesContext);
   const [coffees, setCoffees] = useState<CoffeeCardProps[]>()
 
   useEffect(() => {
     async function getCoffeeData() {
-      const coffee = await fetchCoffeeData()
-      setCoffees(coffee)
+      const coffeeInfo = await fetchCoffeeData();
+      setCoffees(coffeeInfo);
     }
-    getCoffeeData()
-  }, [])
+    getCoffeeData();
+  }, []);
 
+  console.log(JSON.stringify(coffees))
   return (
     <>
-      {coffees?.map((coffee, index) => {
+      {order?.map((coffee, index) => {
         return (
-          <CardContainer key={`${coffee} - ${index}`}>
+          <CardContainer key={coffee.id}>
             <MainContent>
               <img src={coffee.image} alt="" />
               <div>
-                <Title>{coffee.name}</Title>
+                <Title>{coffee.coffeeTitle}</Title>
 
                 <Footer>
-                  <QuantityInput />
-
+                  {/* <Buy orderedCoffee={coffee} /> */}
                   <RemoveButton>
                     <Trash /> REMOVER
                   </RemoveButton>
@@ -49,8 +52,8 @@ export function CheckoutCoffeeCard() {
               </span>
             </Price>
           </CardContainer>
-        )
+        );
       })}
     </>
-  )
+  );
 }

@@ -28,6 +28,7 @@ export function CoffeeContextProvider({
   children,
 }: CoffeeContextProviderProps) {
   const [availableCoffees, setAvailableCoffes] = useState<CoffeeCardProps[]>([]);
+ 
   const [coffeeState, dispatch] = useReducer(
     coffeeReducer,
     {
@@ -64,12 +65,13 @@ export function CoffeeContextProvider({
       coffeeTitle: data.coffeeTitle,
       price: data.price,
       quantity: data.quantity,
+      image: data.image
     };
 
     dispatch(updateCoffeeAction(newCoffee));
   }
 
- 
+   
   return (
     <CoffeesContext.Provider
       value={{        
