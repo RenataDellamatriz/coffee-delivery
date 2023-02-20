@@ -1,4 +1,5 @@
 import { useContext} from 'react'
+import { CoffeeCardProps } from '../../../../@types/types/global'
 import { QuantityInput } from '../../../../components/QuantityInput'
 import { CoffeesContext } from '../../../../contexts/CoffeeContext'
 import { AddCoffeeCartButton } from '../AddCoffeeCartButton'
@@ -15,11 +16,20 @@ import {
 } from './styles'
 
 export function HomeCoffeeCard() {
-  const {availableCoffees, updateCoffee} =useContext(CoffeesContext)
+  const {availableCoffees, updateCoffee, order} =useContext(CoffeesContext)
+
+  function getOrderQuantity(coffee: CoffeeCardProps) {
+    const coffeeOrder = order?.find((item) => item.id === coffee.id)
+    if(coffeeOrder) {
+      return coffeeOrder.quantity
+    } else {
+      return 0
+    }
+  }
 
   return (
     <>
-      {availableCoffees?.map((coffee, index) => {
+      {availableCoffees?.map((coffee) => {
         return (
           <CardContainer key={coffee.id}>
             <img src={coffee.image} alt="" />
@@ -41,7 +51,7 @@ export function HomeCoffeeCard() {
                 </Price>
 
                 <BuyContainer>
-                  <QuantityInput />
+                  <QuantityInput value={getOrderQuantity(coffee)}/>
                   {/* <AddCoffeeCartButton onClick={updateCoffee({coffeeTitle: coffee.name, id: coffee.id, price: coffee.price, quantity:})}/> */}
                 </BuyContainer>
               </Footer>

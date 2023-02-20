@@ -10,14 +10,11 @@ import { updateCoffeeAction } from "../reducers/actions";
 import { CoffeeCardProps } from "../@types/types/global";
 import { fetchCoffeeData } from "../services/api";
 
-interface CoffeeContextType {
-  quantity: number
+interface CoffeeContextType {  
   availableCoffees: CoffeeCardProps[];
   order: Coffee[];
   updateCoffee: (data: Coffee) => void;
   addNewCoffee?: (data: CoffeeOrder) => void;
-  addQuantity: (data: number) => void;
-  removeQuantity: (data : number) => void;
   // deleteItem: () => void;
 }
 
@@ -31,7 +28,6 @@ export function CoffeeContextProvider({
   children,
 }: CoffeeContextProviderProps) {
   const [availableCoffees, setAvailableCoffes] = useState<CoffeeCardProps[]>([]);
-  const [quantity, setQuantity] = useState(0);
   const [coffeeState, dispatch] = useReducer(
     coffeeReducer,
     {
@@ -73,27 +69,10 @@ export function CoffeeContextProvider({
     dispatch(updateCoffeeAction(newCoffee));
   }
 
-  function addQuantity() {
-    if (quantity < 10) {
-      setQuantity((quantity) => {
-        return quantity + 1;
-      });
-    }
-  }
-
-  function removeQuantity() {
-    if (quantity > 0) {
-      setQuantity((quantity) => {
-        return quantity - 1;
-      });
-    }
-  }
+ 
   return (
     <CoffeesContext.Provider
-      value={{
-        addQuantity,
-        removeQuantity,
-        quantity,
+      value={{        
         availableCoffees,
         order: coffeeState.order,
         updateCoffee,
