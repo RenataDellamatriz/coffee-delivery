@@ -9,6 +9,7 @@ export interface CoffeeCardProps {
   name: string;
   image: string;
   tag: [string];
-  description: string;
+  description?: string;
   price: string;
+  quantity: number
 }

@@ -3,7 +3,6 @@ import { useContext, useState } from "react";
 import { CoffeeCardProps } from "../../../../@types/types/global";
 
 import { CoffeesContext } from "../../../../contexts/CoffeeContext";
-import { Coffee } from "../../../../reducers/reducer";
 import { AddCoffeeCartButton } from "../AddCoffeeCartButton";
 import {
   AddQuantityButton,
@@ -12,7 +11,7 @@ import {
   RemoveQuantityButton,
 } from "./styles";
 
-export function Buy({ coffee, orderedCoffee }: { coffee: CoffeeCardProps , orderedCoffee: Coffee}) {
+export function Buy({ coffee }: { coffee: CoffeeCardProps }) {
   const { updateCoffee, order } = useContext(CoffeesContext);
   const [quantity, setQuantity] = useState(getOrderQuantity(coffee));
 
@@ -40,7 +39,6 @@ export function Buy({ coffee, orderedCoffee }: { coffee: CoffeeCardProps , order
       });
     }
   }
-  console.log(order);
 
   return (
     <BuyContainer>
@@ -60,14 +58,12 @@ export function Buy({ coffee, orderedCoffee }: { coffee: CoffeeCardProps , order
           <Plus weight="bold" />
         </AddQuantityButton>
       </QuantityInputContainer>
-      <AddCoffeeCartButton
+      <AddCoffeeCartButton     
         onClick={() =>
-          updateCoffee({
-            ...coffee,
-            coffeeTitle: coffee.name,
+          updateCoffee({...coffee,
+            name: coffee.name,
             id: coffee.id,
-            quantity: quantity,
-          })
+            quantity: quantity,})
         }
       />
     </BuyContainer>

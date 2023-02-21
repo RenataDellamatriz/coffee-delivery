@@ -1,4 +1,4 @@
-import { Coffee, CoffeeOrder, coffeeReducer } from "../reducers/reducer";
+import { coffeeReducer } from "../reducers/reducer";
 import {
   createContext,
   ReactNode,
@@ -12,9 +12,9 @@ import { fetchCoffeeData } from "../services/api";
 
 interface CoffeeContextType {  
   availableCoffees: CoffeeCardProps[];
-  order: Coffee[];
-  updateCoffee: (data: Coffee) => void;
-  addNewCoffee?: (data: CoffeeOrder) => void;
+  order: CoffeeCardProps[];
+  updateCoffee: (data: CoffeeCardProps) => void;
+  addNewCoffee?: (data: CoffeeCardProps) => void;
   // deleteItem: () => void;
 }
 
@@ -34,22 +34,22 @@ export function CoffeeContextProvider({
     {
       order: [],
     },
-    () => {
-      const storedStateAsJSON = localStorage.getItem(
-        "@coffee-delivery:coffees-state-1.0.0"
-      );
+    // () => {
+    //   const storedStateAsJSON = localStorage.getItem(
+    //     "@coffee-delivery:coffees-state-1.0.0"
+    //   );
 
-      if (storedStateAsJSON) {
-        return JSON.parse(storedStateAsJSON);
-      }
-    }
+    //   if (storedStateAsJSON) {
+    //     return JSON.parse(storedStateAsJSON);
+    //   }
+    // }
   );
 
-  useEffect(() => {
-    const stateJson = JSON.stringify(coffeeState);
+  // useEffect(() => {
+  //   const stateJson = JSON.stringify(coffeeState);
 
-    localStorage.setItem("@coffee-delivery:coffees-state-1.0.0", stateJson);
-  }, [coffeeState]);
+  //   localStorage.setItem("@coffee-delivery:coffees-state-1.0.0", stateJson);
+  // }, [coffeeState]);
 
   useEffect(() => {
     async function getCoffeeData() {
@@ -59,13 +59,15 @@ export function CoffeeContextProvider({
     getCoffeeData();
   }, []);
  
-  function updateCoffee(data: Coffee) {
-    const newCoffee: Coffee = {
+  function updateCoffee(data: CoffeeCardProps) {
+    const newCoffee: CoffeeCardProps = {
       id: data.id,
-      coffeeTitle: data.coffeeTitle,
+      name: data.name,
       price: data.price,
       quantity: data.quantity,
-      image: data.image
+      image: data.image,
+      tag: data.tag
+      
     };
 
     dispatch(updateCoffeeAction(newCoffee));

@@ -14,46 +14,31 @@ import {
   Title,
 } from "./styles";
 
-export function CheckoutCoffeeCard() {
-  const { order, availableCoffees } = useContext(CoffeesContext);
-  const [coffees, setCoffees] = useState<CoffeeCardProps[]>()
+export function CheckoutCoffeeCard({coffee}: {coffee: CoffeeCardProps}) {
+  const { order } = useContext(CoffeesContext);
 
-  useEffect(() => {
-    async function getCoffeeData() {
-      const coffeeInfo = await fetchCoffeeData();
-      setCoffees(coffeeInfo);
-    }
-    getCoffeeData();
-  }, []);
-
-  console.log(JSON.stringify(coffees))
+  console.log(order);
   return (
-    <>
-      {order?.map((coffee, index) => {
-        return (
-          <CardContainer key={coffee.id}>
-            <MainContent>
-              <img src={coffee.image} alt="" />
-              <div>
-                <Title>{coffee.coffeeTitle}</Title>
+    <CardContainer key={coffee.id}>
+      <MainContent>
+        <img src={coffee.image} alt="" />
+        <div>
+          <Title>{coffee.name}</Title>
 
-                <Footer>
-                  {/* <Buy orderedCoffee={coffee} /> */}
-                  <RemoveButton>
-                    <Trash /> REMOVER
-                  </RemoveButton>
-                </Footer>
-              </div>
-            </MainContent>
-            <Price>
-              <span>
-                R$
-                {coffee.price}
-              </span>
-            </Price>
-          </CardContainer>
-        );
-      })}
-    </>
+          <Footer>
+            <Buy coffee={coffee} />
+            <RemoveButton>
+              <Trash /> REMOVER
+            </RemoveButton>
+          </Footer>
+        </div>
+      </MainContent>
+      <Price>
+        <span>
+          R$
+          {coffee.price}
+        </span>
+      </Price>
+    </CardContainer>
   );
 }

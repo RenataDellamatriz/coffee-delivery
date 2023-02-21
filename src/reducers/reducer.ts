@@ -2,16 +2,9 @@ import { produce } from "immer";
 import { CoffeeCardProps } from "../@types/types/global";
 import { ActionTypes } from "./actions";
 
-export interface Coffee {
-  id: string;
-  coffeeTitle: string;
-  quantity: number;
-  price: string;
-  image: string;
-}
 
 export interface CoffeeOrder {
-  order: Coffee[];
+  order: CoffeeCardProps[];
 }
 
 export interface AvailableCoffees {

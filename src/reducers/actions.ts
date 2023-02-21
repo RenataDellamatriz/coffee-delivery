@@ -1,5 +1,5 @@
 import { CoffeeCardProps } from '../@types/types/global'
-import { Coffee} from './reducer'
+
 
 export enum ActionTypes {
   UPDATE_ORDER = 'UPDATE_ORDER',
@@ -7,11 +7,17 @@ export enum ActionTypes {
   SET_COFFEES = 'SET_COFFEES'
 }
 
-export function updateCoffeeAction(coffee: Coffee) {
+export function updateCoffeeAction(coffee: CoffeeCardProps) {
   return {
     type: ActionTypes.UPDATE_ORDER,
     payload: {
-      coffee,
+      coffee: {
+        id: coffee.id,
+        name: coffee.name,
+        price: coffee.price,
+        quantity: coffee.quantity,
+        image: coffee.image
+      }
     },
   }
 }

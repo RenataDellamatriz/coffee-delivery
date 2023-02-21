@@ -38,7 +38,7 @@ export function HomeCoffeeCard() {
                   {coffee.price}
                 </Price>
 
-                {/* <Buy coffee={coffee}/> */}
+                <Buy coffee={coffee}/>
               </Footer>
             </div>
           </CardContainer>

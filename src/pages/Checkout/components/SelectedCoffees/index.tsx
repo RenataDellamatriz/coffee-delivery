@@ -5,21 +5,26 @@ import {
   CoffeeSelectedContainer,
   ConfirmButton,
   Title,
-} from './styles'
-import { CheckoutCoffeeCard } from '../CheckoutCoffeeCard/index'
-import { useContext } from 'react'
-import { CoffeesContext } from '../../../../contexts/CoffeeContext'
-// import { EmptyCoffees } from '../EmptyCoffees'
+} from "./styles";
+import { CheckoutCoffeeCard } from "../CheckoutCoffeeCard/index";
+import { useContext } from "react";
+import { CoffeesContext } from "../../../../contexts/CoffeeContext";
+import { EmptyCoffees } from "../EmptyCoffees";
 
 export function SelectedCoffees() {
-  const {order} = useContext(CoffeesContext)
- console.log(order)
+  const { order } = useContext(CoffeesContext);
+  
   return (
     <div>
       <Title>Cafés selecionados</Title>
       <CoffeeSelectedContainer>
-        {/* <EmptyCoffees /> */}
-        {order?.map((coffee) => { return <CheckoutCoffeeCard />})}
+        {order.length >= 1 ? (
+          order?.map((coffee) => {
+            return <CheckoutCoffeeCard coffee={coffee} key={coffee.id}/>;
+          })
+        ) : (
+          <EmptyCoffees />
+        )}
         <CartInfoContainer>
           <CartInfoWrapper>
             <span>Total de itens</span>
@@ -38,5 +43,5 @@ export function SelectedCoffees() {
         <ConfirmButton>CONFIRMAR PEDIDO</ConfirmButton>
       </CoffeeSelectedContainer>
     </div>
-  )
+  );
 }
