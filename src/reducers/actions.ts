@@ -1,10 +1,9 @@
-import { CoffeeCardProps } from '../@types/types/global'
-
+import { CoffeeCardProps } from "../@types/types/global";
 
 export enum ActionTypes {
-  UPDATE_ORDER = 'UPDATE_ORDER',
-  REMOVE_COFFEE = 'REMOVE_COFFEE',
-  SET_COFFEES = 'SET_COFFEES'
+  UPDATE_ORDER = "UPDATE_ORDER",
+  REMOVE_COFFEE = "REMOVE_COFFEE",
+  // DELETE_COFFEE_WITH_ZERO_QUANTITY = "DELETE_COFFEE_WITH_ZERO_QUANTITY",
 }
 
 export function updateCoffeeAction(coffee: CoffeeCardProps) {
@@ -16,17 +15,30 @@ export function updateCoffeeAction(coffee: CoffeeCardProps) {
         name: coffee.name,
         price: coffee.price,
         quantity: coffee.quantity,
-        image: coffee.image
-      }
+        image: coffee.image,
+      },
     },
-  }
+  };
 }
 
-export function removeCoffeeAction(coffeId: string) {
+export function removeCoffeeAction(coffee: CoffeeCardProps) {
   return {
     type: ActionTypes.REMOVE_COFFEE,
     payload: {
-      coffeId,
+      coffee: {
+        id: coffee.id,
+      },
     },
-  }
+  };
 }
+
+// export function deleteCoffeeWithZeroQuantityAction(coffee: CoffeeCardProps){
+//   return {
+//     type: ActionTypes.DELETE_COFFEE_WITH_ZERO_QUANTITY,
+//     payload: {
+//       coffee: {
+//         quantity: coffee.quantity
+//       }
+//     }
+//   }
+// }

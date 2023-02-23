@@ -1,10 +1,8 @@
 import { Trash } from "phosphor-react";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { CoffeeCardProps } from "../../../../@types/types/global";
+import { Buy } from "../../../../components/Buy";
 import { CoffeesContext } from "../../../../contexts/CoffeeContext";
-
-import { fetchCoffeeData } from "../../../../services/api";
-import { Buy } from "../../../Home/components/Buy";
 import {
   CardContainer,
   Footer,
@@ -14,10 +12,13 @@ import {
   Title,
 } from "./styles";
 
-export function CheckoutCoffeeCard({coffee}: {coffee: CoffeeCardProps}) {
-  const { order } = useContext(CoffeesContext);
+export function CheckoutCoffeeCard({ coffee }: { coffee: CoffeeCardProps }) {
+  const { deleteItem } = useContext(CoffeesContext);
 
-  console.log(order);
+  const priceMultipliedByQuantity = coffee.quantity * Number(coffee.price.replace(",", "."));
+
+  
+
   return (
     <CardContainer key={coffee.id}>
       <MainContent>
@@ -26,8 +27,8 @@ export function CheckoutCoffeeCard({coffee}: {coffee: CoffeeCardProps}) {
           <Title>{coffee.name}</Title>
 
           <Footer>
-            <Buy coffee={coffee} />
-            <RemoveButton>
+            <Buy coffee={coffee} autoUpdate/>
+            <RemoveButton onClick={() => deleteItem(coffee)}>
               <Trash /> REMOVER
             </RemoveButton>
           </Footer>
@@ -36,7 +37,7 @@ export function CheckoutCoffeeCard({coffee}: {coffee: CoffeeCardProps}) {
       <Price>
         <span>
           R$
-          {coffee.price}
+          {priceMultipliedByQuantity.toFixed(2).replace(".", ",")}
         </span>
       </Price>
     </CardContainer>

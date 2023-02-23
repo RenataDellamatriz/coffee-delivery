@@ -10,6 +10,7 @@ export const EmptyCards = styled.div`
   font-weight: 300;
 
   width: 100%;
+  margin-bottom:1.25rem;
   border: 1px dashed ${(props) => props.theme.purple};
   border-radius: 6px 44px 6px 44px;
   min-height: 300px;

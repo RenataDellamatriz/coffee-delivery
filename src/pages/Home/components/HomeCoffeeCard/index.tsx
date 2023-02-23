@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { CoffeesContext } from "../../../../contexts/CoffeeContext";
-import { Buy } from "../Buy";
+import { Buy } from "../../../../components/Buy";
 
 import {
   Tag,
@@ -11,11 +11,20 @@ import {
   Footer,
   TagContainer,
 } from "./styles";
+import { CoffeeCardProps } from "../../../../@types/types/global";
+
 
 export function HomeCoffeeCard() {
-  const { availableCoffees } = useContext(CoffeesContext);
+  const { availableCoffees, order } = useContext(CoffeesContext);
 
-  return (
+
+  const price  = availableCoffees.map(coffee => { return Number(coffee.price.replace(',', '.'))})  
+
+  const quantity = order.map(coffee => { return coffee.quantity})
+
+  
+
+   return (
     <>
       {availableCoffees?.map((coffee) => {
         return (
@@ -35,7 +44,7 @@ export function HomeCoffeeCard() {
               <Footer>
                 <Price>
                   <span>R$</span>
-                  {coffee.price}
+                  <span>{Number(coffee.price.replace(',', '.')).toFixed(2)}</span>
                 </Price>
 
                 <Buy coffee={coffee}/>

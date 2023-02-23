@@ -65,7 +65,7 @@ export const Footer = styled.div`
   gap: 1.25rem;
 `
 
-export const Price = styled.span`
+export const Price = styled.div`
   font-family: 'Baloo 2', cursive;
   font-size: 1.5rem;
   font-weight: 800;

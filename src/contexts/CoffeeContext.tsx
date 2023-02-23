@@ -6,7 +6,7 @@ import {
   useReducer,
   useState,
 } from "react";
-import { updateCoffeeAction } from "../reducers/actions";
+import { removeCoffeeAction, updateCoffeeAction } from "../reducers/actions";
 import { CoffeeCardProps } from "../@types/types/global";
 import { fetchCoffeeData } from "../services/api";
 
@@ -15,7 +15,7 @@ interface CoffeeContextType {
   order: CoffeeCardProps[];
   updateCoffee: (data: CoffeeCardProps) => void;
   addNewCoffee?: (data: CoffeeCardProps) => void;
-  // deleteItem: () => void;
+  deleteItem: (data: CoffeeCardProps ) => void;
 }
 
 interface CoffeeContextProviderProps {
@@ -73,6 +73,11 @@ export function CoffeeContextProvider({
     dispatch(updateCoffeeAction(newCoffee));
   }
 
+  function deleteItem(data: CoffeeCardProps) {   
+    dispatch(removeCoffeeAction(data))    
+  }
+
+  
    
   return (
     <CoffeesContext.Provider
@@ -80,6 +85,7 @@ export function CoffeeContextProvider({
         availableCoffees,
         order: coffeeState.order,
         updateCoffee,
+        deleteItem
       }}
     >
       {children}

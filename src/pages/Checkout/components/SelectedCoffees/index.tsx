@@ -14,13 +14,23 @@ import { EmptyCoffees } from "../EmptyCoffees";
 export function SelectedCoffees() {
   const { order } = useContext(CoffeesContext);
   
+  const totalItemsPrice = order.reduce((acc, coffee) => {
+    return acc + coffee.quantity * Number(coffee.price.replace(",", "."));
+  }, 0);
+
+  const deliveryPrice = 3.50
+
+  const totalPrice = totalItemsPrice + deliveryPrice
+
+  
+
   return (
     <div>
       <Title>Cafés selecionados</Title>
       <CoffeeSelectedContainer>
         {order.length >= 1 ? (
           order?.map((coffee) => {
-            return <CheckoutCoffeeCard coffee={coffee} key={coffee.id}/>;
+            return <CheckoutCoffeeCard coffee={coffee} key={coffee.id} />;
           })
         ) : (
           <EmptyCoffees />
@@ -28,15 +38,15 @@ export function SelectedCoffees() {
         <CartInfoContainer>
           <CartInfoWrapper>
             <span>Total de itens</span>
-            <span>R$ 29,70</span>
+            <span>R$ {(totalItemsPrice.toFixed(2).replace(".", ","))}</span>
           </CartInfoWrapper>
           <CartInfoWrapper>
             <span>Entrega</span>
-            <span>R$ 3,50</span>
+            <span>R$ {deliveryPrice.toFixed(2).replace(".", ",")}</span>
           </CartInfoWrapper>
           <CartTotalInfoWrapper>
             <span>Total</span>
-            <span>R$ 33,20</span>
+            <span>R$ {totalPrice.toFixed(2).replace(".", ",")}</span>
           </CartTotalInfoWrapper>
         </CartInfoContainer>
 
