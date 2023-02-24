@@ -11,20 +11,11 @@ import {
   Footer,
   TagContainer,
 } from "./styles";
-import { CoffeeCardProps } from "../../../../@types/types/global";
-
 
 export function HomeCoffeeCard() {
-  const { availableCoffees, order } = useContext(CoffeesContext);
+  const { availableCoffees } = useContext(CoffeesContext);
 
-
-  const price  = availableCoffees.map(coffee => { return Number(coffee.price.replace(',', '.'))})  
-
-  const quantity = order.map(coffee => { return coffee.quantity})
-
-  
-
-   return (
+  return (
     <>
       {availableCoffees?.map((coffee) => {
         return (
@@ -44,10 +35,10 @@ export function HomeCoffeeCard() {
               <Footer>
                 <Price>
                   <span>R$</span>
-                  <span>{Number(coffee.price.replace(',', '.')).toFixed(2)}</span>
+                  <span>{coffee.price}</span>
                 </Price>
 
-                <Buy coffee={coffee}/>
+                <Buy coffee={coffee} />
               </Footer>
             </div>
           </CardContainer>

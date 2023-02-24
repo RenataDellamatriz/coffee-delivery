@@ -11,6 +11,9 @@ export const CoffeeSelectedContainer = styled.div`
   border-radius: 6px 44px 6px 44px;
   height: auto;
   min-height: 500px;
+  width: 448px;
+  
+  
 `
 
 export const CartInfoContainer = styled.div`
@@ -18,6 +21,7 @@ export const CartInfoContainer = styled.div`
   flex-direction: column;
   gap: 12px;
   margin-bottom: 1.5rem;
+ 
 
   font-size: 0.875rem;
 `
@@ -25,6 +29,7 @@ export const CartInfoContainer = styled.div`
 export const CartInfoWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+ 
 `
 
 export const CartTotalInfoWrapper = styled.div`

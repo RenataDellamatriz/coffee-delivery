@@ -1,6 +1,5 @@
 import { MapPinLine } from 'phosphor-react'
-import { Input } from '../../../../components/Input'
-
+import { InputForm } from '../InputForm'
 import {
   FormInputWrapper,
   FormWrapper,
@@ -25,19 +24,19 @@ export function RegisterForm() {
 
         <FormInputWrapper>
           <InputWrapper>
-            <Input type="number" placeholder="CEP" variant="md" />
+            <InputForm type="number" placeholder="CEP" variant="md" />
           </InputWrapper>
           <InputWrapper>
-            <Input type="text" placeholder="Rua" variant="lg" />
+            <InputForm type="text" placeholder="Rua" variant="lg" />
           </InputWrapper>
           <InputWrapper>
-            <Input type="text" placeholder="Número" variant="md" />
-            <Input type="text" placeholder="Complemento" variant="lg" />
+            <InputForm type="text" placeholder="Número" variant="md" />
+            <InputForm type="text" placeholder="Complemento" variant="lg" />
           </InputWrapper>
           <InputWrapper>
-            <Input type="text" placeholder="Bairro" variant="md" />
-            <Input type="text" placeholder="Cidade" variant="lg" />
-            <Input type="text" placeholder="UF" variant="sm" />
+            <InputForm type="text" placeholder="Bairro" variant="md" />
+            <InputForm type="text" placeholder="Cidade" variant="lg" />
+            <InputForm type="text" placeholder="UF" variant="sm" />
           </InputWrapper>
         </FormInputWrapper>
       </FormWrapper>

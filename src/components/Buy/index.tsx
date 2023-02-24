@@ -17,7 +17,7 @@ export function Buy({
   coffee: CoffeeCardProps;
   autoUpdate?: boolean;
 }) {
-  const { updateCoffee, order } = useContext(CoffeesContext);
+  const { updateCoffee, order, deleteItem } = useContext(CoffeesContext);
   const [quantity, setQuantity] = useState(getOrderQuantity(coffee));
 
   function getOrderQuantity(coffee: CoffeeCardProps) {
@@ -31,13 +31,16 @@ export function Buy({
 
   function handleDecrement() {
     if (quantity > 0) {
-      const newQuantity =  quantity - 1
+      const newQuantity = quantity - 1;
       setQuantity(newQuantity);
-      if(autoUpdate) {
-        updateCoffee({ 
+      if (autoUpdate) {
+        updateCoffee({
           ...coffee,
-          quantity:quantity
-        })
+          quantity: newQuantity,
+        });
+      }
+      if (newQuantity === 0) {
+        deleteItem(coffee);
       }
     }
   }
@@ -51,7 +54,7 @@ export function Buy({
           ...coffee,
           quantity: newQuantity,
         });
-      } 
+      }
     }
   }
 

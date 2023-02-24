@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const CardContainer = styled.div`
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: space-between;
   gap: 50px;
 
   width: 100%;

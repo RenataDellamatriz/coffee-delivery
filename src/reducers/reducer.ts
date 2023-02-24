@@ -34,17 +34,6 @@ export function coffeeReducer(state: CoffeeOrder, action: any) {
         draft.order = filteredCoffees;
       });
 
-    // case ActionTypes.DELETE_COFFEE_WITH_ZERO_QUANTITY:
-    //   return produce(state, (draft) => {
-    //     const filteredCoffees = state.order.filter((item) => {
-    //       if (item.quantity !== 0) {
-    //         return item.quantity === action.payload.coffee.quantity;
-    //       }
-    //     });
-
-    //     draft.order = filteredCoffees;
-    //   });
-
     default:
       return state;
   }

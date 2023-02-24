@@ -9,3 +9,4 @@ export async function fetchCoffeeData() {
     console.log(error)
   }
 }
+

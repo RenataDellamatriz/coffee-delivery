@@ -14,6 +14,8 @@ import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 import { HomeCoffeeCard } from './components/HomeCoffeeCard'
 
 export function Home() {
+
+ 
   return (
     <HomeContainer>
       <MainContent>

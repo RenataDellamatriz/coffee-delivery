@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
+
 export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
@@ -22,26 +23,6 @@ export const HeaderContainer = styled.header`
   }
 `;
 
-export const LocationContainer = styled(NavLink)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  font-size: 0.875rem;
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-
-  color: ${(props) => props.theme["purple-dark"]};
-  background-color: ${(props) => props.theme["purple-light"]};
-
-  padding: 10px;
-  border-radius: 6px;
-
-  svg {
-    font-size: 1.375rem;
-    color: ${(props) => props.theme.purple};
-  }
-`;
 
 export const ShoppingCartContainer = styled(NavLink)`
   display: flex;
@@ -64,8 +45,8 @@ export const CartItemsCounter = styled.div`
   background: ${(props) => props.theme[`yellow-dark`]};
   color: ${(props) => props.theme["white"]};
 
-  font-size:0.75rem;
-  font-family: 'Roboto', sans-serif;
+  font-size: 0.75rem;
+  font-family: "Roboto", sans-serif;
 
   border-radius: 9999px;
 

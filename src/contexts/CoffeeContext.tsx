@@ -8,7 +8,7 @@ import {
 } from "react";
 import { removeCoffeeAction, updateCoffeeAction } from "../reducers/actions";
 import { CoffeeCardProps } from "../@types/types/global";
-import { fetchCoffeeData } from "../services/api";
+import { fetchCoffeeData } from "../services/coffeeApi/api";
 
 interface CoffeeContextType {  
   availableCoffees: CoffeeCardProps[];
