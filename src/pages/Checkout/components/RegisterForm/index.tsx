@@ -1,5 +1,6 @@
-import { MapPinLine } from 'phosphor-react'
-import { InputForm } from '../InputForm'
+import { MapPinLine } from "phosphor-react";
+import { useFormContext } from "react-hook-form";
+import { InputForm } from "../InputForm";
 import {
   FormInputWrapper,
   FormWrapper,
@@ -7,9 +8,11 @@ import {
   InputWrapper,
   Subtitle,
   Title,
-} from './style'
+} from "./style";
 
 export function RegisterForm() {
+  const { register } = useFormContext();
+
   return (
     <div>
       <Title>Complete seu pedido</Title>
@@ -24,22 +27,64 @@ export function RegisterForm() {
 
         <FormInputWrapper>
           <InputWrapper>
-            <InputForm type="number" placeholder="CEP" variant="md" />
+            <InputForm
+              id="cep"
+              type="number"
+              placeholder="CEP"
+              variant="md"
+              {...register("cep", { valueAsNumber: true })}
+            />
           </InputWrapper>
           <InputWrapper>
-            <InputForm type="text" placeholder="Rua" variant="lg" />
+            <InputForm
+              id="street"
+              type="text"
+              placeholder="Rua"
+              variant="lg"
+              {...register("street")}
+            />
           </InputWrapper>
           <InputWrapper>
-            <InputForm type="text" placeholder="Número" variant="md" />
-            <InputForm type="text" placeholder="Complemento" variant="lg" />
+            <InputForm
+              id="number"
+              type="text"
+              placeholder="Número"
+              variant="md"
+              {...register("number", { valueAsNumber: true })}
+            />
+            <InputForm
+              id=""
+              type="text"
+              placeholder="Complemento"
+              variant="lg"
+              {...register("complement")}
+            />
           </InputWrapper>
           <InputWrapper>
-            <InputForm type="text" placeholder="Bairro" variant="md" />
-            <InputForm type="text" placeholder="Cidade" variant="lg" />
-            <InputForm type="text" placeholder="UF" variant="sm" />
+            <InputForm
+              id="neighborhood"
+              type="text"
+              placeholder="Bairro"
+              variant="md"
+              {...register("neighborhood")}
+            />
+            <InputForm
+              id="city"
+              type="text"
+              placeholder="Cidade"
+              variant="lg"
+              {...register("city")}
+            />
+            <InputForm
+              id="uf"
+              type="text"
+              placeholder="UF"
+              variant="sm"
+              {...register("uf")}
+            />
           </InputWrapper>
         </FormInputWrapper>
       </FormWrapper>
     </div>
-  )
+  );
 }

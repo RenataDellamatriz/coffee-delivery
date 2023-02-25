@@ -2,16 +2,15 @@ import {
   CartInfoContainer,
   CartInfoWrapper,
   CartTotalInfoWrapper,
-  CoffeeSelectedContainer,
-  ConfirmButton,
+  CoffeeSelectedContainer, 
   Title,
 } from "./styles";
 import { CheckoutCoffeeCard } from "../CheckoutCoffeeCard/index";
-import { useContext } from "react";
+import { ReactNode, useContext } from "react";
 import { CoffeesContext } from "../../../../contexts/CoffeeContext";
 import { EmptyCoffees } from "../EmptyCoffees";
 
-export function SelectedCoffees() {
+export function SelectedCoffees({children}: {children: ReactNode}) {
   const { order } = useContext(CoffeesContext);
 
   const totalItemsPrice = order.reduce((acc, coffee) => {
@@ -48,9 +47,8 @@ export function SelectedCoffees() {
                 <span>Total</span>
                 <span>R$ {totalPrice.toFixed(2).replace(".", ",")}</span>
               </CartTotalInfoWrapper>
-            </CartInfoContainer>
-
-            <ConfirmButton>CONFIRMAR PEDIDO</ConfirmButton>
+              {children}
+            </CartInfoContainer>            
           </>
         )}
       </CoffeeSelectedContainer>

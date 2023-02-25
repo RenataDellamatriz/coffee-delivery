@@ -4,9 +4,8 @@ export const CardContainer = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 50px;
 
-  width: 100%;
+  width: 100%;  
   height: auto;
   padding: 8px 4px 40px 4px;
   border-bottom: 1px solid ${(props) => props.theme["base-button"]};
