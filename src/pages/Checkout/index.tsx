@@ -6,6 +6,8 @@ import { PaymentForm } from "./components/PaymentForm";
 import { RegisterForm } from "./components/RegisterForm";
 import { SelectedCoffees } from "./components/SelectedCoffees";
 import { CheckoutContainer, ConfirmButton } from "./styles";
+import { useContext, useEffect } from "react";
+import { CoffeesContext } from "../../contexts/CoffeeContext";
 
 const registerFormValidationSchema = zod.object({
   cep: zod.number().positive().min(8).max(8),
@@ -21,11 +23,13 @@ const registerFormValidationSchema = zod.object({
   uf: zod.string().min(1, "Informe o estado"),
 });
 
-type RegisterFormValidationData = zod.infer<
+export type RegisterFormValidationData = zod.infer<
   typeof registerFormValidationSchema
 >;
 
 export function Checkout() {
+  const { billing, setBilling } = useContext(CoffeesContext);
+
   const registerForm = useForm<RegisterFormValidationData>({
     resolver: zodResolver(registerFormValidationSchema),
     defaultValues: {
@@ -39,16 +43,16 @@ export function Checkout() {
     },
   });
 
-  const { handleSubmit, watch, reset } = registerForm;
+  const { handleSubmit, reset } = registerForm;
 
   function handleCreateNewOrder(data: RegisterFormValidationData) {
-    //chamar função para registrar novo pedido
-    reset()
+    
+    setBilling(data);
+    // reset()
   }
 
-  const register = watch('cep')
-
-  const isSubmitDisabled = !register
+ 
+  
 
   return (
     <CheckoutContainer>
@@ -56,14 +60,13 @@ export function Checkout() {
         <div>
           <FormProvider {...registerForm}>
             <RegisterForm />
-            <PaymentForm />
           </FormProvider>
+          <PaymentForm />
         </div>
-        <div>
-          <SelectedCoffees>
-            <ConfirmButton disabled={isSubmitDisabled} type="submit">CONFIRMAR PEDIDO</ConfirmButton>
-          </SelectedCoffees>
-        </div>
+
+        <SelectedCoffees>
+        </SelectedCoffees>
+          <ConfirmButton type="submit">CONFIRMAR PEDIDO</ConfirmButton>
       </form>
     </CheckoutContainer>
   );

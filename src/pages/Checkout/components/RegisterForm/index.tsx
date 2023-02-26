@@ -1,5 +1,7 @@
 import { MapPinLine } from "phosphor-react";
+import { useContext } from "react";
 import { useFormContext } from "react-hook-form";
+import { CoffeesContext } from "../../../../contexts/CoffeeContext";
 import { InputForm } from "../InputForm";
 import {
   FormInputWrapper,
@@ -11,7 +13,7 @@ import {
 } from "./style";
 
 export function RegisterForm() {
-  const { register } = useFormContext();
+  const { control } = useFormContext();
 
   return (
     <div>
@@ -32,7 +34,8 @@ export function RegisterForm() {
               type="number"
               placeholder="CEP"
               variant="md"
-              {...register("cep", { valueAsNumber: true })}
+              name="cep"
+              control={control}
             />
           </InputWrapper>
           <InputWrapper>
@@ -41,7 +44,8 @@ export function RegisterForm() {
               type="text"
               placeholder="Rua"
               variant="lg"
-              {...register("street")}
+              name="street"
+              control={control}
             />
           </InputWrapper>
           <InputWrapper>
@@ -50,14 +54,16 @@ export function RegisterForm() {
               type="text"
               placeholder="Número"
               variant="md"
-              {...register("number", { valueAsNumber: true })}
+              name="number"
+              control={control}
             />
             <InputForm
-              id=""
+              id="complement"
               type="text"
               placeholder="Complemento"
               variant="lg"
-              {...register("complement")}
+              name="complement"
+              control={control}
             />
           </InputWrapper>
           <InputWrapper>
@@ -66,21 +72,24 @@ export function RegisterForm() {
               type="text"
               placeholder="Bairro"
               variant="md"
-              {...register("neighborhood")}
+              name="neighborhood"
+              control={control}
             />
             <InputForm
               id="city"
               type="text"
               placeholder="Cidade"
               variant="lg"
-              {...register("city")}
+              name="city"
+              control={control}
             />
             <InputForm
               id="uf"
               type="text"
               placeholder="UF"
               variant="sm"
-              {...register("uf")}
+              name="uf"
+              control={control}
             />
           </InputWrapper>
         </FormInputWrapper>

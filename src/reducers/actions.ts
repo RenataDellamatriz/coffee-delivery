@@ -3,8 +3,12 @@ import { CoffeeCardProps } from "../@types/types/global";
 export enum ActionTypes {
   UPDATE_ORDER = "UPDATE_ORDER",
   REMOVE_COFFEE = "REMOVE_COFFEE",
-  // DELETE_COFFEE_WITH_ZERO_QUANTITY = "DELETE_COFFEE_WITH_ZERO_QUANTITY",
+  // CREATE_NEW_ORDER = "CREATE_NEW_ORDER"
 }
+
+// export function createNewOrderAction(new){
+
+// }
 
 export function updateCoffeeAction(coffee: CoffeeCardProps) {
   return {
@@ -32,13 +36,3 @@ export function removeCoffeeAction(coffee: CoffeeCardProps) {
   };
 }
 
-// export function deleteCoffeeWithZeroQuantityAction(coffee: CoffeeCardProps){
-//   return {
-//     type: ActionTypes.DELETE_COFFEE_WITH_ZERO_QUANTITY,
-//     payload: {
-//       coffee: {
-//         quantity: coffee.quantity
-//       }
-//     }
-//   }
-// }
