@@ -1,7 +1,7 @@
 import { Minus, Plus, ShoppingCartSimple } from "phosphor-react";
 import { useContext, useEffect, useState } from "react";
-import { CoffeeCardProps } from "../../@types/types/global";
-import { CoffeesContext } from "../../contexts/CoffeeContext";
+import { Coffee} from "../../@types/types/global";
+import { CoffeeContext } from "../../contexts/CoffeeContext";
 import {
   AddCoffeeCartButton,
   AddQuantityButton,
@@ -14,13 +14,13 @@ export function Buy({
   coffee,
   autoUpdate,
 }: {
-  coffee: CoffeeCardProps;
+  coffee: Coffee;
   autoUpdate?: boolean;
 }) {
-  const { updateCoffee, order, deleteItem } = useContext(CoffeesContext);
+  const { updateCoffee, order, deleteItem } = useContext(CoffeeContext);
   const [quantity, setQuantity] = useState(getOrderQuantity(coffee));
 
-  function getOrderQuantity(coffee: CoffeeCardProps) {
+  function getOrderQuantity(coffee: Coffee) {
     const coffeeOrder = order?.find((item) => item.id === coffee.id);
     if (coffeeOrder) {
       return coffeeOrder.quantity;

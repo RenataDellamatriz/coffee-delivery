@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CoffeesContext } from "../../../../contexts/CoffeeContext";
+import { CoffeeContext } from "../../../../contexts/CoffeeContext";
 import { Buy } from "../../../../components/Buy";
 
 import {
@@ -13,7 +13,7 @@ import {
 } from "./styles";
 
 export function HomeCoffeeCard() {
-  const { availableCoffees } = useContext(CoffeesContext);
+  const { availableCoffees } = useContext(CoffeeContext);
 
   return (
     <>

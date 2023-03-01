@@ -14,6 +14,7 @@ export const CoffeeSelectedContainer = styled.div`
   border-radius: 6px 44px 6px 44px;
   height: auto;
   min-height: 500px;
+  max-height: 1027px;
   width: 448px;
   
   

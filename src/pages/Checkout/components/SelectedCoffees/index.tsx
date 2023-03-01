@@ -7,11 +7,11 @@ import {
 } from "./styles";
 import { CheckoutCoffeeCard } from "../CheckoutCoffeeCard/index";
 import { ReactNode, useContext } from "react";
-import { CoffeesContext } from "../../../../contexts/CoffeeContext";
+import { CoffeeContext } from "../../../../contexts/CoffeeContext";
 import { EmptyCoffees } from "../EmptyCoffees";
 
 export function SelectedCoffees({children}: {children: ReactNode}) {
-  const { order } = useContext(CoffeesContext);
+  const { order } = useContext(CoffeeContext);
 
   const totalItemsPrice = order.reduce((acc, coffee) => {
     return acc + coffee.quantity * Number(coffee.price.replace(",", "."));

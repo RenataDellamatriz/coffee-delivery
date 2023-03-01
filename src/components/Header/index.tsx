@@ -7,13 +7,13 @@ import logoCoffeeDelivery from "../../assets/logoCoffeeDelivery.svg";
 import {  ShoppingCart } from "phosphor-react";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
-import { CoffeesContext } from "../../contexts/CoffeeContext";
+import { CoffeeContext } from "../../contexts/CoffeeContext";
 import { LocationDialog } from "../LocationDialog";
 
 
 
 export function Header() {
-  const { order } = useContext(CoffeesContext);
+  const { order } = useContext(CoffeeContext);
 
   return (
     <HeaderContainer>

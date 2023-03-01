@@ -1,14 +1,14 @@
 import { InputStyled, InputVariant } from "./styles";
 import { Control, Controller } from "react-hook-form";
-import { InputHTMLAttributes } from "react";
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface InputProps {
   type: string;
   placeholder: string;
   variant: InputVariant;
   id: string;
   control?: Control;
-  name: string
+  name: string;
+  onBlur?: (e: any) => void;
 }
 
 export function InputForm({
@@ -17,6 +17,8 @@ export function InputForm({
   placeholder,
   control,
   name,
+  onBlur,
+
   variant = "lg",
 }: InputProps) {
   return (
@@ -30,9 +32,10 @@ export function InputForm({
               id={id}
               type={type}
               placeholder={placeholder}
-              variant={variant}              
+              variant={variant}
               value={value}
               onChange={onChange}
+              onBlur={onBlur}
             />
           )}
         />

@@ -33,7 +33,6 @@ export const Footer = styled.div`
   display: flex;
   margin-top: 0.5rem;
   align-items: center;
-
   gap: 8px;
 `;
 export const BuyContainer = styled.div`

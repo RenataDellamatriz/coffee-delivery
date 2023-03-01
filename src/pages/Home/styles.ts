@@ -8,7 +8,7 @@ export const HomeContainer = styled.div`
   max-width: 1440px;
 `
 
-export const MainContent = styled.div`
+export const MainContent = styled.main`
   display: flex;
   flex-direction: row;
   margin: 5.75rem 0;

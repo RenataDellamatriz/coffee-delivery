@@ -1,8 +1,8 @@
 import { Trash } from "phosphor-react";
 import { useContext } from "react";
-import { CoffeeCardProps } from "../../../../@types/types/global";
+import { Coffee } from "../../../../@types/types/global";
 import { Buy } from "../../../../components/Buy";
-import { CoffeesContext } from "../../../../contexts/CoffeeContext";
+import { CoffeeContext } from "../../../../contexts/CoffeeContext";
 import {
   CardContainer,
   Footer,
@@ -12,8 +12,8 @@ import {
   Title,
 } from "./styles";
 
-export function CheckoutCoffeeCard({ coffee }: { coffee: CoffeeCardProps }) {
-  const { deleteItem } = useContext(CoffeesContext);
+export function CheckoutCoffeeCard({ coffee }: { coffee: Coffee }) {
+  const { deleteItem } = useContext(CoffeeContext);
 
   const priceMultipliedByQuantity = coffee.quantity * Number(coffee.price.replace(",", "."));
 

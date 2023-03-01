@@ -1,7 +1,7 @@
+import axios from "axios";
 import { MapPinLine } from "phosphor-react";
-import { useContext } from "react";
+import { InputHTMLAttributes } from "react";
 import { useFormContext } from "react-hook-form";
-import { CoffeesContext } from "../../../../contexts/CoffeeContext";
 import { InputForm } from "../InputForm";
 import {
   FormInputWrapper,
@@ -13,7 +13,24 @@ import {
 } from "./style";
 
 export function RegisterForm() {
-  const { control } = useFormContext();
+  const {
+    control,
+    setValue,   
+    formState: { errors },
+  } = useFormContext();
+
+  async function getAddress(e: any ) {
+    const cep = e.target.value.replace(/\D/g, "");
+    try {
+      const { data } = await axios(`https://viacep.com.br/ws/${cep}/json/`);
+      setValue("street", data.logradouro);
+      setValue("neighborhood", data.bairro);
+      setValue("city", data.localidade);
+      setValue("uf", data.uf);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div>
@@ -31,12 +48,14 @@ export function RegisterForm() {
           <InputWrapper>
             <InputForm
               id="cep"
-              type="number"
+              type="text"
               placeholder="CEP"
               variant="md"
               name="cep"
               control={control}
+              onBlur={getAddress}              
             />
+            { errors.cep && <span>Esse campo é obrigatório</span>}
           </InputWrapper>
           <InputWrapper>
             <InputForm
@@ -56,7 +75,9 @@ export function RegisterForm() {
               variant="md"
               name="number"
               control={control}
+              
             />
+            {errors.number && <span>Esse campo é obrigatório</span>}
             <InputForm
               id="complement"
               type="text"

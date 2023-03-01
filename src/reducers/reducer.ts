@@ -1,13 +1,15 @@
 import { produce } from "immer";
-import { CoffeeCardProps } from "../@types/types/global";
+import { Coffee } from "../@types/types/global";
+import { RegisterFormValidationData } from "../pages/Checkout";
 import { ActionTypes } from "./actions";
 
 export interface CoffeeOrder {
-  order: CoffeeCardProps[];
+  billing: RegisterFormValidationData
+  order: Coffee[];
 }
 
 export interface AvailableCoffees {
-  coffees: CoffeeCardProps[];
+  coffees: Coffee[];
 }
 
 export function coffeeReducer(state: CoffeeOrder, action: any) {
@@ -24,6 +26,11 @@ export function coffeeReducer(state: CoffeeOrder, action: any) {
             action.payload.coffee.quantity;
         }
       });
+
+    case ActionTypes.CREATE_NEW_ORDER: 
+      return produce(state, (draft) => {        
+        draft.billing = action.payload        
+      })
 
     case ActionTypes.REMOVE_COFFEE:
       return produce(state, (draft) => {

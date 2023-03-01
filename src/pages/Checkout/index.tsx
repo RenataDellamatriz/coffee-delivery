@@ -6,18 +6,17 @@ import { PaymentForm } from "./components/PaymentForm";
 import { RegisterForm } from "./components/RegisterForm";
 import { SelectedCoffees } from "./components/SelectedCoffees";
 import { CheckoutContainer, ConfirmButton } from "./styles";
-import { useContext, useEffect } from "react";
-import { CoffeesContext } from "../../contexts/CoffeeContext";
+import { useContext } from "react";
+import { CoffeeContext } from "../../contexts/CoffeeContext";
 
 const registerFormValidationSchema = zod.object({
-  cep: zod.number().positive().min(8).max(8),
+  cep: zod.string().regex(/^\d{5}(?:-\d{3})?$/),
   street: zod.string().min(1, "Informe o nome da rua"),
   number: zod
-    .number()
-    .positive()
+    .string()
     .min(2, "Mínimo de dois dígitos")
     .max(4, "Máximo de 4 dígitos"),
-  complement: zod.string().min(1, "Informe o complemento"),
+  complement: zod.string().optional(),
   neighborhood: zod.string().min(1, "Informe o nome do bairro"),
   city: zod.string().min(1, "Informe o nome da cidade"),
   uf: zod.string().min(1, "Informe o estado"),
@@ -28,14 +27,14 @@ export type RegisterFormValidationData = zod.infer<
 >;
 
 export function Checkout() {
-  const { billing, setBilling } = useContext(CoffeesContext);
+  const { createNewBilling } = useContext(CoffeeContext);
 
   const registerForm = useForm<RegisterFormValidationData>({
     resolver: zodResolver(registerFormValidationSchema),
     defaultValues: {
-      cep: 0,
+      cep: "",
       street: "",
-      number: 0,
+      number: "",
       complement: "",
       neighborhood: "",
       city: "",
@@ -43,16 +42,12 @@ export function Checkout() {
     },
   });
 
-  const { handleSubmit, reset } = registerForm;
+  const { handleSubmit } = registerForm;
 
   function handleCreateNewOrder(data: RegisterFormValidationData) {
-    
-    setBilling(data);
-    // reset()
+    createNewBilling(data);
+    window.location.href = "/success";
   }
-
- 
-  
 
   return (
     <CheckoutContainer>
@@ -65,8 +60,8 @@ export function Checkout() {
         </div>
 
         <SelectedCoffees>
-        </SelectedCoffees>
           <ConfirmButton type="submit">CONFIRMAR PEDIDO</ConfirmButton>
+        </SelectedCoffees>
       </form>
     </CheckoutContainer>
   );

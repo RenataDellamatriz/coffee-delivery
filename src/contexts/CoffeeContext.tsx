@@ -6,64 +6,74 @@ import {
   useReducer,
   useState,
 } from "react";
-import { removeCoffeeAction, updateCoffeeAction } from "../reducers/actions";
-import { CoffeeCardProps } from "../@types/types/global";
+import {
+  createNewBillingAction,
+  removeCoffeeAction,
+  updateCoffeeAction,
+} from "../reducers/actions";
+import { Coffee } from "../@types/types/global";
 import { fetchCoffeeData } from "../services/coffeeApi/api";
 import { RegisterFormValidationData } from "../pages/Checkout";
 
 interface CoffeeContextType {
-  availableCoffees: CoffeeCardProps[];
-  order: CoffeeCardProps[];
-  billing: RegisterFormValidationData| undefined;
-  setBilling: (data: RegisterFormValidationData) => void;
-  updateCoffee: (data: CoffeeCardProps) => void;
-  deleteItem: (data: CoffeeCardProps) => void;
+  availableCoffees: Coffee[];
+  order: Coffee[];
+  billing: RegisterFormValidationData;
+  // setBilling: (data: RegisterFormValidationData) => void;
+  createNewBilling: (data: RegisterFormValidationData) => void;
+  updateCoffee: (data: Coffee) => void;
+  deleteItem: (data: Coffee) => void;
 }
 
 interface CoffeeContextProviderProps {
   children: ReactNode;
 }
 
-// interface BillingProps {
+// export interface BillingProps {
 //   street: string;
-//   number: number;
+//   number: string;
 //   neighborhood: string;
 //   city: string;
 //   uf: string;
-//   paymentMethod: string;
+//   paymentMethod?: string;
 // }
 
-export const CoffeesContext = createContext({} as CoffeeContextType);
+export const CoffeeContext = createContext({} as CoffeeContextType);
 
 export function CoffeeContextProvider({
   children,
 }: CoffeeContextProviderProps) {
-  const [availableCoffees, setAvailableCoffes] = useState<CoffeeCardProps[]>(
-    []
-  );
-  const [billing, setBilling] = useState<RegisterFormValidationData>();
+  const [availableCoffees, setAvailableCoffes] = useState<Coffee[]>([]);
 
   const [coffeeState, dispatch] = useReducer(
     coffeeReducer,
     {
       order: [],
-    }
-    // () => {
-    //   const storedStateAsJSON = localStorage.getItem(
-    //     "@coffee-delivery:coffees-state-1.0.0"
-    //   );
+      billing: {
+        cep: "",
+        street: "",
+        number: "",
+        neighborhood: "",
+        city: "",
+        uf: "",
+      },
+    },
+    () => {
+      const storedStateAsJSON = localStorage.getItem(
+        "@coffee-delivery:coffees-state-1.0.0"
+      );
 
-    //   if (storedStateAsJSON) {
-    //     return JSON.parse(storedStateAsJSON);
-    //   }
-    // }
+      if (storedStateAsJSON) {
+        return JSON.parse(storedStateAsJSON);
+      }
+    }
   );
 
-  // useEffect(() => {
-  //   const stateJson = JSON.stringify(coffeeState);
+  useEffect(() => {
+    const stateJson = JSON.stringify(coffeeState);
 
-  //   localStorage.setItem("@coffee-delivery:coffees-state-1.0.0", stateJson);
-  // }, [coffeeState]);
+    localStorage.setItem("@coffee-delivery:coffees-state-1.0.0", stateJson);
+  }, [coffeeState]);
 
   useEffect(() => {
     async function getCoffeeData() {
@@ -73,8 +83,20 @@ export function CoffeeContextProvider({
     getCoffeeData();
   }, []);
 
-  function updateCoffee(data: CoffeeCardProps) {
-    const newCoffee: CoffeeCardProps = {
+  function createNewBilling(data: RegisterFormValidationData) {
+    const newBilling: RegisterFormValidationData = {
+      cep: data.cep,
+      street: data.street,
+      number: data.number,
+      neighborhood: data.neighborhood,
+      city: data.city,
+      uf: data.uf,
+    };
+    dispatch(createNewBillingAction(newBilling));
+  }
+
+  function updateCoffee(data: Coffee) {
+    const newCoffee: Coffee = {
       id: data.id,
       name: data.name,
       price: data.price,
@@ -86,22 +108,22 @@ export function CoffeeContextProvider({
     dispatch(updateCoffeeAction(newCoffee));
   }
 
-  function deleteItem(data: CoffeeCardProps) {
+  function deleteItem(data: Coffee) {
     dispatch(removeCoffeeAction(data));
   }
 
   return (
-    <CoffeesContext.Provider
+    <CoffeeContext.Provider
       value={{
         availableCoffees,
         order: coffeeState.order,
         updateCoffee,
         deleteItem,
-        billing,
-        setBilling,
+        billing: coffeeState.billing,
+        createNewBilling,
       }}
     >
       {children}
-    </CoffeesContext.Provider>
+    </CoffeeContext.Provider>
   );
 }

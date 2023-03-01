@@ -4,7 +4,7 @@ export interface IconContainerProps {
   variant: IconVariant;
 }
 
-export interface CoffeeCardProps {
+export interface Coffee {
   id: string;
   name: string;
   image: string;
