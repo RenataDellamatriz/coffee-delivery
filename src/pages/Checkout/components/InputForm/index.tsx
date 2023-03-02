@@ -1,5 +1,5 @@
 import { InputStyled, InputVariant } from "./styles";
-import { Control, Controller } from "react-hook-form";
+import { Control, Controller, FieldErrors, useForm } from "react-hook-form";
 
 interface InputProps {
   type: string;
@@ -9,6 +9,7 @@ interface InputProps {
   control?: Control;
   name: string;
   onBlur?: (e: any) => void;
+  hasError?: boolean;
 }
 
 export function InputForm({
@@ -17,8 +18,8 @@ export function InputForm({
   placeholder,
   control,
   name,
+  hasError,
   onBlur,
-
   variant = "lg",
 }: InputProps) {
   return (
@@ -27,7 +28,9 @@ export function InputForm({
         <Controller
           control={control}
           name={name}
-          render={({ field: { value, onChange } }) => (
+          render={({
+            field: { value, onChange, onBlur: onBlurController },
+          }) => (
             <InputStyled
               id={id}
               type={type}
@@ -35,7 +38,11 @@ export function InputForm({
               variant={variant}
               value={value}
               onChange={onChange}
-              onBlur={onBlur}
+              onBlur={(e) => {
+                onBlurController();
+                onBlur && onBlur(e);
+              }}
+              hasError={hasError}
             />
           )}
         />
@@ -45,6 +52,7 @@ export function InputForm({
           type={type}
           placeholder={placeholder}
           variant={variant}
+          hasError={hasError}
         />
       )}
     </>

@@ -58,15 +58,15 @@ export function CoffeeContextProvider({
         uf: "",
       },
     },
-    () => {
-      const storedStateAsJSON = localStorage.getItem(
-        "@coffee-delivery:coffees-state-1.0.0"
-      );
+    // () => {
+    //   const storedStateAsJSON = localStorage.getItem(
+    //     "@coffee-delivery:coffees-state-1.0.0"
+    //   );
 
-      if (storedStateAsJSON) {
-        return JSON.parse(storedStateAsJSON);
-      }
-    }
+    //   if (storedStateAsJSON) {
+    //     return JSON.parse(storedStateAsJSON);
+    //   }
+    // }
   );
 
   useEffect(() => {

@@ -1,25 +1,27 @@
-import styled from "styled-components";
+import { FieldErrors } from "react-hook-form";
+import styled, { css } from "styled-components";
 
 export type InputVariant = "lg" | "md" | "sm";
 
-interface InputSizeProps {
+interface InputVariantProps {
   variant: InputVariant;
+  hasError?: boolean;
 }
 
 const InputSizeVariants = {
   size: {
-    lg: '100%',
-    md: '200px',
-    sm: '60px',
+    lg: "100%",
+    md: "200px",
+    sm: "60px",
   },
   minwidth: {
-    sm:'none',
-    md: '200px',
-    lg:'none'
-  }
+    sm: "none",
+    md: "200px",
+    lg: "none",
+  },
 };
 
-export const InputStyled = styled.input<InputSizeProps>`
+export const InputStyled = styled.input<InputVariantProps>`
   font-family: "Roboto", sans-serif;
   font-size: 0.875rem;
 
@@ -28,8 +30,10 @@ export const InputStyled = styled.input<InputSizeProps>`
   border-radius: 6px;
   width: ${(props) => InputSizeVariants.size[props.variant]};
   min-width: ${(props) => InputSizeVariants.minwidth[props.variant]};
-  
+
   overflow: hidden;
+
+  ${props => props.hasError && css `border-color: red;`};
 
   ::-webkit-inner-spin-button,
   ::-webkit-outer-spin-button {

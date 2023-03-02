@@ -10,7 +10,7 @@ import { useContext } from "react";
 import { CoffeeContext } from "../../contexts/CoffeeContext";
 
 const registerFormValidationSchema = zod.object({
-  cep: zod.string().regex(/^\d{5}(?:-\d{3})?$/),
+  cep: zod.string().regex(/^\d{5}(?:-?\d{3})?$/),
   street: zod.string().min(1, "Informe o nome da rua"),
   number: zod
     .string()
@@ -31,6 +31,7 @@ export function Checkout() {
 
   const registerForm = useForm<RegisterFormValidationData>({
     resolver: zodResolver(registerFormValidationSchema),
+    mode: 'onChange',
     defaultValues: {
       cep: "",
       street: "",
@@ -55,8 +56,8 @@ export function Checkout() {
         <div>
           <FormProvider {...registerForm}>
             <RegisterForm />
+            <PaymentForm />
           </FormProvider>
-          <PaymentForm />
         </div>
 
         <SelectedCoffees>

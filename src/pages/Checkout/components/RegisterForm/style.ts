@@ -40,6 +40,16 @@ export const FormInputWrapper = styled.div`
 export const InputWrapper = styled.div`
   display: flex;
   gap: 12px;
+  
+  div {
+    display: flex;
+    flex-direction: column;
+    
+    span {
+      font-size: 0.7rem;
+      color: red;     
+    }
+  }
 `;
 
 export const Title = styled.h2`

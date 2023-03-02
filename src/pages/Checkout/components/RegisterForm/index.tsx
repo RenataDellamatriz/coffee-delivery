@@ -1,6 +1,5 @@
 import axios from "axios";
 import { MapPinLine } from "phosphor-react";
-import { InputHTMLAttributes } from "react";
 import { useFormContext } from "react-hook-form";
 import { InputForm } from "../InputForm";
 import {
@@ -15,12 +14,15 @@ import {
 export function RegisterForm() {
   const {
     control,
-    setValue,   
+    setValue,    
     formState: { errors },
   } = useFormContext();
+  console.log(errors);
 
-  async function getAddress(e: any ) {
+  async function handleGetAddress(e: any) {
+    if (errors.cep) return;
     const cep = e.target.value.replace(/\D/g, "");
+    if(!cep) return;
     try {
       const { data } = await axios(`https://viacep.com.br/ws/${cep}/json/`);
       setValue("street", data.logradouro);
@@ -46,72 +48,90 @@ export function RegisterForm() {
 
         <FormInputWrapper>
           <InputWrapper>
-            <InputForm
-              id="cep"
-              type="text"
-              placeholder="CEP"
-              variant="md"
-              name="cep"
-              control={control}
-              onBlur={getAddress}              
-            />
-            { errors.cep && <span>Esse campo é obrigatório</span>}
+            <div>
+              <InputForm
+                id="cep"
+                type="text"
+                placeholder="CEP"
+                variant="md"
+                name="cep"
+                control={control}
+                onBlur={handleGetAddress}
+                hasError={!!errors.cep}
+              />             
+            </div>
           </InputWrapper>
           <InputWrapper>
-            <InputForm
-              id="street"
-              type="text"
-              placeholder="Rua"
-              variant="lg"
-              name="street"
-              control={control}
-            />
+            <div>
+              <InputForm
+                id="street"
+                type="text"
+                placeholder="Rua"
+                variant="lg"
+                name="street"
+                control={control}
+                hasError={!!errors.street}
+              />
+            </div>
           </InputWrapper>
           <InputWrapper>
-            <InputForm
-              id="number"
-              type="text"
-              placeholder="Número"
-              variant="md"
-              name="number"
-              control={control}
-              
-            />
-            {errors.number && <span>Esse campo é obrigatório</span>}
-            <InputForm
-              id="complement"
-              type="text"
-              placeholder="Complemento"
-              variant="lg"
-              name="complement"
-              control={control}
-            />
+            <div>
+              <InputForm
+                id="number"
+                type="text"
+                placeholder="Número"
+                variant="md"
+                name="number"
+                control={control}
+                hasError={!!errors.street}
+              />
+            </div>
+            <div>
+              <InputForm
+                id="complement"
+                type="text"
+                placeholder="Complemento"
+                variant="lg"
+                name="complement"
+                control={control}
+                hasError={!!errors.street}
+              />
+            </div>
           </InputWrapper>
           <InputWrapper>
-            <InputForm
-              id="neighborhood"
-              type="text"
-              placeholder="Bairro"
-              variant="md"
-              name="neighborhood"
-              control={control}
-            />
-            <InputForm
-              id="city"
-              type="text"
-              placeholder="Cidade"
-              variant="lg"
-              name="city"
-              control={control}
-            />
-            <InputForm
-              id="uf"
-              type="text"
-              placeholder="UF"
-              variant="sm"
-              name="uf"
-              control={control}
-            />
+            <div>
+              <InputForm
+                id="neighborhood"
+                type="text"
+                placeholder="Bairro"
+                variant="md"
+                name="neighborhood"
+                control={control}
+                hasError={!!errors.street}
+              />
+            </div>
+            <div>
+              <InputForm
+                id="city"
+                type="text"
+                placeholder="Cidade"
+                variant="lg"
+                name="city"
+                control={control}
+                hasError={!!errors.street}
+              />
+            </div>
+            <div>
+              <InputForm
+                id="uf"
+                type="text"
+                placeholder="UF"
+                variant="sm"
+                name="uf"
+                control={control}
+                hasError={!!errors.street}
+              />
+            </div>
           </InputWrapper>
         </FormInputWrapper>
       </FormWrapper>
