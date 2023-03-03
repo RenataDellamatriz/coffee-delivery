@@ -12,6 +12,7 @@ export const IconColorsVariant = {
 };
 
 export const FormWrapper = styled.div`
+
   background: ${(props) => props.theme["base-card"]};
   padding: 40px;
   margin-top: 0.75rem;
@@ -19,7 +20,7 @@ export const FormWrapper = styled.div`
 
   input {
     background: ${(props) => props.theme["base-input"]};
-    color: black;
+    color: black;    
     ::placeholder {
       color: ${(props) => props.theme["base-label"]};
     }
@@ -34,23 +35,12 @@ export const FormInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-top: 32px;
-  min-width: 392px;
+  margin-top: 32px; 
 `;
 
 export const InputWrapper = styled.div`
   display: flex;
-  gap: 12px;
-  
-  div {
-    display: flex;
-    flex-direction: column;
-    
-    span {
-      font-size: 0.7rem;
-      color: red;     
-    }
-  }
+  gap: 12px; 
 `;
 
 export const Title = styled.h2`

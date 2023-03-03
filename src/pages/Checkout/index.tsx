@@ -8,21 +8,30 @@ import { SelectedCoffees } from "./components/SelectedCoffees";
 import { CheckoutContainer, ConfirmButton } from "./styles";
 import { useContext } from "react";
 import { CoffeeContext } from "../../contexts/CoffeeContext";
-import { ThreeDots } from "react-loader-spinner";
 import axios from "axios";
 
+enum PaymentMethods {
+  credit = 'credit',
+  debit = 'debit',
+  money = 'money'
+}
+
 const registerFormValidationSchema = zod.object({
-  cep: zod.string().regex(/^\d{5}(?:-?\d{3})?$/),
-  street: zod.string().min(1, "Informe o nome da rua"),
+  cep: zod.string().min(8, "*Obrigatório").regex(/^\d{5}(?:-?\d{3})?$/),
+  street: zod.string().min(1, "*Obrigatório"),
   number: zod
     .string()
-    .min(2, "Mínimo de dois dígitos")
+    .min(2, "*Obrigatório")
     .max(4, "Máximo de 4 dígitos"),
   complement: zod.string().optional(),
-  neighborhood: zod.string().min(1, "Informe o nome do bairro"),
-  city: zod.string().min(1, "Informe o nome da cidade"),
-  uf: zod.string().min(1, "Informe o estado"),
-  paymentMethod: zod.string(),
+  neighborhood: zod.string().min(1, "*Obrigatório"),
+  city: zod.string().min(1, "*Obrigatório"),
+  uf: zod.string().min(1, "*Obrigatório"),
+  paymentMethod: zod.nativeEnum(PaymentMethods, {
+    errorMap: () => {
+      return { message: '*Informe o método de pagamento'}
+    }
+  }),
 });
 
 export type RegisterFormValidationData = zod.infer<
@@ -43,7 +52,7 @@ export function Checkout() {
       neighborhood: "",
       city: "",
       uf: "",
-      paymentMethod: "",
+      paymentMethod: undefined,
     },
   });
 
@@ -53,7 +62,7 @@ export function Checkout() {
   } = registerForm;
 
   function handleCreateNewOrder(data: RegisterFormValidationData) {
-    createNewOrder(data);
+    createNewOrder(data);     
     isSubmitSuccessful && (window.location.href = "/success");
   }
 

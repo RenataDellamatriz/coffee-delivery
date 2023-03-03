@@ -1,7 +1,7 @@
 import axios from "axios";
 import { MapPinLine } from "phosphor-react";
 import { useFormContext } from "react-hook-form";
-import { InputForm } from "../InputForm";
+import { Input } from "../Input";
 import {
   FormInputWrapper,
   FormWrapper,
@@ -18,14 +18,14 @@ export function RegisterForm() {
     formState: { errors },
   } = useFormContext();
 
-  
-
   async function handleGetAddress(e: any) {
     if (errors.cep) return;
     const cep = e.target.value.replace(/\D/g, "");
+    const formatedCep = cep.slice(0,5) + '-' + cep.slice(5,8)
     if (!cep) return;
     try {
       const { data } = await axios(`https://viacep.com.br/ws/${cep}/json/`);
+      setValue("cep", formatedCep)
       setValue("street", data.logradouro);
       setValue("neighborhood", data.bairro);
       setValue("city", data.localidade);
@@ -49,83 +49,72 @@ export function RegisterForm() {
 
         <FormInputWrapper>
           <InputWrapper>
-            <div>
-              <InputForm
-                id="cep"
-                type="text"
-                placeholder="CEP"
-                variant="md"
-                name="cep"
-                control={control}
-                onBlur={handleGetAddress}
-              />
-            </div>
+            <Input
+              id="cep"
+              type="text"
+              placeholder="CEP"
+              variant="md"
+              name="cep"
+              control={control}
+              onBlur={handleGetAddress}
+            />
           </InputWrapper>
           <InputWrapper>
-            <div>
-              <InputForm
-                id="street"
-                type="text"
-                placeholder="Rua"
-                variant="lg"
-                name="street"
-                control={control}
-              />
-            </div>
+            <Input
+              id="street"
+              type="text"
+              placeholder="Rua"
+              variant="lg"
+              name="street"
+              control={control}
+            />
           </InputWrapper>
           <InputWrapper>
-            <div>
-              <InputForm
-                id="number"
-                type="text"
-                placeholder="Número"
-                variant="md"
-                name="number"
-                control={control}
-              />
-            </div>
-            <div>
-              <InputForm
-                id="complement"
-                type="text"
-                placeholder="Complemento"
-                variant="lg"
-                name="complement"
-                control={control}
-              />
-            </div>
+            <Input
+              id="number"
+              type="text"
+              placeholder="Número"
+              variant="md"
+              name="number"
+              control={control}
+            />
+            <Input
+              id="complement"
+              type="text"
+              placeholder="Complemento"
+              variant="lg"
+              name="complement"
+              control={control}
+              rightText
+            />
           </InputWrapper>
           <InputWrapper>
-            <div>
-              <InputForm
-                id="neighborhood"
-                type="text"
-                placeholder="Bairro"
-                variant="md"
-                name="neighborhood"
-                control={control}
-              />
-            </div>
-            <div>
-              <InputForm
-                id="city"
-                type="text"
-                placeholder="Cidade"
-                variant="lg"
-                name="city"
-                control={control}
-              />
-            </div>
-            <div>
-              <InputForm
-                id="uf"
-                type="text"
-                placeholder="UF"
-                variant="sm"
-                name="uf"
-                control={control}
-              />
-            </div>
+            <Input
+              id="neighborhood"
+              type="text"
+              placeholder="Bairro"
+              variant="md"
+              name="neighborhood"
+              control={control}
+            />
+
+            <Input
+              id="city"
+              type="text"
+              placeholder="Cidade"
+              variant="lg"
+              name="city"
+              control={control}
+            />
+
+            <Input
+              id="uf"
+              type="text"
+              placeholder="UF"
+              variant="sm"
+              name="uf"
+              control={control}
+            />
           </InputWrapper>
         </FormInputWrapper>
       </FormWrapper>

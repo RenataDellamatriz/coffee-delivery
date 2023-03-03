@@ -1,7 +1,7 @@
 import { Bank, CreditCard, CurrencyDollar, Money } from "phosphor-react";
+import { useContext } from "react";
 import { useFormContext } from "react-hook-form";
-import { RegisterFormValidationData } from "../..";
-import { PaymentMethodButton } from "../PaymentMethodButton";
+import { PaymentMethodRadio } from "../PaymentMethodRadio";
 
 import {
   FormWrapper,
@@ -10,12 +10,33 @@ import {
   Subtitle,
 } from "./styles";
 
-export function PaymentForm() {
-  const { control, setValue } = useFormContext();
+export const paymentMethods = [
+  {
+    title: "Cartão de crédito",
+    icon: <CreditCard />,
+    value: "credit",
+  },
+  {
+    title: "Cartão de débito",
+    icon: <Bank />,
+    value: "debit",
+  },
+  {
+    title: "Dinheiro",
+    icon: <Money />,
+    value: "efectivo",
+  },
+];
 
-  // function handlePaymentMethod(e:any){
-  //
-  // }
+export function PaymentForm() {
+  const {
+    getValues,
+    control,
+    formState: { errors },
+  } = useFormContext();  
+
+  const paymentMethodError = errors?.paymentMethod
+    ?.message as unknown as string;
 
   return (
     <>
@@ -29,31 +50,16 @@ export function PaymentForm() {
         <span>
           O pagamento é feito na entrega. Escolha a forma que deseja pagar
         </span>
+
         <PaymentMethodWrapper>
-          <PaymentMethodButton
-            control={control}
-            name="credito"
-            // onClick={handlePaymentMethod}
-          >
-            <CreditCard />
-            CARTÃO DE CRÉDITO
-          </PaymentMethodButton>
-          <PaymentMethodButton
-            control={control}
-            name="debito"
-            // onClick={handlePaymentMethod}
-          >
-            <Bank />
-            CARTÃO DE DÉBITO
-          </PaymentMethodButton>
-          <PaymentMethodButton
-            control={control}
-            name="dinheiro"
-            // onClick={handlePaymentMethod}
-          >
-            <Money />
-            DINHEIRO
-          </PaymentMethodButton>
+          <div>
+            <PaymentMethodRadio
+              name="paymentMethod"
+              options={paymentMethods}
+              control={control}
+            />
+          </div>
+          <div>{paymentMethodError && <span>{paymentMethodError}</span>}</div>
         </PaymentMethodWrapper>
       </FormWrapper>
     </>

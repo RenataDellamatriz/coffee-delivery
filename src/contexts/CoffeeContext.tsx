@@ -14,12 +14,12 @@ import {
 import { Coffee } from "../@types/types/global";
 import { fetchCoffeeData } from "../services/coffeeApi/api";
 import { RegisterFormValidationData } from "../pages/Checkout";
+import { Bank, CreditCard, Money } from "phosphor-react";
 
 interface CoffeeContextType {
   availableCoffees: Coffee[];
   order: Coffee[];
   billing: RegisterFormValidationData;
-  // setBilling: (data: RegisterFormValidationData) => void;
   createNewOrder: (data: RegisterFormValidationData) => void;
   updateCoffee: (data: Coffee) => void;
   deleteItem: (data: Coffee) => void;
@@ -28,7 +28,6 @@ interface CoffeeContextType {
 interface CoffeeContextProviderProps {
   children: ReactNode;
 }
-
 
 export const CoffeeContext = createContext({} as CoffeeContextType);
 
@@ -84,7 +83,7 @@ export function CoffeeContextProvider({
       neighborhood: data.neighborhood,
       city: data.city,
       uf: data.uf,
-      paymentMethod: data.paymentMethod
+      paymentMethod: data.paymentMethod,
     };
     dispatch(createNewBillingAction(newOrder));
   }

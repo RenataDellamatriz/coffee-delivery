@@ -4,6 +4,7 @@ export const CheckoutContainer = styled.div`
   form {
     padding: 0 10rem 5rem 10rem;
     margin: auto;
+  
 
     max-width: 1440px;
     display: grid;

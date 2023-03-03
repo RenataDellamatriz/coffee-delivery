@@ -63,7 +63,7 @@ export function Success() {
                 <SpanWrapper>
                   <span>Pagamento na entrega</span>
                   <strong>
-                    <span>Cartão de Crédito</span>
+                    <span>{billing?.paymentMethod}</span>
                   </strong>
                 </SpanWrapper>
               </ItemsWrapper>
