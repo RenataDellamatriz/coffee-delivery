@@ -20,7 +20,7 @@ interface CoffeeContextType {
   order: Coffee[];
   billing: RegisterFormValidationData;
   // setBilling: (data: RegisterFormValidationData) => void;
-  createNewBilling: (data: RegisterFormValidationData) => void;
+  createNewOrder: (data: RegisterFormValidationData) => void;
   updateCoffee: (data: Coffee) => void;
   deleteItem: (data: Coffee) => void;
 }
@@ -29,14 +29,6 @@ interface CoffeeContextProviderProps {
   children: ReactNode;
 }
 
-// export interface BillingProps {
-//   street: string;
-//   number: string;
-//   neighborhood: string;
-//   city: string;
-//   uf: string;
-//   paymentMethod?: string;
-// }
 
 export const CoffeeContext = createContext({} as CoffeeContextType);
 
@@ -56,17 +48,18 @@ export function CoffeeContextProvider({
         neighborhood: "",
         city: "",
         uf: "",
+        paymentMethod: "",
       },
     },
-    // () => {
-    //   const storedStateAsJSON = localStorage.getItem(
-    //     "@coffee-delivery:coffees-state-1.0.0"
-    //   );
+    () => {
+      const storedStateAsJSON = localStorage.getItem(
+        "@coffee-delivery:coffees-state-1.0.0"
+      );
 
-    //   if (storedStateAsJSON) {
-    //     return JSON.parse(storedStateAsJSON);
-    //   }
-    // }
+      if (storedStateAsJSON) {
+        return JSON.parse(storedStateAsJSON);
+      }
+    }
   );
 
   useEffect(() => {
@@ -83,16 +76,17 @@ export function CoffeeContextProvider({
     getCoffeeData();
   }, []);
 
-  function createNewBilling(data: RegisterFormValidationData) {
-    const newBilling: RegisterFormValidationData = {
+  function createNewOrder(data: RegisterFormValidationData) {
+    const newOrder: RegisterFormValidationData = {
       cep: data.cep,
       street: data.street,
       number: data.number,
       neighborhood: data.neighborhood,
       city: data.city,
       uf: data.uf,
+      paymentMethod: data.paymentMethod
     };
-    dispatch(createNewBillingAction(newBilling));
+    dispatch(createNewBillingAction(newOrder));
   }
 
   function updateCoffee(data: Coffee) {
@@ -120,7 +114,7 @@ export function CoffeeContextProvider({
         updateCoffee,
         deleteItem,
         billing: coffeeState.billing,
-        createNewBilling,
+        createNewOrder,
       }}
     >
       {children}

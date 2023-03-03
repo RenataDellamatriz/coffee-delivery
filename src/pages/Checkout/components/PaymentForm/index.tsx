@@ -1,14 +1,22 @@
-import { Bank, CreditCard, CurrencyDollar, Money } from 'phosphor-react'
-import { SelectButton } from '../SelectButton'
+import { Bank, CreditCard, CurrencyDollar, Money } from "phosphor-react";
+import { useFormContext } from "react-hook-form";
+import { RegisterFormValidationData } from "../..";
+import { PaymentMethodButton } from "../PaymentMethodButton";
 
 import {
   FormWrapper,
   IconContainer,
   PaymentMethodWrapper,
   Subtitle,
-} from './styles'
+} from "./styles";
 
 export function PaymentForm() {
+  const { control, setValue } = useFormContext();
+
+  // function handlePaymentMethod(e:any){
+  //
+  // }
+
   return (
     <>
       <FormWrapper>
@@ -22,20 +30,32 @@ export function PaymentForm() {
           O pagamento é feito na entrega. Escolha a forma que deseja pagar
         </span>
         <PaymentMethodWrapper>
-          <SelectButton>
+          <PaymentMethodButton
+            control={control}
+            name="credito"
+            // onClick={handlePaymentMethod}
+          >
             <CreditCard />
             CARTÃO DE CRÉDITO
-          </SelectButton>
-          <SelectButton>
+          </PaymentMethodButton>
+          <PaymentMethodButton
+            control={control}
+            name="debito"
+            // onClick={handlePaymentMethod}
+          >
             <Bank />
             CARTÃO DE DÉBITO
-          </SelectButton>
-          <SelectButton>
+          </PaymentMethodButton>
+          <PaymentMethodButton
+            control={control}
+            name="dinheiro"
+            // onClick={handlePaymentMethod}
+          >
             <Money />
             DINHEIRO
-          </SelectButton>
+          </PaymentMethodButton>
         </PaymentMethodWrapper>
       </FormWrapper>
     </>
-  )
+  );
 }

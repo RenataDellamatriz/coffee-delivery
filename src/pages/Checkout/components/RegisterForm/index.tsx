@@ -14,15 +14,16 @@ import {
 export function RegisterForm() {
   const {
     control,
-    setValue,    
+    setValue,
     formState: { errors },
   } = useFormContext();
-  console.log(errors);
+
+  
 
   async function handleGetAddress(e: any) {
     if (errors.cep) return;
     const cep = e.target.value.replace(/\D/g, "");
-    if(!cep) return;
+    if (!cep) return;
     try {
       const { data } = await axios(`https://viacep.com.br/ws/${cep}/json/`);
       setValue("street", data.logradouro);
@@ -57,8 +58,7 @@ export function RegisterForm() {
                 name="cep"
                 control={control}
                 onBlur={handleGetAddress}
-                hasError={!!errors.cep}
-              />             
+              />
             </div>
           </InputWrapper>
           <InputWrapper>
@@ -70,7 +70,6 @@ export function RegisterForm() {
                 variant="lg"
                 name="street"
                 control={control}
-                hasError={!!errors.street}
               />
             </div>
           </InputWrapper>
@@ -83,7 +82,6 @@ export function RegisterForm() {
                 variant="md"
                 name="number"
                 control={control}
-                hasError={!!errors.street}
               />
             </div>
             <div>
@@ -94,7 +92,6 @@ export function RegisterForm() {
                 variant="lg"
                 name="complement"
                 control={control}
-                hasError={!!errors.street}
               />
             </div>
           </InputWrapper>
@@ -107,7 +104,6 @@ export function RegisterForm() {
                 variant="md"
                 name="neighborhood"
                 control={control}
-                hasError={!!errors.street}
               />
             </div>
             <div>
@@ -118,7 +114,6 @@ export function RegisterForm() {
                 variant="lg"
                 name="city"
                 control={control}
-                hasError={!!errors.street}
               />
             </div>
             <div>
@@ -129,7 +124,6 @@ export function RegisterForm() {
                 variant="sm"
                 name="uf"
                 control={control}
-                hasError={!!errors.street}
               />
             </div>
           </InputWrapper>

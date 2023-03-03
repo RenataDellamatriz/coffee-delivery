@@ -17,6 +17,8 @@ import {
 export function Success() {
   const { billing } = useContext(CoffeeContext);
    
+
+  console.log(billing)
   return (
     <>
     {billing !== undefined && <SuccessContainer>

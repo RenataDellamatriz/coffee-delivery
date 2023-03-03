@@ -35,6 +35,7 @@ export const FormInputWrapper = styled.div`
   flex-direction: column;
   gap: 16px;
   margin-top: 32px;
+  min-width: 392px;
 `;
 
 export const InputWrapper = styled.div`

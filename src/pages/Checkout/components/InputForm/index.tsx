@@ -1,5 +1,5 @@
 import { InputStyled, InputVariant } from "./styles";
-import { Control, Controller, FieldErrors, useForm } from "react-hook-form";
+import { Control, Controller } from "react-hook-form";
 
 interface InputProps {
   type: string;
@@ -9,7 +9,6 @@ interface InputProps {
   control?: Control;
   name: string;
   onBlur?: (e: any) => void;
-  hasError?: boolean;
 }
 
 export function InputForm({
@@ -18,7 +17,6 @@ export function InputForm({
   placeholder,
   control,
   name,
-  hasError,
   onBlur,
   variant = "lg",
 }: InputProps) {
@@ -30,6 +28,7 @@ export function InputForm({
           name={name}
           render={({
             field: { value, onChange, onBlur: onBlurController },
+            fieldState: { invalid },
           }) => (
             <InputStyled
               id={id}
@@ -42,7 +41,7 @@ export function InputForm({
                 onBlurController();
                 onBlur && onBlur(e);
               }}
-              hasError={hasError}
+              hasError={invalid}
             />
           )}
         />
@@ -52,7 +51,6 @@ export function InputForm({
           type={type}
           placeholder={placeholder}
           variant={variant}
-          hasError={hasError}
         />
       )}
     </>

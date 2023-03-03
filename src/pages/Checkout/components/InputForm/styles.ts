@@ -26,20 +26,15 @@ export const InputStyled = styled.input<InputVariantProps>`
   font-size: 0.875rem;
 
   padding: 12px;
-  border: none;
+  border: ${(props) => (props.hasError ? "1px solid red" : "none")};
   border-radius: 6px;
   width: ${(props) => InputSizeVariants.size[props.variant]};
   min-width: ${(props) => InputSizeVariants.minwidth[props.variant]};
 
   overflow: hidden;
-
-  ${props => props.hasError && css `border-color: red;`};
-
   ::-webkit-inner-spin-button,
   ::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
-
-  
 `;

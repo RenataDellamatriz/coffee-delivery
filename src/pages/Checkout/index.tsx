@@ -8,6 +8,8 @@ import { SelectedCoffees } from "./components/SelectedCoffees";
 import { CheckoutContainer, ConfirmButton } from "./styles";
 import { useContext } from "react";
 import { CoffeeContext } from "../../contexts/CoffeeContext";
+import { ThreeDots } from "react-loader-spinner";
+import axios from "axios";
 
 const registerFormValidationSchema = zod.object({
   cep: zod.string().regex(/^\d{5}(?:-?\d{3})?$/),
@@ -20,6 +22,7 @@ const registerFormValidationSchema = zod.object({
   neighborhood: zod.string().min(1, "Informe o nome do bairro"),
   city: zod.string().min(1, "Informe o nome da cidade"),
   uf: zod.string().min(1, "Informe o estado"),
+  paymentMethod: zod.string(),
 });
 
 export type RegisterFormValidationData = zod.infer<
@@ -27,11 +30,11 @@ export type RegisterFormValidationData = zod.infer<
 >;
 
 export function Checkout() {
-  const { createNewBilling } = useContext(CoffeeContext);
+  const { createNewOrder } = useContext(CoffeeContext);
 
   const registerForm = useForm<RegisterFormValidationData>({
     resolver: zodResolver(registerFormValidationSchema),
-    mode: 'onChange',
+    mode: "onChange",
     defaultValues: {
       cep: "",
       street: "",
@@ -40,14 +43,24 @@ export function Checkout() {
       neighborhood: "",
       city: "",
       uf: "",
+      paymentMethod: "",
     },
   });
 
-  const { handleSubmit } = registerForm;
+  const {
+    handleSubmit,
+    formState: { isSubmitSuccessful },
+  } = registerForm;
 
   function handleCreateNewOrder(data: RegisterFormValidationData) {
-    createNewBilling(data);
-    window.location.href = "/success";
+    createNewOrder(data);
+    isSubmitSuccessful && (window.location.href = "/success");
+  }
+
+  async function handlePostNewOrderApi(data: RegisterFormValidationData) {
+    axios.post("http://localhost:3000/orders", {
+      cep: data.cep,
+    });
   }
 
   return (
@@ -61,7 +74,9 @@ export function Checkout() {
         </div>
 
         <SelectedCoffees>
-          <ConfirmButton type="submit">CONFIRMAR PEDIDO</ConfirmButton>
+          <ConfirmButton type="submit" onClick={() => handlePostNewOrderApi}>
+            CONFIRMAR PEDIDO
+          </ConfirmButton>
         </SelectedCoffees>
       </form>
     </CheckoutContainer>
