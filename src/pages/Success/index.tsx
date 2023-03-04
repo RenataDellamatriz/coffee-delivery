@@ -2,6 +2,7 @@ import { CurrencyDollar, MapPin, Timer } from "phosphor-react";
 import { useContext } from "react";
 import deliveryImage from "../../assets/deliveryImage.svg";
 import { CoffeeContext } from "../../contexts/CoffeeContext";
+import { formatNamePaymentMethod } from "../../utils";
 import {
   IconContainer,
   ItemsWrapper,
@@ -16,9 +17,7 @@ import {
 
 export function Success() {
   const { billing } = useContext(CoffeeContext);
-   
 
-  console.log(billing)
   return (
     <>
     {billing !== undefined && <SuccessContainer>
@@ -63,7 +62,7 @@ export function Success() {
                 <SpanWrapper>
                   <span>Pagamento na entrega</span>
                   <strong>
-                    <span>{billing?.paymentMethod}</span>
+                    <span>{formatNamePaymentMethod(billing.paymentMethod)}</span>
                   </strong>
                 </SpanWrapper>
               </ItemsWrapper>

@@ -1,23 +1,25 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useContext } from "react";
 import { Control, Controller } from "react-hook-form";
+import { CoffeeContext } from "../../../../../contexts/CoffeeContext";
+import { formatNamePaymentMethod } from "../../../../../utils";
 import { ContentContainer, PaymentMethodContainer } from "./styles";
 
 interface PaymentMethodProps {
-  icon?: ReactNode;
   control?: Control;
   name: string;
   options: {
-    title: string;
     value: string;
+    icon?: ReactNode;
   }[];
 }
 
 export function PaymentMethodRadio({
-  icon,
   control,
   name,
   options,
 }: PaymentMethodProps) {
+  const {billing} =useContext(CoffeeContext)
+
   return (
     <>
       <Controller
@@ -25,19 +27,20 @@ export function PaymentMethodRadio({
         name={name}
         render={({ field: { onChange } }) => (
           <PaymentMethodContainer>
-            {options.map((i) => (
-              <React.Fragment key={i.value + i.title}>
+            {options.map((method) => (
+              <React.Fragment key={method.value}>
                 <input
-                  id={i.value}
+                  id={method.value}
                   type="radio"
                   onChange={onChange}
-                  value={i.value}
-                  name='paymentMethod'
+                  value={method.value}
+                  name="paymentMethod"
+                  
                 />
-                <label htmlFor={i.value}>
+                <label htmlFor={method.value}>
                   <ContentContainer>
-                    {icon}
-                    {i.title}
+                    {method.icon}
+                    {formatNamePaymentMethod(billing.paymentMethod)}
                   </ContentContainer>
                 </label>
               </React.Fragment>

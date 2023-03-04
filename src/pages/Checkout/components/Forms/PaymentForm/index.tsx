@@ -1,5 +1,5 @@
 import { Bank, CreditCard, CurrencyDollar, Money } from "phosphor-react";
-import { useContext } from "react";
+
 import { useFormContext } from "react-hook-form";
 import { PaymentMethodRadio } from "../PaymentMethodRadio";
 
@@ -12,28 +12,24 @@ import {
 
 export const paymentMethods = [
   {
-    title: "Cartão de crédito",
     icon: <CreditCard />,
     value: "credit",
   },
   {
-    title: "Cartão de débito",
     icon: <Bank />,
     value: "debit",
   },
   {
-    title: "Dinheiro",
     icon: <Money />,
-    value: "efectivo",
+    value: "money",
   },
 ];
 
 export function PaymentForm() {
   const {
-    getValues,
     control,
     formState: { errors },
-  } = useFormContext();  
+  } = useFormContext();
 
   const paymentMethodError = errors?.paymentMethod
     ?.message as unknown as string;

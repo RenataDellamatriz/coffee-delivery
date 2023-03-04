@@ -1,6 +1,7 @@
 // import * as Checkbox from '@radix-ui/react-checkbox'
 import styled from "styled-components";
-import { IconContainerProps } from "../../../../@types/types/global";
+import { IconContainerProps } from "../../../../../@types/types/global";
+
 
 export const IconColorsVariant = {
   color: {

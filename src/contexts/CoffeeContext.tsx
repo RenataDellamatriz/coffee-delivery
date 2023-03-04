@@ -14,7 +14,6 @@ import {
 import { Coffee } from "../@types/types/global";
 import { fetchCoffeeData } from "../services/coffeeApi/api";
 import { RegisterFormValidationData } from "../pages/Checkout";
-import { Bank, CreditCard, Money } from "phosphor-react";
 
 interface CoffeeContextType {
   availableCoffees: Coffee[];
@@ -84,7 +83,9 @@ export function CoffeeContextProvider({
       city: data.city,
       uf: data.uf,
       paymentMethod: data.paymentMethod,
+      
     };
+    console.log("sdasd", newOrder)
     dispatch(createNewBillingAction(newOrder));
   }
 

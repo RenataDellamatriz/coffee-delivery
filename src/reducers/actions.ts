@@ -16,7 +16,8 @@ export function createNewBillingAction(newBilling: RegisterFormValidationData){
       number: newBilling.number,
       neighborhood: newBilling.neighborhood,
       city: newBilling.city,
-      uf: newBilling.uf      
+      uf: newBilling.uf,
+      paymentMethod: newBilling.paymentMethod
     }
 }
 }

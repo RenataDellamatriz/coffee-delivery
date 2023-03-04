@@ -1,36 +1,35 @@
 import { useForm, FormProvider } from "react-hook-form";
 import * as zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-import { PaymentForm } from "./components/PaymentForm";
-import { RegisterForm } from "./components/RegisterForm";
+import { PaymentForm } from "./components/Forms/PaymentForm";
 import { SelectedCoffees } from "./components/SelectedCoffees";
 import { CheckoutContainer, ConfirmButton } from "./styles";
 import { useContext } from "react";
 import { CoffeeContext } from "../../contexts/CoffeeContext";
 import axios from "axios";
+import { RegisterForm } from "./components/Forms/RegisterForm";
 
-enum PaymentMethods {
-  credit = 'credit',
-  debit = 'debit',
-  money = 'money'
+export enum PaymentMethods {
+  credit = "credit",
+  debit = "debit",
+  money = "money",
 }
 
 const registerFormValidationSchema = zod.object({
-  cep: zod.string().min(8, "*Obrigatório").regex(/^\d{5}(?:-?\d{3})?$/),
-  street: zod.string().min(1, "*Obrigatório"),
-  number: zod
+  cep: zod
     .string()
-    .min(2, "*Obrigatório")
-    .max(4, "Máximo de 4 dígitos"),
+    .min(8, "*Obrigatório")
+    .regex(/^\d{5}(?:-?\d{3})?$/),
+  street: zod.string().min(1, "*Obrigatório"),
+  number: zod.string().min(2, "*Obrigatório").max(4, "Máximo de 4 dígitos"),
   complement: zod.string().optional(),
   neighborhood: zod.string().min(1, "*Obrigatório"),
   city: zod.string().min(1, "*Obrigatório"),
   uf: zod.string().min(1, "*Obrigatório"),
   paymentMethod: zod.nativeEnum(PaymentMethods, {
     errorMap: () => {
-      return { message: '*Informe o método de pagamento'}
-    }
+      return { message: "*Informe o método de pagamento" };
+    },
   }),
 });
 
@@ -56,14 +55,12 @@ export function Checkout() {
     },
   });
 
-  const {
-    handleSubmit,
-    formState: { isSubmitSuccessful },
-  } = registerForm;
+  const { handleSubmit } = registerForm;
 
   function handleCreateNewOrder(data: RegisterFormValidationData) {
-    createNewOrder(data);     
-    isSubmitSuccessful && (window.location.href = "/success");
+    createNewOrder(data);
+    console.log("data", data.paymentMethod);
+    window.location.href = "/success";
   }
 
   async function handlePostNewOrderApi(data: RegisterFormValidationData) {
@@ -84,7 +81,7 @@ export function Checkout() {
 
         <SelectedCoffees>
           <ConfirmButton type="submit" onClick={() => handlePostNewOrderApi}>
-            CONFIRMAR PEDIDO
+            Confirmar Pedido
           </ConfirmButton>
         </SelectedCoffees>
       </form>

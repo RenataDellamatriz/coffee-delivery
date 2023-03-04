@@ -35,7 +35,7 @@ export function HomeCoffeeCard() {
               <Footer>
                 <Price>
                   <span>R$</span>
-                  <span>{coffee.price}</span>
+                  {coffee.price}
                 </Price>
 
                 <Buy coffee={coffee} />

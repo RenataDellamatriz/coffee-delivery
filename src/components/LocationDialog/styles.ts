@@ -99,6 +99,7 @@ export const SelectContent = styled(Select.Content)`
 
   padding: 0.75rem;
   border-radius: 6px;
+  cursor: pointer;
 
   font-size: 0.875rem;
   font-family: "Roboto", sans-serif;

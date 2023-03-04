@@ -13,7 +13,7 @@ interface InputProps {
   rightText?: boolean;
 }
 
-export function Input({
+export function InputForm({
   id,
   type,
   placeholder,

@@ -16,6 +16,7 @@ export const ConfirmButton = styled.button`
 display: flex;
 justify-content: center;
   text-align: center;
+  text-transform: uppercase;
   width: 100%;
   padding: 12px 0;
   border: 1px solid transparent;

@@ -71,7 +71,7 @@ export const Subtitle = styled.h3`
 
   color: ${(props) => props.theme['base-subtitle']};
 
-  margin-bottom: 3.125rem;
+  
 `
 export const CoffeeCardContainer = styled.div`
   display: grid;

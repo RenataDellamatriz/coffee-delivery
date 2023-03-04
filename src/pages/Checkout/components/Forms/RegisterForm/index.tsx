@@ -1,7 +1,8 @@
 import axios from "axios";
 import { MapPinLine } from "phosphor-react";
 import { useFormContext } from "react-hook-form";
-import { Input } from "../Input";
+import { InputForm } from "../InputForm";
+
 import {
   FormInputWrapper,
   FormWrapper,
@@ -49,7 +50,7 @@ export function RegisterForm() {
 
         <FormInputWrapper>
           <InputWrapper>
-            <Input
+            <InputForm
               id="cep"
               type="text"
               placeholder="CEP"
@@ -60,7 +61,7 @@ export function RegisterForm() {
             />
           </InputWrapper>
           <InputWrapper>
-            <Input
+            <InputForm
               id="street"
               type="text"
               placeholder="Rua"
@@ -70,7 +71,7 @@ export function RegisterForm() {
             />
           </InputWrapper>
           <InputWrapper>
-            <Input
+            <InputForm
               id="number"
               type="text"
               placeholder="Número"
@@ -78,7 +79,7 @@ export function RegisterForm() {
               name="number"
               control={control}
             />
-            <Input
+            <InputForm
               id="complement"
               type="text"
               placeholder="Complemento"
@@ -89,7 +90,7 @@ export function RegisterForm() {
             />
           </InputWrapper>
           <InputWrapper>
-            <Input
+            <InputForm
               id="neighborhood"
               type="text"
               placeholder="Bairro"
@@ -98,7 +99,7 @@ export function RegisterForm() {
               control={control}
             />
 
-            <Input
+            <InputForm
               id="city"
               type="text"
               placeholder="Cidade"
@@ -107,7 +108,7 @@ export function RegisterForm() {
               control={control}
             />
 
-            <Input
+            <InputForm
               id="uf"
               type="text"
               placeholder="UF"

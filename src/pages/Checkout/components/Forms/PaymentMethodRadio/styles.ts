@@ -1,13 +1,12 @@
 import styled from "styled-components";
 
 export const PaymentMethodContainer = styled.div`
-  display: flex;
-  width: 100%;
-  background-color: red;  
+  display: flex;  
+  gap: 6px;
 
   input {
-    
-    
+    visibility: hidden;
+    appearance: none;
   }
 
   input:checked + label div {
