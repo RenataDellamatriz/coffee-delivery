@@ -8,15 +8,31 @@ import {
   MainText,
   Subtitle,
   Title,
-} from './styles'
-import mainImage from '../../assets/mainImage.svg'
-import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
-import { HomeCoffeeCard } from './components/HomeCoffeeCard'
-import { SelectCoffeeTag } from './components/SelectCoffeeTag'
+} from "./styles";
+import mainImage from "../../assets/mainImage.svg";
+import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
+import { HomeCoffeeCard } from "./components/HomeCoffeeCard";
+import { SelectCoffeeTag } from "./components/SelectCoffeeTag";
+import { useContext, useMemo, useState } from "react";
+import { CoffeeContext } from "../../contexts/CoffeeContext";
 
 export function Home() {
+  const { availableCoffees } = useContext(CoffeeContext);
+  const [selectedTag, setSelectedTag] = useState<string>();
 
- 
+  const filteredCoffeesTags = useMemo(() => {
+    if (selectedTag) {
+      return availableCoffees.filter((coffee) =>
+        coffee.tag.includes(selectedTag)
+      );
+    }
+    return availableCoffees;
+  }, [selectedTag, availableCoffees]);
+
+  function handleSelectedTag(tag: string) {
+    setSelectedTag(tag);
+  }
+
   return (
     <HomeContainer>
       <MainContent>
@@ -67,14 +83,26 @@ export function Home() {
         </div>
       </MainContent>
 
-      <div style={{ display: 'flex', justifyContent:'space-between', alignItems:'center', marginBottom: '3.125rem'}}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: "3.125rem",
+        }}
+      >
         <Subtitle>Nossos cafés</Subtitle>
-        <SelectCoffeeTag/>
+        <SelectCoffeeTag
+          value={selectedTag}
+          onValueChange={handleSelectedTag}
+        />
       </div>
 
       <CoffeeCardContainer>
-        <HomeCoffeeCard />
+        {filteredCoffeesTags.map((coffee) => (
+          <HomeCoffeeCard coffee={coffee} key={coffee.id}/>
+        ))}
       </CoffeeCardContainer>
     </HomeContainer>
-  )
+  );
 }

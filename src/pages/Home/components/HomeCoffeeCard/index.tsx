@@ -11,39 +11,32 @@ import {
   Footer,
   TagContainer,
 } from "./styles";
+import { Coffee } from "../../../../@types/types/global";
 
-export function HomeCoffeeCard() {
-  const { availableCoffees } = useContext(CoffeeContext);
-
+export function HomeCoffeeCard({ coffee }: { coffee: Coffee }) {
   return (
-    <>
-      {availableCoffees?.map((coffee) => {
-        return (
-          <CardContainer key={coffee.id}>
-            <img src={coffee.image} alt="" />
+    <CardContainer key={coffee.id}>
+      <img src={coffee.image} alt="" />
 
-            <TagContainer>
-              {coffee.tag.map((item, index) => {
-                return <Tag key={index}>{item.toUpperCase()}</Tag>;
-              })}
-            </TagContainer>
-            <div>
-              <Title>{coffee.name}</Title>
+      <TagContainer>
+        {coffee.tag.map((item, index) => {
+          return <Tag key={index}>{item.toUpperCase()}</Tag>;
+        })}
+      </TagContainer>
+      <div>
+        <Title>{coffee.name}</Title>
 
-              <Description>{coffee.description}</Description>
+        <Description>{coffee.description}</Description>
 
-              <Footer>
-                <Price>
-                  <span>R$</span>
-                  {coffee.price}
-                </Price>
+        <Footer>
+          <Price>
+            <span>R$</span>
+            {coffee.price}
+          </Price>
 
-                <Buy coffee={coffee} />
-              </Footer>
-            </div>
-          </CardContainer>
-        );
-      })}
-    </>
+          <Buy coffee={coffee} />
+        </Footer>
+      </div>
+    </CardContainer>
   );
 }

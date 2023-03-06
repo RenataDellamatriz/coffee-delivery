@@ -1,6 +1,6 @@
 import * as Select from "@radix-ui/react-select";
 import { CaretDown, Check } from "phosphor-react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CoffeeContext } from "../../../../contexts/CoffeeContext";
 import {
   SelectContainer,
@@ -9,8 +9,9 @@ import {
   SelectTrigger,
 } from "./styles";
 
-export function SelectCoffeeTag() {
+export function SelectCoffeeTag({value, onValueChange}:{value?: string, onValueChange: (tag: string) => void}) {
   const { availableCoffees } = useContext(CoffeeContext);
+  
 
   const avaiableTags = availableCoffees.map((coffee) => coffee.tag);
 
@@ -21,38 +22,41 @@ export function SelectCoffeeTag() {
 
   const filteredTags = tags.filter((tag, index) => tags.indexOf(tag) === index);
 
-  return (
-    <SelectContainer>
-      <Select.Root
-      // value={}
-      // onValueChange={}
-      >
-        <SelectTrigger>
-          <Select.Value placeholder="Tipos de cafés" />
-          <Select.Icon>
-            <CaretDown />
-          </Select.Icon>
-        </SelectTrigger>
+  
 
-        <Select.Portal>
-          <SelectContent>
-            <Select.Viewport>
-              <Select.Group>
-                {filteredTags.map((tag) => {
-                  return (
-                    <SelectItem key={tag} value={tag}>
-                      <Select.ItemText>{tag}</Select.ItemText>
-                      <Select.ItemIndicator>
-                        <Check />
-                      </Select.ItemIndicator>
-                    </SelectItem>
-                  );
-                })}
-              </Select.Group>
-            </Select.Viewport>
-          </SelectContent>
-        </Select.Portal>
-      </Select.Root>
-    </SelectContainer>
+  return (
+    <>
+      {filteredTags && (
+        <SelectContainer>
+          <Select.Root value={value} onValueChange={onValueChange}>
+            <SelectTrigger>
+              <Select.Value placeholder="Tipos de cafés" />
+              <Select.Icon>
+                <CaretDown />
+              </Select.Icon>
+            </SelectTrigger>
+
+            <Select.Portal>
+              <SelectContent>
+                <Select.Viewport>
+                  <Select.Group>
+                    {filteredTags.map((tag) => {
+                      return (
+                        <SelectItem key={tag} value={tag}>
+                          <Select.ItemText>{tag}</Select.ItemText>
+                          <Select.ItemIndicator>
+                            <Check />
+                          </Select.ItemIndicator>
+                        </SelectItem>
+                      );
+                    })}
+                  </Select.Group>
+                </Select.Viewport>
+              </SelectContent>
+            </Select.Portal>
+          </Select.Root>
+        </SelectContainer>
+      )}
+    </>
   );
 }

@@ -9,3 +9,4 @@ export function formatNamePaymentMethod(billing: PaymentMethods) {
     return "Dinheiro";
   }
 }
+

@@ -17,7 +17,7 @@ export enum PaymentMethods {
 
 const registerFormValidationSchema = zod.object({
   cep: zod
-    .string()
+    .string({invalid_type_error: 'invalido'})
     .min(8, "*Obrigatório")
     .regex(/^\d{5}(?:-?\d{3})?$/),
   street: zod.string().min(1, "*Obrigatório"),
@@ -28,7 +28,9 @@ const registerFormValidationSchema = zod.object({
   uf: zod.string().min(1, "*Obrigatório"),
   paymentMethod: zod.nativeEnum(PaymentMethods, {
     errorMap: () => {
-      return { message: "*Informe o método de pagamento" };
+      return { 
+        message: "*Informe o método de pagamento",     
+    };
     },
   }),
 });
