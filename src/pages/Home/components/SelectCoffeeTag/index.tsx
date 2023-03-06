@@ -9,9 +9,14 @@ import {
   SelectTrigger,
 } from "./styles";
 
-export function SelectCoffeeTag({value, onValueChange}:{value?: string, onValueChange: (tag: string) => void}) {
+export function SelectCoffeeTag({
+  value,
+  onValueChange,
+}: {
+  value?: string;
+  onValueChange: (tag: string) => void;
+}) {
   const { availableCoffees } = useContext(CoffeeContext);
-  
 
   const avaiableTags = availableCoffees.map((coffee) => coffee.tag);
 
@@ -20,13 +25,15 @@ export function SelectCoffeeTag({value, onValueChange}:{value?: string, onValueC
     return acc;
   }, [] as string[]);
 
-  const filteredTags = tags.filter((tag, index) => tags.indexOf(tag) === index);
+  const filteredCoffees = tags.filter(
+    (tag, index) => tags.indexOf(tag) === index
+  );
 
-  
+
 
   return (
     <>
-      {filteredTags && (
+      {availableCoffees && (
         <SelectContainer>
           <Select.Root value={value} onValueChange={onValueChange}>
             <SelectTrigger>
@@ -40,7 +47,15 @@ export function SelectCoffeeTag({value, onValueChange}:{value?: string, onValueC
               <SelectContent>
                 <Select.Viewport>
                   <Select.Group>
-                    {filteredTags.map((tag) => {
+                    
+                    <SelectItem value="Todos" >
+                      <Select.ItemText>Todos</Select.ItemText>
+                      <Select.ItemIndicator>
+                        <Check />
+                      </Select.ItemIndicator>
+                    </SelectItem>
+
+                    {filteredCoffees.map((tag) => {
                       return (
                         <SelectItem key={tag} value={tag}>
                           <Select.ItemText>{tag}</Select.ItemText>

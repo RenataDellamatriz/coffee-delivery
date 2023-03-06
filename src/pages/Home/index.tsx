@@ -15,6 +15,7 @@ import { HomeCoffeeCard } from "./components/HomeCoffeeCard";
 import { SelectCoffeeTag } from "./components/SelectCoffeeTag";
 import { useContext, useMemo, useState } from "react";
 import { CoffeeContext } from "../../contexts/CoffeeContext";
+import { coffeeReducer } from "../../reducers/reducer";
 
 export function Home() {
   const { availableCoffees } = useContext(CoffeeContext);
@@ -30,8 +31,14 @@ export function Home() {
   }, [selectedTag, availableCoffees]);
 
   function handleSelectedTag(tag: string) {
-    setSelectedTag(tag);
+    if (tag === "Todos") {
+      setSelectedTag(undefined);
+    } else {
+      setSelectedTag(tag);
+    }
   }
+
+  console.log(selectedTag)
 
   return (
     <HomeContainer>
@@ -93,14 +100,14 @@ export function Home() {
       >
         <Subtitle>Nossos cafés</Subtitle>
         <SelectCoffeeTag
-          value={selectedTag}
+          value={selectedTag === undefined ? 'Todos': selectedTag}
           onValueChange={handleSelectedTag}
         />
       </div>
 
       <CoffeeCardContainer>
         {filteredCoffeesTags.map((coffee) => (
-          <HomeCoffeeCard coffee={coffee} key={coffee.id}/>
+          <HomeCoffeeCard coffee={coffee} key={coffee.id} />
         ))}
       </CoffeeCardContainer>
     </HomeContainer>
