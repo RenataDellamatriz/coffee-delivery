@@ -40,7 +40,7 @@ export type RegisterFormValidationData = zod.infer<
 >;
 
 export function Checkout() {
-  const { createNewOrder } = useContext(CoffeeContext);
+  const { createNewBilling, billing } = useContext(CoffeeContext);
 
   const registerForm = useForm<RegisterFormValidationData>({
     resolver: zodResolver(registerFormValidationSchema),
@@ -60,7 +60,7 @@ export function Checkout() {
   const { handleSubmit } = registerForm;
 
   function handleCreateNewOrder(data: RegisterFormValidationData) {
-    createNewOrder(data);
+    createNewBilling(data);
     console.log("data", data.paymentMethod);
     window.location.href = "/success";
   }
@@ -70,7 +70,7 @@ export function Checkout() {
       cep: data.cep,
     });
   }
-
+ 
   return (
     <CheckoutContainer>
       <form onSubmit={handleSubmit(handleCreateNewOrder)}>

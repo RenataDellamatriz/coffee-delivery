@@ -1,6 +1,5 @@
-import { PaymentMethods } from "../pages/Checkout";
 
-export function formatNamePaymentMethod(billing: PaymentMethods) {
+export function formatNamePaymentMethod(billing: string) {
   if (billing === "credit") {
     return "Cartão de Crédito";
   } else if (billing === "debit") {

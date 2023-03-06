@@ -4,12 +4,13 @@ import { RegisterFormValidationData } from "../pages/Checkout";
 export enum ActionTypes {
   UPDATE_ORDER = "UPDATE_ORDER",
   REMOVE_COFFEE = "REMOVE_COFFEE",
-  CREATE_NEW_ORDER = "CREATE_NEW_ORDER"
+  CREATE_NEW_BILLING = "CREATE_NEW_BILLING",
+  RESET_ORDER = "RESET_ORDER",
 }
 
-export function createNewBillingAction(newBilling: RegisterFormValidationData){
+export function createNewBillingAction(newBilling: RegisterFormValidationData) {
   return {
-    type: ActionTypes.CREATE_NEW_ORDER,
+    type: ActionTypes.CREATE_NEW_BILLING,
     payload: {
       cep: newBilling.cep,
       street: newBilling.street,
@@ -17,9 +18,9 @@ export function createNewBillingAction(newBilling: RegisterFormValidationData){
       neighborhood: newBilling.neighborhood,
       city: newBilling.city,
       uf: newBilling.uf,
-      paymentMethod: newBilling.paymentMethod
-    }
-}
+      paymentMethod: newBilling.paymentMethod,
+    },
+  };
 }
 
 export function updateCoffeeAction(coffee: Coffee) {
@@ -48,3 +49,8 @@ export function removeCoffeeAction(coffee: Coffee) {
   };
 }
 
+export function resetOrderAction() {
+  return {
+    type: ActionTypes.RESET_ORDER,    
+  };
+}

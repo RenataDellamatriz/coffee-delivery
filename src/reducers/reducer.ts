@@ -4,7 +4,7 @@ import { RegisterFormValidationData } from "../pages/Checkout";
 import { ActionTypes } from "./actions";
 
 export interface CoffeeOrder {
-  billing: RegisterFormValidationData
+  billing: RegisterFormValidationData;
   order: Coffee[];
 }
 
@@ -27,10 +27,10 @@ export function coffeeReducer(state: CoffeeOrder, action: any) {
         }
       });
 
-    case ActionTypes.CREATE_NEW_ORDER: 
-      return produce(state, (draft) => {        
-        draft.billing = action.payload        
-      })
+    case ActionTypes.CREATE_NEW_BILLING:
+      return produce(state, (draft) => {
+        draft.billing = action.payload;
+      });
 
     case ActionTypes.REMOVE_COFFEE:
       return produce(state, (draft) => {
@@ -39,6 +39,11 @@ export function coffeeReducer(state: CoffeeOrder, action: any) {
         );
 
         draft.order = filteredCoffees;
+      });
+
+    case ActionTypes.RESET_ORDER:
+      return produce(state, (draft) => {
+        draft.order.length = 0
       });
 
     default:

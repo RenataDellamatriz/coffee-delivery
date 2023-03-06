@@ -7,21 +7,25 @@ import {
   useState,
 } from "react";
 import {
+  ActionTypes,
   createNewBillingAction,
   removeCoffeeAction,
+  resetOrderAction,
   updateCoffeeAction,
 } from "../reducers/actions";
 import { Coffee } from "../@types/types/global";
 import { fetchCoffeeData } from "../services/coffeeApi/api";
 import { RegisterFormValidationData } from "../pages/Checkout";
 
+
 interface CoffeeContextType {
   availableCoffees: Coffee[];
   order: Coffee[];
   billing: RegisterFormValidationData;
-  createNewOrder: (data: RegisterFormValidationData) => void;
+  createNewBilling: (data: RegisterFormValidationData) => void;
   updateCoffee: (data: Coffee) => void;
   deleteItem: (data: Coffee) => void;
+  resetOrder : () => void;
 }
 
 interface CoffeeContextProviderProps {
@@ -60,6 +64,7 @@ export function CoffeeContextProvider({
     }
   );
 
+  
   useEffect(() => {
     const stateJson = JSON.stringify(coffeeState);
 
@@ -74,8 +79,8 @@ export function CoffeeContextProvider({
     getCoffeeData();
   }, []);
 
-  function createNewOrder(data: RegisterFormValidationData) {
-    const newOrder: RegisterFormValidationData = {
+  function createNewBilling(data: RegisterFormValidationData) {
+    const newBilling: RegisterFormValidationData = {
       cep: data.cep,
       street: data.street,
       number: data.number,
@@ -83,10 +88,8 @@ export function CoffeeContextProvider({
       city: data.city,
       uf: data.uf,
       paymentMethod: data.paymentMethod,
-      
     };
-    console.log("sdasd", newOrder)
-    dispatch(createNewBillingAction(newOrder));
+    dispatch(createNewBillingAction(newBilling));
   }
 
   function updateCoffee(data: Coffee) {
@@ -106,6 +109,10 @@ export function CoffeeContextProvider({
     dispatch(removeCoffeeAction(data));
   }
 
+  function resetOrder() {
+    dispatch(resetOrderAction())
+  }
+
   return (
     <CoffeeContext.Provider
       value={{
@@ -114,7 +121,8 @@ export function CoffeeContextProvider({
         updateCoffee,
         deleteItem,
         billing: coffeeState.billing,
-        createNewOrder,
+        createNewBilling,
+        resetOrder
       }}
     >
       {children}

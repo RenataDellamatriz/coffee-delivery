@@ -1,6 +1,5 @@
 import React, { ReactNode, useContext } from "react";
 import { Control, Controller } from "react-hook-form";
-import { CoffeeContext } from "../../../../../contexts/CoffeeContext";
 import { formatNamePaymentMethod } from "../../../../../utils";
 import { ContentContainer, PaymentMethodContainer } from "./styles";
 
@@ -18,8 +17,7 @@ export function PaymentMethodRadio({
   name,
   options,
 }: PaymentMethodProps) {
-  const {billing} =useContext(CoffeeContext)
-
+ 
   return (
     <>
       <Controller
@@ -40,7 +38,7 @@ export function PaymentMethodRadio({
                 <label htmlFor={method.value}>
                   <ContentContainer>
                     {method.icon}
-                    {formatNamePaymentMethod(billing.paymentMethod)}
+                    {formatNamePaymentMethod(method.value)}
                   </ContentContainer>
                 </label>
               </React.Fragment>

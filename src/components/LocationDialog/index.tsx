@@ -29,7 +29,7 @@ export interface CityProps {
 
 export function LocationDialog() {
   const [uf, setUf] = useState<UfProps[]>([]);
-  const [seletedUf, setSelectedUf] = useState<string>();
+  const [selectedUf, setSelectedUf] = useState<string>();
   const [city, setCity] = useState<CityProps[]>([]);
   const [selectedCity, setSelectedCity] = useState<string>();
 
@@ -45,7 +45,7 @@ export function LocationDialog() {
     async function getCityData() {
       try {
         const { data } = await axios(
-          `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${seletedUf}/municipios`
+          `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedUf}/municipios`
         );
 
         setCity(data);
@@ -53,10 +53,10 @@ export function LocationDialog() {
         console.log(error);
       }
     }
-    if (seletedUf) {
+    if (selectedUf) {
       getCityData();
     }
-  }, [seletedUf]);
+  }, [selectedUf]);
 
   function handleUfChange(uf: string) {
     setSelectedUf(uf);
@@ -77,14 +77,35 @@ export function LocationDialog() {
     return 0;
   });
 
+  useEffect(() => {
+    if (selectedUf && selectedCity) {
+      localStorage.setItem("selectedUf", selectedUf);
+      localStorage.setItem("selectedCity", selectedCity);
+    }
+  }, [selectedUf, selectedCity]);
+
+  useEffect(() => {
+    const savedUf = localStorage.getItem("selectedUf");
+    const savedCity = localStorage.getItem("selectedCity");
+
+    if (savedUf) {
+      setSelectedUf(savedUf);
+    }
+
+    if (savedCity) {
+      setSelectedCity(savedCity);
+    }
+    console.log("estado", savedUf);
+    console.log("cidade", savedCity);
+  }, []);
 
 
   return (
     <Dialog.Root>
       <LocationTrigger>
         <MapPin weight="fill" />
-        {selectedCity && seletedUf
-          ? `${selectedCity}, ${seletedUf}`
+        {selectedCity
+          ? `${selectedCity}, ${selectedUf}`
           : "Escolha sua localização"}
       </LocationTrigger>
       <Dialog.Portal>
@@ -95,7 +116,7 @@ export function LocationDialog() {
           <SelectContainer>
             <Select.Root
               required
-              value={seletedUf}
+              value={selectedUf}
               onValueChange={handleUfChange}
             >
               <SelectTrigger>
@@ -136,15 +157,15 @@ export function LocationDialog() {
               <Select.Portal>
                 <SelectContent>
                   <Select.Viewport>
-                    {seletedUf &&
-                      city.map((state) => {
+                    {selectedUf &&
+                      city.map((city) => {
                         return (
                           <SelectItem
-                            disabled={!seletedUf}
-                            key={state.id}
-                            value={state.nome}
+                            disabled={!selectedUf}
+                            key={city.id}
+                            value={city.nome}
                           >
-                            <Select.ItemText>{state.nome}</Select.ItemText>
+                            <Select.ItemText>{city.nome}</Select.ItemText>
                             <Select.ItemIndicator>
                               <Check />
                             </Select.ItemIndicator>

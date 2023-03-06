@@ -1,28 +1,26 @@
 import {
   CartItemsCounter,
-  HeaderContainer,  
+  HeaderContainer,
   ShoppingCartContainer,
 } from "./styles";
 import logoCoffeeDelivery from "../../assets/logoCoffeeDelivery.svg";
-import {  ShoppingCart } from "phosphor-react";
+import { ShoppingCart } from "phosphor-react";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { CoffeeContext } from "../../contexts/CoffeeContext";
 import { LocationDialog } from "../LocationDialog";
 
 
-
 export function Header() {
   const { order } = useContext(CoffeeContext);
 
   return (
-    <HeaderContainer>
+    <HeaderContainer >
       <NavLink to="/" title="Home">
         <img src={logoCoffeeDelivery} alt="" />
       </NavLink>
       <nav>
-        
-        <LocationDialog/>
+        <LocationDialog />
 
         <ShoppingCartContainer to="/checkout" title="Home">
           {order.length >= 1 ? (
