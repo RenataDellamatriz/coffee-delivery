@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export async function fetchCoffeeData() {
   try {
-    const { data } = await axios('http://localhost:3000/coffees')
+    const { data } = await axios('https://coffee-delivery-json-server.vercel.app/coffees')
 
     return data
   } catch (error) {
