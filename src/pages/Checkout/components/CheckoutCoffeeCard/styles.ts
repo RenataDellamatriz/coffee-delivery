@@ -5,7 +5,7 @@ export const CardContainer = styled.div`
   align-items: flex-start;
   justify-content: space-between;
 
-  width: 100%;  
+  width: 100%;
   height: auto;
   padding: 8px 4px 40px 4px;
   border-bottom: 1px solid ${(props) => props.theme["base-button"]};
@@ -15,13 +15,18 @@ export const CardContainer = styled.div`
     width: 4rem;
     height: 4rem;
   }
+
+  @media (max-width: 768px) {
+    padding: 8px 4px 30px 4px;
+  }
 `;
 
 export const MainContent = styled.header`
   display: flex;
   gap: 20px;
-  @media (max-width: 768px){
-    gap:5px;
+
+  @media (max-width: 768px) {
+    gap: 15px;
   }
 `;
 
@@ -31,7 +36,7 @@ export const Title = styled.h5`
   font-size: 1rem;
 
   color: ${(props) => props.theme["base-subtitle"]};
-  @media (max-width: 768px){
+  @media (max-width: 768px) {
     font-size: 0.875rem;
   }
 `;
@@ -79,11 +84,9 @@ export const RemoveButton = styled.button`
     color: ${(props) => props.theme.purple};
     font-size: 1rem;
   }
-  @media (max-width: 768px){
-   
-      font-size: 0;
-      gap: 0;
-   
+  @media (max-width: 768px) {
+    font-size: 0;
+    gap: 0;
   }
 `;
 export const Price = styled.span`
