@@ -20,7 +20,7 @@ const InputSizeVariants = {
     lg: "none",
   },
   media: {
-    size: { lg: "100%", md: "150px", sm: "60px" },
+    size: { lg: "100%", md: "100px", sm: "50px" },
   },
 };
 
@@ -64,7 +64,7 @@ export const InputStyled = styled.input<InputVariantProps>`
     props.hasError ? `1px solid red` : "1px solid transparent"};
   border-radius: 6px;
 
-  min-width: ${(props) => InputSizeVariants.minwidth[props.variant]};
+  /* min-width: ${(props) => InputSizeVariants.minwidth[props.variant]}; */
 
   ::-webkit-inner-spin-button,
   ::-webkit-outer-spin-button {

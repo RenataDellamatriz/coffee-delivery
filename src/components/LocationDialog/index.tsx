@@ -105,7 +105,7 @@ export function LocationDialog() {
         <MapPin weight="fill" />
         {selectedCity
           ? `${selectedCity}, ${selectedUf}`
-          : "Escolha sua localização"}
+          : "Localização"}
       </LocationTrigger>
       <Dialog.Portal>
         <LocationOverlay />

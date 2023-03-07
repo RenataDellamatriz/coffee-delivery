@@ -19,6 +19,7 @@ export const MainContent = styled.main`
   margin: 5.75rem 0;
   @media (max-width: 768px) {
     flex-direction: column;
+    margin: 0;
     img:first-child {
       width: 100%;
     }
@@ -52,7 +53,7 @@ export const ItemsContainer = styled.div`
 
   @media (max-width: 768px) {
     font-size: 0.8rem;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     margin-bottom: 1.5rem;
   }
 `;
@@ -91,7 +92,7 @@ export const IconContainer = styled.div<IconContainerProps>`
   }
 `;
 export const Subtitle = styled.h3`
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-family: "Baloo 2", cursive;
   font-weight: 800;
 

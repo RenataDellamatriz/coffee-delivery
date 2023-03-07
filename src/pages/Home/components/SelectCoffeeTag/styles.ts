@@ -10,6 +10,9 @@ export const SelectContainer = styled.div`
 
   gap: 1rem;
   width: 200px;
+  @media (max-width: 768px){
+    width: 150px;
+  }
 `;
 
 export const SelectTrigger = styled(Select.Trigger)`

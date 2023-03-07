@@ -15,9 +15,8 @@ import {
 export function CheckoutCoffeeCard({ coffee }: { coffee: Coffee }) {
   const { deleteItem } = useContext(CoffeeContext);
 
-  const priceMultipliedByQuantity = coffee.quantity * Number(coffee.price.replace(",", "."));
-
-  
+  const priceMultipliedByQuantity =
+    coffee.quantity * Number(coffee.price.replace(",", "."));
 
   return (
     <CardContainer key={coffee.id}>
@@ -27,9 +26,11 @@ export function CheckoutCoffeeCard({ coffee }: { coffee: Coffee }) {
           <Title>{coffee.name}</Title>
 
           <Footer>
-            <Buy coffee={coffee} autoUpdate/>
+            <Buy coffee={coffee} autoUpdate />
             <RemoveButton onClick={() => deleteItem(coffee)}>
-              <Trash /> REMOVER
+                             
+                <Trash /> REMOVER
+              
             </RemoveButton>
           </Footer>
         </div>

@@ -3,6 +3,9 @@ import styled from 'styled-components'
 export const Title = styled.h2`
   font-family: 'Baloo 2', monospace;
   font-size: 1.125rem;
+  @media (max-width: 768px){
+    margin-top: 2rem;
+  }
 `
 export const CoffeeSelectedContainer = styled.div`
   background: ${(props) => props.theme['base-card']};
@@ -16,6 +19,10 @@ export const CoffeeSelectedContainer = styled.div`
   min-height: 500px;
   max-height: 1027px;
   width: 448px;
+
+  @media (max-width: 768px){
+    width: 100%;
+  }
   
   
 `

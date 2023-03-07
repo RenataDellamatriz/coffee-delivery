@@ -20,6 +20,9 @@ export const CardContainer = styled.div`
 export const MainContent = styled.header`
   display: flex;
   gap: 20px;
+  @media (max-width: 768px){
+    gap:5px;
+  }
 `;
 
 export const Title = styled.h5`
@@ -28,6 +31,9 @@ export const Title = styled.h5`
   font-size: 1rem;
 
   color: ${(props) => props.theme["base-subtitle"]};
+  @media (max-width: 768px){
+    font-size: 0.875rem;
+  }
 `;
 export const Footer = styled.div`
   display: flex;
@@ -72,6 +78,12 @@ export const RemoveButton = styled.button`
   svg {
     color: ${(props) => props.theme.purple};
     font-size: 1rem;
+  }
+  @media (max-width: 768px){
+   
+      font-size: 0;
+      gap: 0;
+   
   }
 `;
 export const Price = styled.span`
