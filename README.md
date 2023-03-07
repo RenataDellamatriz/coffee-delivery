@@ -3,13 +3,14 @@
  <h2><a href='https://coffee-delivery-jet.vercel.app/'>Click hero to see the project</a></h2>
 </div>
 
-<div align="left">     
+<div align="left">  
+ 
 ## Description
 
-A coffee shop web site challenge from Rockeseat's Bootcamp Ignite.
-This project is about a web aplication to manage a shopping cart of a fake Coffee Shop.
+ <p>A coffee shop web site challenge from Rockeseat's Bootcamp Ignite.</p>
+ <p>This project is about a web aplication to manage a shopping cart of a fake Coffee Shop.</p>
 
-<h5>Functionalities</h5>
+<h5>Functionalities:</h5>
 <span>:small_orange_diamond: Products List avaiable for shopping.</span>
 <span>:small_blue_diamond: Filtering avaiable coffees by their tags.</span>
 <span>:small_orange_diamond: Add specific items quantity into the shopping cart.</span>
