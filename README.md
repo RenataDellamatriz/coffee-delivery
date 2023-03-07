@@ -11,6 +11,7 @@
  <p>This project is about a web aplication to manage a shopping cart of a fake Coffee Shop.</p>
 
 <h5>Functionalities:</h5>
+ <div>
 <span>:small_orange_diamond: Products List avaiable for shopping.</span>
 <span>:small_blue_diamond: Filtering avaiable coffees by their tags.</span>
 <span>:small_orange_diamond: Add specific items quantity into the shopping cart.</span>
@@ -19,6 +20,6 @@
 <span>:small_blue_diamond: Get the address through the entered zip code.</span>
 <span>:small_orange_diamond: Show the total price of products.</span>
 <span>:small_blue_diamond: Reset the cart info if the purchase has been completed.</span>
- 
+ </div>
 </div>
 
