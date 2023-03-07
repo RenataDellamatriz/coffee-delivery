@@ -6,7 +6,7 @@ import { Success } from './pages/Success'
 
 export function Router() {
   return (
-    <Routes>
+    <Routes >
       <Route path="/" element={<DefaultLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/checkout" element={<Checkout />} />
