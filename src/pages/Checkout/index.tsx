@@ -60,8 +60,7 @@ export function Checkout() {
   const { handleSubmit } = registerForm;
 
   function handleCreateNewOrder(data: RegisterFormValidationData) {
-    createNewBilling(data);
-    console.log("data", data.paymentMethod);
+    createNewBilling(data);   
     window.location.href = "/success";
   }
 

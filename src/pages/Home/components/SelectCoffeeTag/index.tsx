@@ -11,8 +11,10 @@ import {
 
 export function SelectCoffeeTag({
   value,
+  placeholder,
   onValueChange,
 }: {
+  placeholder: string;
   value?: string;
   onValueChange: (tag: string) => void;
 }) {
@@ -37,7 +39,7 @@ export function SelectCoffeeTag({
         <SelectContainer>
           <Select.Root value={value} onValueChange={onValueChange}>
             <SelectTrigger>
-              <Select.Value placeholder="Tipos de cafés" />
+              <Select.Value placeholder={placeholder} />
               <Select.Icon>
                 <CaretDown />
               </Select.Icon>
@@ -48,8 +50,8 @@ export function SelectCoffeeTag({
                 <Select.Viewport>
                   <Select.Group>
                     
-                    <SelectItem value="Todos" >
-                      <Select.ItemText>Todos</Select.ItemText>
+                    <SelectItem value="Tipos de café" >
+                      <Select.ItemText>Tipos de café</Select.ItemText>
                       <Select.ItemIndicator>
                         <Check />
                       </Select.ItemIndicator>

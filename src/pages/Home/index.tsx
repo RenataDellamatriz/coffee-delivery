@@ -31,14 +31,12 @@ export function Home() {
   }, [selectedTag, availableCoffees]);
 
   function handleSelectedTag(tag: string) {
-    if (tag === "Todos") {
+    if (tag === "Tipos de café") {
       setSelectedTag(undefined);
     } else {
       setSelectedTag(tag);
     }
   }
-
-  console.log(selectedTag)
 
   return (
     <HomeContainer>
@@ -100,7 +98,8 @@ export function Home() {
       >
         <Subtitle>Nossos cafés</Subtitle>
         <SelectCoffeeTag
-          value={selectedTag === undefined ? 'Todos': selectedTag}
+          placeholder="Tipos de cafés"
+          value={selectedTag === undefined ? "Tipos de café" : selectedTag}
           onValueChange={handleSelectedTag}
         />
       </div>

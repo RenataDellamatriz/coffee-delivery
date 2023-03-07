@@ -95,8 +95,7 @@ export function LocationDialog() {
     if (savedCity) {
       setSelectedCity(savedCity);
     }
-    console.log("estado", savedUf);
-    console.log("cidade", savedCity);
+    
   }, []);
 
 
