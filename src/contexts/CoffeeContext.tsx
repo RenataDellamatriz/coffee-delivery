@@ -17,7 +17,6 @@ import { Coffee } from "../@types/types/global";
 import { fetchCoffeeData } from "../services/coffeeApi/api";
 import { RegisterFormValidationData } from "../pages/Checkout";
 
-
 interface CoffeeContextType {
   availableCoffees: Coffee[];
   order: Coffee[];
@@ -25,7 +24,7 @@ interface CoffeeContextType {
   createNewBilling: (data: RegisterFormValidationData) => void;
   updateCoffee: (data: Coffee) => void;
   deleteItem: (data: Coffee) => void;
-  resetOrder : () => void;
+  resetOrder: () => void;
 }
 
 interface CoffeeContextProviderProps {
@@ -61,10 +60,21 @@ export function CoffeeContextProvider({
       if (storedStateAsJSON) {
         return JSON.parse(storedStateAsJSON);
       }
+      return {
+        order: [],
+        billing: {
+          cep: "",
+          street: "",
+          number: "",
+          neighborhood: "",
+          city: "",
+          uf: "",
+          paymentMethod: "",
+        },
+      };
     }
   );
 
-  
   useEffect(() => {
     const stateJson = JSON.stringify(coffeeState);
 
@@ -110,7 +120,7 @@ export function CoffeeContextProvider({
   }
 
   function resetOrder() {
-    dispatch(resetOrderAction())
+    dispatch(resetOrderAction());
   }
 
   return (
@@ -122,7 +132,7 @@ export function CoffeeContextProvider({
         deleteItem,
         billing: coffeeState.billing,
         createNewBilling,
-        resetOrder
+        resetOrder,
       }}
     >
       {children}
