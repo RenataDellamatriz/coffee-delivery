@@ -1,5 +1,5 @@
 import { CurrencyDollar, MapPin, Timer } from "phosphor-react";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import deliveryImage from "../../assets/deliveryImage.svg";
 import { CoffeeContext } from "../../contexts/CoffeeContext";
