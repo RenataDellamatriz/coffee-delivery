@@ -8,6 +8,8 @@ import { useContext } from "react";
 import { CoffeeContext } from "../../contexts/CoffeeContext";
 import axios from "axios";
 import { RegisterForm } from "./components/Forms/RegisterForm";
+import { useNavigate } from "react-router-dom";
+
 
 export enum PaymentMethods {
   credit = "credit",
@@ -59,9 +61,11 @@ export function Checkout() {
 
   const { handleSubmit } = registerForm;
 
+  const navigate = useNavigate()
+
   function handleCreateNewOrder(data: RegisterFormValidationData) {
     createNewBilling(data);   
-    window.location.href = "/success";
+    navigate("/success");
   }
 
   async function handlePostNewOrderApi(data: RegisterFormValidationData) {
