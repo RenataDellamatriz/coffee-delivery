@@ -4,6 +4,7 @@ export const PaymentMethodContainer = styled.div`
   display: flex;  
   gap: 6px;
 
+ 
   input {
     visibility: hidden;
     appearance: none;
@@ -12,6 +13,11 @@ export const PaymentMethodContainer = styled.div`
   input:checked + label div {
     background: ${(props) => props.theme["purple-light"]};
     border-color: ${(props) => props.theme["purple"]};
+  }
+
+  @media (max-width: 768px) {    
+    flex-direction: column;
+    width: 100%;    
   }
 `;
 
@@ -45,6 +51,12 @@ export const ContentContainer = styled.div`
     color: ${(props) => props.theme.purple};
     font-size: 1rem;
   }
-
   user-select: none;
+
+  @media (max-width: 768px) {
+    label div {
+      display: flex;
+      justify-content: center;
+    }
+  }
 `;

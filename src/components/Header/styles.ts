@@ -10,6 +10,7 @@ export const HeaderContainer = styled.header`
   padding: 2rem 10rem;
   max-width: 1440px;
   margin: auto;
+  margin-bottom: 2.5rem;
 
   nav {
     display: flex;
@@ -20,6 +21,11 @@ export const HeaderContainer = styled.header`
     a {
       text-decoration: none;
     }
+  }
+
+  @media (max-width: 768px) {
+    height: 5rem;
+    padding: 2rem 5%;    
   }
 `;
 

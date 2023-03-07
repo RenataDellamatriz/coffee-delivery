@@ -10,11 +10,16 @@ export const CheckoutContainer = styled.div`
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     gap: 16px;
+
+    @media (max-width: 768px) {
+    display: block;
+    padding: 5%;
+  }
   }
 `;
 export const ConfirmButton = styled.button`
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
   text-align: center;
   text-transform: uppercase;
   width: 100%;

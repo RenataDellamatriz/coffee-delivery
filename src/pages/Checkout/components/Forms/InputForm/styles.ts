@@ -5,7 +5,7 @@ export type InputVariant = "lg" | "md" | "sm";
 interface InputVariantProps {
   variant: InputVariant;
   hasError?: boolean;
-  rightText?: boolean
+  rightText?: boolean;
 }
 
 const InputSizeVariants = {
@@ -19,6 +19,9 @@ const InputSizeVariants = {
     md: "200px",
     lg: "none",
   },
+  media: {
+    size: { lg: "100%", md: "150px", sm: "60px" },
+  },
 };
 
 export const RightText = styled.p`
@@ -30,13 +33,15 @@ export const RightText = styled.p`
   top: 50%;
   left: 85%;
   transform: translate(-50%, -50%);
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
-
 export const InputWrapper = styled.div<InputVariantProps>`
-  display: flex; 
-  flex-direction: column;  
-  position: relative; 
+  display: flex;
+  flex-direction: column;
+  position: relative;
   width: ${(props) => InputSizeVariants.size[props.variant]};
 
   span {
@@ -47,18 +52,18 @@ export const InputWrapper = styled.div<InputVariantProps>`
     bottom: -0.875rem;
     left: -1.5rem;
   }
-   
+  @media (max-width: 768px) {
+  }
 `;
 export const InputStyled = styled.input<InputVariantProps>`
   font-family: "Roboto", sans-serif;
   font-size: 0.875rem;
-  
 
   padding: 12px;
   border: ${(props) =>
     props.hasError ? `1px solid red` : "1px solid transparent"};
   border-radius: 6px;
-  
+
   min-width: ${(props) => InputSizeVariants.minwidth[props.variant]};
 
   ::-webkit-inner-spin-button,
@@ -66,5 +71,8 @@ export const InputStyled = styled.input<InputVariantProps>`
     -webkit-appearance: none;
     margin: 0;
   }
-`;
 
+  @media (max-width: 768px) {
+    width: ${(props) => InputSizeVariants.media.size[props.variant]};
+  }
+`;

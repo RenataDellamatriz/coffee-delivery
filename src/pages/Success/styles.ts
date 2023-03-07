@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import { IconContainerProps } from "../../@types/types/global";
 
-const borderColor = `linear-gradient(
-  to right,
-  ${(props: any) => props.theme["yellow"]},
-  ${(props: any) => props.theme["purple"]}
-)`;
-
 export const SuccessContainer = styled.div`
   padding: 5rem 10rem 5rem 10rem;
   margin: auto;
+
   max-width: 1440px;
+
+  @media (max-width: 768px) {
+    padding: 5%;
+   
+  }
 `;
 
 export const Title = styled.h2`
@@ -28,7 +28,20 @@ export const MainContent = styled.main`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 2.5rem 0;
+  padding: 2.5rem 0;
+
+  @media (max-width: 768px) {   
+      
+      flex-direction: column;
+      
+      gap: 1.5rem;
+      img {
+        width: 100%;      
+      }
+     
+      
+   
+  }
 `;
 
 export const OrderInfoContainer = styled.div`
@@ -36,19 +49,31 @@ export const OrderInfoContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 1px;
-  background: linear-gradient(90deg, ${props => props.theme['yellow']}, ${props => props.theme['purple']});
+  background: linear-gradient(
+    90deg,
+    ${(props) => props.theme["yellow"]},
+    ${(props) => props.theme["purple"]}
+  );
   border-radius: 6px 36px 6px 36px;
 
   min-width: 526px;
   max-height: 280px;
+  @media (max-width: 768px) {
+    width: 100%;
+    min-width: auto;
+  }
 `;
 
 export const WhiteBoard = styled.div`
-padding: 40px;
+  padding: 40px;
   background: white;
   width: 100%;
   height: 100%;
   border-radius: 5px 35px 5px 35px;
+
+  @media (max-width: 768px) {
+    width:100%
+  }
 `;
 
 export const ItemsWrapper = styled.div`
@@ -58,12 +83,12 @@ export const ItemsWrapper = styled.div`
   align-items: center;
   gap: 12px;
   margin-top: 20px;
-`
+`;
 
 export const SpanWrapper = styled.div`
-display: flex;
-flex-direction: column;
-`
+  display: flex;
+  flex-direction: column;
+`;
 
 const iconBackgroundVariants = {
   background: {
@@ -72,7 +97,7 @@ const iconBackgroundVariants = {
     gray: (props: any) => props.theme[`base-text`],
     purple: (props: any) => props.theme.purple,
   },
-}
+};
 
 export const IconContainer = styled.div<IconContainerProps>`
   width: 32px;
@@ -88,4 +113,4 @@ export const IconContainer = styled.div<IconContainerProps>`
   svg {
     font-size: 1rem;
   }
-`
+`;
