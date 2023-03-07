@@ -23,7 +23,7 @@ const registerFormValidationSchema = zod.object({
     .min(8, "*Obrigatório")
     .regex(/^\d{5}(?:-?\d{3})?$/),
   street: zod.string().min(1, "*Obrigatório"),
-  number: zod.string().min(2, "*Obrigatório").max(4, "Máximo de 4 dígitos"),
+  number: zod.string().min(1, "*Obrigatório").max(4, "Máximo de 4 dígitos"),
   complement: zod.string().optional(),
   neighborhood: zod.string().min(1, "*Obrigatório"),
   city: zod.string().min(1, "*Obrigatório"),
