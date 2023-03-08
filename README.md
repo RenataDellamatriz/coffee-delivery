@@ -8,20 +8,36 @@
 ## Description
 
  A Coffee Shop web site challenge from Rockeseat's Bootcamp Ignite.
- This project is about a web aplication to manage a shopping cart of a fake Coffee Shop.
+ This project is about a web application to manage a shopping cart of a fake Coffee Shop.
+ 
+#### Desktop: 
+ https://user-images.githubusercontent.com/106563089/223603857-33380f60-c7de-49f2-b6ba-d10935fdf3ff.mp4
+
+#### Mobile:
+<div display='flex'>
+ 
+ 
+<img src='https://user-images.githubusercontent.com/106563089/223610868-2f155400-9c35-4824-af29-ad9835d051ef.jpg' width='200px'/> 
+ <img src='https://user-images.githubusercontent.com/106563089/223610877-1812f686-4160-4bf1-80a5-c18ff84d1b69.jpg' width='200px'/>
+ <img src='https://user-images.githubusercontent.com/106563089/223610879-a8425a82-8036-4953-842b-22f5431ebf97.jpg' width='200px'/>
+
+
+ 
+ </div>
 
 ### Functionalities:
 
-- Products List avaiable for shopping </br>
-- Filtering avaiable coffees by their tags </br>
-- Add specific items quantity into the shopping cart </br>
-- Increment or decrement cart items quantity.</br>
+- Searchable Location.</br> 
+- Products List available for shopping </br>
+- Filtering available coffee by their tags </br>
+- Add specific item quantities into the shopping cart </br>
+- Increment or decrement item quantities in the cart.</br>
 - A form to handle user's address and payment method.</br>
-- Get the address through the entered zip code.</br>
+- Retrieve the address based on the entered zip code.</br>
 - Show the total price of products.</br>
-- Reset the cart info if the purchase has been completed.</br>
+- Reset the cart information after the purchase is completed.</br>
 
-### Tools and technologies 
+### Tools and technologies:
 
 - ReactJs | ^18.2.0
 - Vite | ^4.0.0 -D
