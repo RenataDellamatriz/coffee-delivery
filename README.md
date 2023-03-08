@@ -49,5 +49,6 @@ All application functionalities were developed by me from scratch, without the u
 - Axios | 1.2.2
 - Json Server | 0.17.0
 - Immer
+- Radix UI.
 </div>
 
