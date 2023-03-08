@@ -7,8 +7,9 @@
  
 ## Description
 
- A Coffee Shop web site challenge from Rockeseat's Bootcamp Ignite.
- This project is about a web application to manage a shopping cart of a fake Coffee Shop.
+ This project was developed as part of a challenge proposed by the Ignite Bootcamp from Rocketseat. The goal of the challenge was to create a web application to manage the cart of a fake coffee shop based on the provided design <a href='https://www.figma.com/file/67dRSj4O781tbHJFYK9egW/Coffee-Delivery-(Copy)?node-id=0-1&t=LEe1ENwhCxsMhQWH-0'>(see prototype)</a>, using the techniques and tools learned during the "Creating SPAs with ReactJS" module.
+
+All application functionalities were developed by me from scratch, without the use of pre-existing code.
  
 #### Desktop: 
  https://user-images.githubusercontent.com/106563089/223603857-33380f60-c7de-49f2-b6ba-d10935fdf3ff.mp4
