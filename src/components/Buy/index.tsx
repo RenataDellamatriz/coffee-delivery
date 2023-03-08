@@ -61,7 +61,7 @@ export function Buy({
   return (
     <BuyContainer>
       <QuantityInputContainer>
-        <RemoveQuantityButton onClick={handleDecrement}>
+        <RemoveQuantityButton type="button" onClick={handleDecrement}>
           <Minus weight="bold" />
         </RemoveQuantityButton>
         <input
@@ -72,7 +72,7 @@ export function Buy({
           max={10}
           value={quantity}
         />
-        <AddQuantityButton onClick={handleIncrement}>
+        <AddQuantityButton type="button" onClick={handleIncrement}>
           <Plus weight="bold" />
         </AddQuantityButton>
       </QuantityInputContainer>

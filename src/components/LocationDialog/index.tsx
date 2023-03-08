@@ -1,7 +1,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import * as Select from "@radix-ui/react-select";
 import axios from "axios";
-import { CaretDown, Check, MapPin } from "phosphor-react";
+import { CaretDown, CaretUp, Check, MapPin } from "phosphor-react";
 import { useEffect, useState } from "react";
 import { fetchStateData } from "../../services/locationApi/api";
 
@@ -13,6 +13,9 @@ import {
   SelectContainer,
   SelectContent,
   SelectItem,
+  SelectPortal,
+  SelectScrollDownButton,
+  SelectScrollUpButton,
   SelectTrigger,
 } from "./styles";
 
@@ -32,6 +35,8 @@ export function LocationDialog() {
   const [selectedUf, setSelectedUf] = useState<string>();
   const [city, setCity] = useState<CityProps[]>([]);
   const [selectedCity, setSelectedCity] = useState<string>();
+  const [inputUfValue, setInputUfValue] = useState("");
+  const [inputCityValue, setInputCityValue] = useState("");
 
   useEffect(() => {
     async function getUfData() {
@@ -95,17 +100,13 @@ export function LocationDialog() {
     if (savedCity) {
       setSelectedCity(savedCity);
     }
-    
   }, []);
-
 
   return (
     <Dialog.Root>
       <LocationTrigger>
         <MapPin weight="fill" />
-        {selectedCity
-          ? `${selectedCity}, ${selectedUf}`
-          : "Localização"}
+        {selectedCity ? `${selectedCity}, ${selectedUf}` : "Localização"}
       </LocationTrigger>
       <Dialog.Portal>
         <LocationOverlay />
@@ -125,24 +126,55 @@ export function LocationDialog() {
                 </Select.Icon>
               </SelectTrigger>
 
-              <Select.Portal>
+              <SelectPortal itemRef="input">
                 <SelectContent>
+                  <input
+                    type="text"
+                    placeholder="Pesquisar"
+                    value={inputUfValue}
+                    onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) =>
+                      e.stopPropagation()
+                    }
+                    onChange={(e) => setInputUfValue(e.target.value)}
+                  />
+                  <SelectScrollUpButton>
+                    <CaretUp />
+                  </SelectScrollUpButton>
                   <Select.Viewport>
                     <Select.Group>
-                      {orderedStatesByName.map((state) => {
-                        return (
-                          <SelectItem key={state.id} value={state.sigla}>
-                            <Select.ItemText>{state.sigla}</Select.ItemText>
-                            <Select.ItemIndicator>
-                              <Check />
-                            </Select.ItemIndicator>
-                          </SelectItem>
-                        );
-                      })}
+                      {orderedStatesByName
+                        .filter((uf) => {
+                          if (inputUfValue === "") {
+                            return uf;
+                          } else if (
+                            uf.sigla
+                              .toLowerCase()
+                              .includes(inputUfValue.toLowerCase())
+                          ) {
+                            return uf;
+                          }
+                        })
+                        .map((uf) => {
+                          return (
+                            <SelectItem
+                              key={uf.id}
+                              value={uf.sigla}
+                              textValue=""
+                            >
+                              <Select.ItemText>{uf.sigla}</Select.ItemText>
+                              <Select.ItemIndicator>
+                                <Check />
+                              </Select.ItemIndicator>
+                            </SelectItem>
+                          );
+                        })}
                     </Select.Group>
                   </Select.Viewport>
+                  <SelectScrollDownButton>
+                    <CaretDown />
+                  </SelectScrollDownButton>
                 </SelectContent>
-              </Select.Portal>
+              </SelectPortal>
             </Select.Root>
 
             <Select.Root value={selectedCity} onValueChange={handleCityChange}>
@@ -153,27 +185,59 @@ export function LocationDialog() {
                 </Select.Icon>
               </SelectTrigger>
 
-              <Select.Portal>
+              <SelectPortal>
                 <SelectContent>
+                  <input
+                    type="text"
+                    placeholder="Pesquisar"
+                    value={inputCityValue}
+                    onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) =>
+                      e.stopPropagation()
+                    }
+                    onChange={(e) => {
+                      setInputCityValue(e.target.value);
+                    }}
+                  />
+                  <SelectScrollUpButton>
+                    <CaretUp />
+                  </SelectScrollUpButton>
+
                   <Select.Viewport>
-                    {selectedUf &&
-                      city.map((city) => {
-                        return (
-                          <SelectItem
-                            disabled={!selectedUf}
-                            key={city.id}
-                            value={city.nome}
-                          >
-                            <Select.ItemText>{city.nome}</Select.ItemText>
-                            <Select.ItemIndicator>
-                              <Check />
-                            </Select.ItemIndicator>
-                          </SelectItem>
-                        );
-                      })}
+                    <Select.Group>
+                      {selectedUf &&
+                        city
+                          .filter((cityName) => {
+                            if (inputCityValue === "") {
+                              return cityName;
+                            } else if (
+                              cityName.nome
+                                .toLowerCase()
+                                .includes(inputCityValue.toLowerCase())
+                            ) {
+                              return cityName;
+                            }
+                          })
+                          .map((city) => {
+                            return (
+                              <SelectItem
+                                disabled={!selectedUf}
+                                key={city.id}
+                                value={city.nome}
+                              >
+                                <Select.ItemText>{city.nome}</Select.ItemText>
+                                <Select.ItemIndicator>
+                                  <Check />
+                                </Select.ItemIndicator>
+                              </SelectItem>
+                            );
+                          })}
+                    </Select.Group>
                   </Select.Viewport>
+                  <SelectScrollDownButton>
+                    <CaretDown />
+                  </SelectScrollDownButton>
                 </SelectContent>
-              </Select.Portal>
+              </SelectPortal>
             </Select.Root>
           </SelectContainer>
 

@@ -72,6 +72,29 @@ export const SelectContainer = styled.div`
   width: 200px;
 `;
 
+export const SelectPortal = styled(Select.Portal)`
+  position: fixed;
+  top:55%;
+  left: 50%;
+  margin-left: -75px;
+  
+`;
+export const SelectScrollUpButton = styled(Select.ScrollUpButton)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  background-color: transparent;
+`;
+
+export const SelectScrollDownButton = styled(Select.ScrollDownButton)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  background-color: transparent;
+`;
+
 export const SelectTrigger = styled(Select.Trigger)`
   display: flex;
   justify-content: center;
@@ -97,6 +120,7 @@ export const SelectContent = styled(Select.Content)`
   color: ${(props) => props.theme["purple-dark"]};
   background-color: ${(props) => props.theme["purple-light"]};
 
+  overflow: hidden;
   padding: 0.75rem;
   border-radius: 6px;
   cursor: pointer;
@@ -104,10 +128,30 @@ export const SelectContent = styled(Select.Content)`
   font-size: 0.875rem;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
+
+  max-width: 150px;
+  height: 300px;
+
+  input {
+    border: 1px solid transparent;
+    border-radius: 6px;
+    width: 100%;
+    height: 2rem;
+    padding: 1rem;
+    font-size: 0.75rem;
+
+    ::placeholder {
+      font-size: 0.75rem;
+    }
+
+    :focus {
+      border-color: ${(props) => props.theme["purple"]};
+    }
+  }
 `;
 
 export const SelectItem = styled(Select.Item)`
   line-height: 1;
   padding: 0.75rem;
-  position: relative;
+ 
 `;
