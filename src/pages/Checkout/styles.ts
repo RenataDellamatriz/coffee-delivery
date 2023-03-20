@@ -1,10 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const CheckoutContainer = styled.div`
   form {
     padding: 0 10rem 5rem 10rem;
     margin: auto;
-  
 
     max-width: 1440px;
     display: grid;
@@ -12,11 +11,11 @@ export const CheckoutContainer = styled.div`
     gap: 16px;
 
     @media (max-width: 768px) {
-    display: block;
-    padding: 5%;
+      display: block;
+      padding: 5%;
+    }
   }
-  }
-`;
+`
 export const ConfirmButton = styled.button`
   display: flex;
   justify-content: center;
@@ -36,6 +35,6 @@ export const ConfirmButton = styled.button`
   background: ${(props) => props.theme.yellow};
 
   :hover {
-    background: ${(props) => props.theme["yellow-dark"]};
+    background: ${(props) => props.theme['yellow-dark']};
   }
-`;
+`

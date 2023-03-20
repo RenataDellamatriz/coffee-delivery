@@ -1,6 +1,5 @@
-import styled from "styled-components";
-import { NavLink } from "react-router-dom";
-
+import styled from 'styled-components'
+import { NavLink } from 'react-router-dom'
 
 export const HeaderContainer = styled.header`
   display: flex;
@@ -25,11 +24,10 @@ export const HeaderContainer = styled.header`
 
   @media (max-width: 768px) {
     height: 5rem;
-    padding: 2rem 5%;    
+    padding: 2rem 5%;
     margin-bottom: 1rem;
   }
-`;
-
+`
 
 export const ShoppingCartContainer = styled(NavLink)`
   display: flex;
@@ -38,22 +36,22 @@ export const ShoppingCartContainer = styled(NavLink)`
 
   border-radius: 6px;
   padding: 8px;
-  background-color: ${(props) => props.theme["yellow-light"]};
+  background-color: ${(props) => props.theme['yellow-light']};
   svg {
     font-size: 1.375rem;
-    color: ${(props) => props.theme["yellow-dark"]};
+    color: ${(props) => props.theme['yellow-dark']};
   }
-`;
+`
 export const CartItemsCounter = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
 
   background: ${(props) => props.theme[`yellow-dark`]};
-  color: ${(props) => props.theme["white"]};
+  color: ${(props) => props.theme.white};
 
   font-size: 0.75rem;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 
   border-radius: 9999px;
 
@@ -62,4 +60,4 @@ export const CartItemsCounter = styled.div`
   position: absolute;
   right: -25%;
   top: -25%;
-`;
+`

@@ -1,7 +1,7 @@
-import axios from "axios";
-import { MapPinLine } from "phosphor-react";
-import { useFormContext } from "react-hook-form";
-import { InputForm } from "../InputForm";
+import axios from 'axios'
+import { MapPinLine } from 'phosphor-react'
+import { useFormContext } from 'react-hook-form'
+import { InputForm } from '../InputForm'
 
 import {
   FormInputWrapper,
@@ -10,29 +10,29 @@ import {
   InputWrapper,
   Subtitle,
   Title,
-} from "./style";
+} from './style'
 
 export function RegisterForm() {
   const {
     control,
     setValue,
     formState: { errors },
-  } = useFormContext();
+  } = useFormContext()
 
   async function handleGetAddress(e: any) {
-    if (errors.cep) return;
-    const cep = e.target.value.replace(/\D/g, "");
-    const formatedCep = cep.slice(0,5) + '-' + cep.slice(5,8)
-    if (!cep) return;
+    if (errors.cep) return
+    const cep = e.target.value.replace(/\D/g, '')
+    const formatedCep = cep.slice(0, 5) + '-' + cep.slice(5, 8)
+    if (!cep) return
     try {
-      const { data } = await axios(`https://viacep.com.br/ws/${cep}/json/`);
-      setValue("cep", formatedCep)
-      setValue("street", data.logradouro);
-      setValue("neighborhood", data.bairro);
-      setValue("city", data.localidade);
-      setValue("uf", data.uf);
+      const { data } = await axios(`https://viacep.com.br/ws/${cep}/json/`)
+      setValue('cep', formatedCep)
+      setValue('street', data.logradouro)
+      setValue('neighborhood', data.bairro)
+      setValue('city', data.localidade)
+      setValue('uf', data.uf)
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
   }
 
@@ -120,5 +120,5 @@ export function RegisterForm() {
         </FormInputWrapper>
       </FormWrapper>
     </div>
-  );
+  )
 }

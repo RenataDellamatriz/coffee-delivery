@@ -8,33 +8,32 @@ import {
   MainText,
   Subtitle,
   Title,
-} from "./styles";
-import mainImage from "../../assets/mainImage.svg";
-import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
-import { HomeCoffeeCard } from "./components/HomeCoffeeCard";
-import { SelectCoffeeTag } from "./components/SelectCoffeeTag";
-import { useContext, useMemo, useState } from "react";
-import { CoffeeContext } from "../../contexts/CoffeeContext";
-import { coffeeReducer } from "../../reducers/reducer";
+} from './styles'
+import mainImage from '../../assets/mainImage.svg'
+import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
+import { HomeCoffeeCard } from './components/HomeCoffeeCard'
+import { SelectCoffeeTag } from './components/SelectCoffeeTag'
+import { useContext, useMemo, useState } from 'react'
+import { CoffeeContext } from '../../contexts/CoffeeContext'
 
 export function Home() {
-  const { availableCoffees } = useContext(CoffeeContext);
-  const [selectedTag, setSelectedTag] = useState<string>();
+  const { availableCoffees } = useContext(CoffeeContext)
+  const [selectedTag, setSelectedTag] = useState<string>()
 
   const filteredCoffeesTags = useMemo(() => {
     if (selectedTag) {
       return availableCoffees.filter((coffee) =>
-        coffee.tag.includes(selectedTag)
-      );
+        coffee.tag.includes(selectedTag),
+      )
     }
-    return availableCoffees;
-  }, [selectedTag, availableCoffees]);
+    return availableCoffees
+  }, [selectedTag, availableCoffees])
 
   function handleSelectedTag(tag: string) {
-    if (tag === "Tipos de café") {
-      setSelectedTag(undefined);
+    if (tag === 'Tipos de café') {
+      setSelectedTag(undefined)
     } else {
-      setSelectedTag(tag);
+      setSelectedTag(tag)
     }
   }
 
@@ -90,16 +89,16 @@ export function Home() {
 
       <div
         style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "3.125rem",
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: '3.125rem',
         }}
       >
         <Subtitle>Nossos cafés</Subtitle>
         <SelectCoffeeTag
           placeholder="Tipos de cafés"
-          value={selectedTag === undefined ? "Tipos de café" : selectedTag}
+          value={selectedTag === undefined ? 'Tipos de café' : selectedTag}
           onValueChange={handleSelectedTag}
         />
       </div>
@@ -110,5 +109,5 @@ export function Home() {
         ))}
       </CoffeeCardContainer>
     </HomeContainer>
-  );
+  )
 }

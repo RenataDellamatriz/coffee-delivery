@@ -1,6 +1,4 @@
-import { useContext } from "react";
-import { CoffeeContext } from "../../../../contexts/CoffeeContext";
-import { Buy } from "../../../../components/Buy";
+import { Buy } from '../../../../components/Buy'
 
 import {
   Tag,
@@ -10,8 +8,8 @@ import {
   CardContainer,
   Footer,
   TagContainer,
-} from "./styles";
-import { Coffee } from "../../../../@types/types/global";
+} from './styles'
+import { Coffee } from '../../../../@types/types/global'
 
 export function HomeCoffeeCard({ coffee }: { coffee: Coffee }) {
   return (
@@ -20,7 +18,7 @@ export function HomeCoffeeCard({ coffee }: { coffee: Coffee }) {
 
       <TagContainer>
         {coffee.tag.map((item, index) => {
-          return <Tag key={index}>{item.toUpperCase()}</Tag>;
+          return <Tag key={index}>{item.toUpperCase()}</Tag>
         })}
       </TagContainer>
       <div>
@@ -38,5 +36,5 @@ export function HomeCoffeeCard({ coffee }: { coffee: Coffee }) {
         </Footer>
       </div>
     </CardContainer>
-  );
+  )
 }

@@ -1,79 +1,79 @@
-import { useForm, FormProvider } from "react-hook-form";
-import * as zod from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { PaymentForm } from "./components/Forms/PaymentForm";
-import { SelectedCoffees } from "./components/SelectedCoffees";
-import { CheckoutContainer, ConfirmButton } from "./styles";
-import { useContext } from "react";
-import { CoffeeContext } from "../../contexts/CoffeeContext";
-import axios from "axios";
-import { RegisterForm } from "./components/Forms/RegisterForm";
-import { useNavigate } from "react-router-dom";
-
+/* eslint-disable no-unused-vars */
+import { useForm, FormProvider } from 'react-hook-form'
+import * as zod from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { PaymentForm } from './components/Forms/PaymentForm'
+import { SelectedCoffees } from './components/SelectedCoffees'
+import { CheckoutContainer, ConfirmButton } from './styles'
+import { useContext } from 'react'
+import { CoffeeContext } from '../../contexts/CoffeeContext'
+import axios from 'axios'
+import { RegisterForm } from './components/Forms/RegisterForm'
+import { useNavigate } from 'react-router-dom'
 
 export enum PaymentMethods {
-  credit = "credit",
-  debit = "debit",
-  money = "money",
+  credit = 'credit',
+  debit = 'debit',
+  money = 'money',
 }
 
 const registerFormValidationSchema = zod.object({
   cep: zod
-    .string({invalid_type_error: 'invalido'})
-    .min(8, "*Obrigatório")
+    .string({ invalid_type_error: 'invalido' })
+    .min(8, '*Obrigatório')
     .regex(/^\d{5}(?:-?\d{3})?$/),
-  street: zod.string().min(1, "*Obrigatório"),
-  number: zod.string().min(1, "*Obrigatório").max(4, "Máximo de 4 dígitos"),
+  street: zod.string().min(1, '*Obrigatório'),
+  number: zod.string().min(1, '*Obrigatório').max(4, 'Máximo de 4 dígitos'),
   complement: zod.string().optional(),
-  neighborhood: zod.string().min(1, "*Obrigatório"),
-  city: zod.string().min(1, "*Obrigatório"),
-  uf: zod.string().min(1, "*Obrigatório"),
+  neighborhood: zod.string().min(1, '*Obrigatório'),
+  city: zod.string().min(1, '*Obrigatório'),
+  uf: zod.string().min(1, '*Obrigatório'),
   paymentMethod: zod.nativeEnum(PaymentMethods, {
     errorMap: () => {
-      return { 
-        message: "*Informe o método de pagamento",     
-    };
+      return {
+        message: '*Informe o método de pagamento',
+      }
     },
   }),
-});
+})
 
 export type RegisterFormValidationData = zod.infer<
   typeof registerFormValidationSchema
->;
+>
 
 export function Checkout() {
-  const { createNewBilling, billing } = useContext(CoffeeContext);
+  const { createNewBilling } = useContext(CoffeeContext)
 
   const registerForm = useForm<RegisterFormValidationData>({
     resolver: zodResolver(registerFormValidationSchema),
-    mode: "onChange",
+    mode: 'onChange',
     defaultValues: {
-      cep: "",
-      street: "",
-      number: "",
-      complement: "",
-      neighborhood: "",
-      city: "",
-      uf: "",
+      cep: '',
+      street: '',
+      number: '',
+      complement: '',
+      neighborhood: '',
+      city: '',
+      uf: '',
       paymentMethod: undefined,
     },
-  });
+  })
 
-  const { handleSubmit } = registerForm;
+  const { handleSubmit } = registerForm
 
   const navigate = useNavigate()
 
   function handleCreateNewOrder(data: RegisterFormValidationData) {
-    createNewBilling(data);   
-    navigate("/success");
+    createNewBilling(data)
+    navigate('/success')
   }
 
   async function handlePostNewOrderApi(data: RegisterFormValidationData) {
-    axios.post("http://localhost:3000/orders", {
+    axios.post('http://localhost:3000/orders', {
       cep: data.cep,
-    });
+    })
   }
- 
+
   return (
     <CheckoutContainer>
       <form onSubmit={handleSubmit(handleCreateNewOrder)}>
@@ -91,5 +91,5 @@ export function Checkout() {
         </SelectedCoffees>
       </form>
     </CheckoutContainer>
-  );
+  )
 }

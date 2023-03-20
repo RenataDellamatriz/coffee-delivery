@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { IconContainerProps } from "../../@types/types/global";
+import styled from 'styled-components'
+import { IconContainerProps } from '../../@types/types/global'
 
 export const SuccessContainer = styled.div`
   padding: 5rem 10rem 5rem 10rem;
@@ -9,20 +9,19 @@ export const SuccessContainer = styled.div`
 
   @media (max-width: 768px) {
     padding: 5%;
-   
   }
-`;
+`
 
 export const Title = styled.h2`
-  font-family: "Baloo 2", cursive;
+  font-family: 'Baloo 2', cursive;
   font-size: 2rem;
-  color: ${(props) => props.theme["yellow-dark"]};
-`;
+  color: ${(props) => props.theme['yellow-dark']};
+`
 
 export const SubTitle = styled.span`
-  color: ${(props) => props.theme["base-subtitle"]};
+  color: ${(props) => props.theme['base-subtitle']};
   font-size: 1.25rem;
-`;
+`
 
 export const MainContent = styled.main`
   display: flex;
@@ -30,19 +29,15 @@ export const MainContent = styled.main`
   justify-content: space-between;
   padding: 2.5rem 0;
 
-  @media (max-width: 768px) {   
-      
-      flex-direction: column;
-      
-      gap: 1.5rem;
-      img {
-        width: 100%;      
-      }
-     
-      
-   
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    gap: 1.5rem;
+    img {
+      width: 100%;
+    }
   }
-`;
+`
 
 export const OrderInfoContainer = styled.div`
   display: flex;
@@ -51,8 +46,8 @@ export const OrderInfoContainer = styled.div`
   padding: 1px;
   background: linear-gradient(
     90deg,
-    ${(props) => props.theme["yellow"]},
-    ${(props) => props.theme["purple"]}
+    ${(props) => props.theme.yellow},
+    ${(props) => props.theme.purple}
   );
   border-radius: 6px 36px 6px 36px;
 
@@ -62,7 +57,7 @@ export const OrderInfoContainer = styled.div`
     width: 100%;
     min-width: auto;
   }
-`;
+`
 
 export const WhiteBoard = styled.div`
   padding: 40px;
@@ -72,9 +67,9 @@ export const WhiteBoard = styled.div`
   border-radius: 5px 35px 5px 35px;
 
   @media (max-width: 768px) {
-    width:100%
+    width: 100%;
   }
-`;
+`
 
 export const ItemsWrapper = styled.div`
   display: flex;
@@ -83,12 +78,12 @@ export const ItemsWrapper = styled.div`
   align-items: center;
   gap: 12px;
   margin-top: 20px;
-`;
+`
 
 export const SpanWrapper = styled.div`
   display: flex;
   flex-direction: column;
-`;
+`
 
 const iconBackgroundVariants = {
   background: {
@@ -97,7 +92,7 @@ const iconBackgroundVariants = {
     gray: (props: any) => props.theme[`base-text`],
     purple: (props: any) => props.theme.purple,
   },
-};
+}
 
 export const IconContainer = styled.div<IconContainerProps>`
   width: 32px;
@@ -113,4 +108,4 @@ export const IconContainer = styled.div<IconContainerProps>`
   svg {
     font-size: 1rem;
   }
-`;
+`

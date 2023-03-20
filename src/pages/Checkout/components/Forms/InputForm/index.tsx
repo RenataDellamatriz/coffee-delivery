@@ -1,16 +1,16 @@
-import { InputStyled, InputVariant, InputWrapper, RightText } from "./styles";
-import { Control, Controller, useFormContext } from "react-hook-form";
+import { InputStyled, InputVariant, InputWrapper, RightText } from './styles'
+import { Control, Controller, useFormContext } from 'react-hook-form'
 
 interface InputProps {
-  type: string;
-  placeholder: string;
-  variant: InputVariant;
-  id: string;
-  control?: Control;
-  name: string;
-  onBlur?: (e: any) => void;
-  error?: string;
-  rightText?: boolean;
+  type: string
+  placeholder: string
+  variant: InputVariant
+  id: string
+  control?: Control
+  name: string
+  onBlur?: (e: any) => void
+  error?: string
+  rightText?: boolean
 }
 
 export function InputForm({
@@ -21,10 +21,11 @@ export function InputForm({
   name,
   onBlur,
   variant,
-  rightText
+  rightText,
 }: InputProps) {
-
-const {formState: {errors} } = useFormContext()
+  const {
+    formState: { errors },
+  } = useFormContext()
 
   return (
     <>
@@ -38,7 +39,7 @@ const {formState: {errors} } = useFormContext()
             fieldState: { invalid, error },
           }) => (
             <InputWrapper variant={variant}>
-              <InputStyled            
+              <InputStyled
                 id={id}
                 type={type}
                 placeholder={placeholder}
@@ -46,13 +47,13 @@ const {formState: {errors} } = useFormContext()
                 value={value}
                 onChange={onChange}
                 onBlur={(e) => {
-                  onBlurController();
-                  onBlur && onBlur(e);
+                  onBlurController()
+                  onBlur && onBlur(e)
                 }}
                 hasError={invalid}
               />
               {rightText && <RightText>Opcional</RightText>}
-              {errors && <span>{error?.message}</span>}              
+              {errors && <span>{error?.message}</span>}
             </InputWrapper>
           )}
         />
@@ -65,5 +66,5 @@ const {formState: {errors} } = useFormContext()
         />
       )}
     </>
-  );
+  )
 }

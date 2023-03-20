@@ -2,24 +2,24 @@ import {
   CartInfoContainer,
   CartInfoWrapper,
   CartTotalInfoWrapper,
-  CoffeeSelectedContainer, 
+  CoffeeSelectedContainer,
   Title,
-} from "./styles";
-import { CheckoutCoffeeCard } from "../CheckoutCoffeeCard/index";
-import { ReactNode, useContext } from "react";
-import { CoffeeContext } from "../../../../contexts/CoffeeContext";
-import { EmptyCoffees } from "../EmptyCoffees";
+} from './styles'
+import { CheckoutCoffeeCard } from '../CheckoutCoffeeCard/index'
+import { ReactNode, useContext } from 'react'
+import { CoffeeContext } from '../../../../contexts/CoffeeContext'
+import { EmptyCoffees } from '../EmptyCoffees'
 
-export function SelectedCoffees({children}: {children: ReactNode}) {
-  const { order } = useContext(CoffeeContext);
+export function SelectedCoffees({ children }: { children: ReactNode }) {
+  const { order } = useContext(CoffeeContext)
 
   const totalItemsPrice = order.reduce((acc, coffee) => {
-    return acc + coffee.quantity * Number(coffee.price.replace(",", "."));
-  }, 0);
+    return acc + coffee.quantity * Number(coffee.price.replace(',', '.'))
+  }, 0)
 
-  const deliveryPrice = 3.5;
+  const deliveryPrice = 3.5
 
-  const totalPrice = totalItemsPrice + deliveryPrice;
+  const totalPrice = totalItemsPrice + deliveryPrice
 
   return (
     <div>
@@ -27,7 +27,7 @@ export function SelectedCoffees({children}: {children: ReactNode}) {
       <CoffeeSelectedContainer>
         {order.length >= 1 ? (
           order?.map((coffee) => {
-            return <CheckoutCoffeeCard coffee={coffee} key={coffee.id} />;
+            return <CheckoutCoffeeCard coffee={coffee} key={coffee.id} />
           })
         ) : (
           <EmptyCoffees />
@@ -37,21 +37,21 @@ export function SelectedCoffees({children}: {children: ReactNode}) {
             <CartInfoContainer>
               <CartInfoWrapper>
                 <span>Total de itens</span>
-                <span>R$ {totalItemsPrice.toFixed(2).replace(".", ",")}</span>
+                <span>R$ {totalItemsPrice.toFixed(2).replace('.', ',')}</span>
               </CartInfoWrapper>
               <CartInfoWrapper>
                 <span>Entrega</span>
-                <span>R$ {deliveryPrice.toFixed(2).replace(".", ",")}</span>
+                <span>R$ {deliveryPrice.toFixed(2).replace('.', ',')}</span>
               </CartInfoWrapper>
               <CartTotalInfoWrapper>
                 <span>Total</span>
-                <span>R$ {totalPrice.toFixed(2).replace(".", ",")}</span>
+                <span>R$ {totalPrice.toFixed(2).replace('.', ',')}</span>
               </CartTotalInfoWrapper>
               {children}
-            </CartInfoContainer>            
+            </CartInfoContainer>
           </>
         )}
       </CoffeeSelectedContainer>
     </div>
-  );
+  )
 }

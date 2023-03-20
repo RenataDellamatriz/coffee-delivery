@@ -2,20 +2,19 @@ import {
   CartItemsCounter,
   HeaderContainer,
   ShoppingCartContainer,
-} from "./styles";
-import logoCoffeeDelivery from "../../assets/logoCoffeeDelivery.svg";
-import { ShoppingCart } from "phosphor-react";
-import { NavLink } from "react-router-dom";
-import { useContext } from "react";
-import { CoffeeContext } from "../../contexts/CoffeeContext";
-import { LocationDialog } from "../LocationDialog";
-
+} from './styles'
+import logoCoffeeDelivery from '../../assets/logoCoffeeDelivery.svg'
+import { ShoppingCart } from 'phosphor-react'
+import { NavLink } from 'react-router-dom'
+import { useContext } from 'react'
+import { CoffeeContext } from '../../contexts/CoffeeContext'
+import { LocationDialog } from '../LocationDialog'
 
 export function Header() {
-  const { order } = useContext(CoffeeContext);
+  const { order } = useContext(CoffeeContext)
 
   return (
-    <HeaderContainer >
+    <HeaderContainer>
       <NavLink to="/" title="Home">
         <img src={logoCoffeeDelivery} alt="" />
       </NavLink>
@@ -31,5 +30,5 @@ export function Header() {
         </ShoppingCartContainer>
       </nav>
     </HeaderContainer>
-  );
+  )
 }

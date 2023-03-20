@@ -1,59 +1,59 @@
-import { Minus, Plus, ShoppingCartSimple } from "phosphor-react";
-import { useContext, useEffect, useState } from "react";
-import { Coffee} from "../../@types/types/global";
-import { CoffeeContext } from "../../contexts/CoffeeContext";
+import { Minus, Plus, ShoppingCartSimple } from 'phosphor-react'
+import { useContext, useState } from 'react'
+import { Coffee } from '../../@types/types/global'
+import { CoffeeContext } from '../../contexts/CoffeeContext'
 import {
   AddCoffeeCartButton,
   AddQuantityButton,
   BuyContainer,
   QuantityInputContainer,
   RemoveQuantityButton,
-} from "./styles";
+} from './styles'
 
 export function Buy({
   coffee,
   autoUpdate,
 }: {
-  coffee: Coffee;
-  autoUpdate?: boolean;
+  coffee: Coffee
+  autoUpdate?: boolean
 }) {
-  const { updateCoffee, order, deleteItem } = useContext(CoffeeContext);
-  const [quantity, setQuantity] = useState(getOrderQuantity(coffee));
+  const { updateCoffee, order, deleteItem } = useContext(CoffeeContext)
+  const [quantity, setQuantity] = useState(getOrderQuantity(coffee))
 
   function getOrderQuantity(coffee: Coffee) {
-    const coffeeOrder = order?.find((item) => item.id === coffee.id);
+    const coffeeOrder = order?.find((item) => item.id === coffee.id)
     if (coffeeOrder) {
-      return coffeeOrder.quantity;
+      return coffeeOrder.quantity
     } else {
-      return 0;
+      return 0
     }
   }
 
   function handleDecrement() {
     if (quantity > 0) {
-      const newQuantity = quantity - 1;
-      setQuantity(newQuantity);
+      const newQuantity = quantity - 1
+      setQuantity(newQuantity)
       if (autoUpdate) {
         updateCoffee({
           ...coffee,
           quantity: newQuantity,
-        });
+        })
       }
       if (newQuantity === 0) {
-        deleteItem(coffee);
+        deleteItem(coffee)
       }
     }
   }
 
   function handleIncrement() {
     if (quantity < 10) {
-      const newQuantity = quantity + 1;
-      setQuantity(newQuantity);
+      const newQuantity = quantity + 1
+      setQuantity(newQuantity)
       if (autoUpdate) {
         updateCoffee({
           ...coffee,
           quantity: newQuantity,
-        });
+        })
       }
     }
   }
@@ -76,14 +76,14 @@ export function Buy({
           <Plus weight="bold" />
         </AddQuantityButton>
       </QuantityInputContainer>
-      {window.location.pathname === "/" ? (
+      {window.location.pathname === '/' ? (
         <AddCoffeeCartButton
           onClick={() =>
             updateCoffee({
               ...coffee,
               name: coffee.name,
               id: coffee.id,
-              quantity: quantity,
+              quantity,
             })
           }
           title="Comprar"
@@ -92,5 +92,5 @@ export function Buy({
         </AddCoffeeCartButton>
       ) : null}
     </BuyContainer>
-  );
+  )
 }

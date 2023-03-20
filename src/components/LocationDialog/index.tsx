@@ -1,9 +1,11 @@
-import * as Dialog from "@radix-ui/react-dialog";
-import * as Select from "@radix-ui/react-select";
-import axios from "axios";
-import { CaretDown, CaretUp, Check, MapPin } from "phosphor-react";
-import { useEffect, useState } from "react";
-import { fetchStateData } from "../../services/locationApi/api";
+/* eslint-disable array-callback-return */
+/* eslint-disable no-undef */
+import * as Dialog from '@radix-ui/react-dialog'
+import * as Select from '@radix-ui/react-select'
+import axios from 'axios'
+import { CaretDown, CaretUp, Check, MapPin } from 'phosphor-react'
+import { useEffect, useState } from 'react'
+import { fetchStateData } from '../../services/locationApi/api'
 
 import {
   LocationContent,
@@ -17,96 +19,96 @@ import {
   SelectScrollDownButton,
   SelectScrollUpButton,
   SelectTrigger,
-} from "./styles";
+} from './styles'
 
 export interface UfProps {
-  sigla: string;
-  id: number;
-  nome: string;
+  sigla: string
+  id: number
+  nome: string
 }
 
 export interface CityProps {
-  id: number;
-  nome: string;
+  id: number
+  nome: string
 }
 
 export function LocationDialog() {
-  const [uf, setUf] = useState<UfProps[]>([]);
-  const [selectedUf, setSelectedUf] = useState<string>();
-  const [city, setCity] = useState<CityProps[]>([]);
-  const [selectedCity, setSelectedCity] = useState<string>();
-  const [inputUfValue, setInputUfValue] = useState("");
-  const [inputCityValue, setInputCityValue] = useState("");
+  const [uf, setUf] = useState<UfProps[]>([])
+  const [selectedUf, setSelectedUf] = useState<string>()
+  const [city, setCity] = useState<CityProps[]>([])
+  const [selectedCity, setSelectedCity] = useState<string>()
+  const [inputUfValue, setInputUfValue] = useState('')
+  const [inputCityValue, setInputCityValue] = useState('')
 
   useEffect(() => {
     async function getUfData() {
-      const getUf = await fetchStateData();
-      setUf(getUf);
+      const getUf = await fetchStateData()
+      setUf(getUf)
     }
-    getUfData();
-  }, []);
+    getUfData()
+  }, [])
 
   useEffect(() => {
     async function getCityData() {
       try {
         const { data } = await axios(
-          `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedUf}/municipios`
-        );
+          `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedUf}/municipios`,
+        )
 
-        setCity(data);
+        setCity(data)
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
     }
     if (selectedUf) {
-      getCityData();
+      getCityData()
     }
-  }, [selectedUf]);
+  }, [selectedUf])
 
   function handleUfChange(uf: string) {
-    setSelectedUf(uf);
-    setSelectedCity(undefined);
+    setSelectedUf(uf)
+    setSelectedCity(undefined)
   }
 
   function handleCityChange(city: string) {
-    setSelectedCity(city);
+    setSelectedCity(city)
   }
 
   const orderedStatesByName = uf.sort(function (a, b) {
     if (a.sigla < b.sigla) {
-      return -1;
+      return -1
     }
     if (a.sigla > b.sigla) {
-      return 1;
+      return 1
     }
-    return 0;
-  });
+    return 0
+  })
 
   useEffect(() => {
     if (selectedUf && selectedCity) {
-      localStorage.setItem("selectedUf", selectedUf);
-      localStorage.setItem("selectedCity", selectedCity);
+      localStorage.setItem('selectedUf', selectedUf)
+      localStorage.setItem('selectedCity', selectedCity)
     }
-  }, [selectedUf, selectedCity]);
+  }, [selectedUf, selectedCity])
 
   useEffect(() => {
-    const savedUf = localStorage.getItem("selectedUf");
-    const savedCity = localStorage.getItem("selectedCity");
+    const savedUf = localStorage.getItem('selectedUf')
+    const savedCity = localStorage.getItem('selectedCity')
 
     if (savedUf) {
-      setSelectedUf(savedUf);
+      setSelectedUf(savedUf)
     }
 
     if (savedCity) {
-      setSelectedCity(savedCity);
+      setSelectedCity(savedCity)
     }
-  }, []);
+  }, [])
 
   return (
     <Dialog.Root>
       <LocationTrigger>
         <MapPin weight="fill" />
-        {selectedCity ? `${selectedCity}, ${selectedUf}` : "Localização"}
+        {selectedCity ? `${selectedCity}, ${selectedUf}` : 'Localização'}
       </LocationTrigger>
       <Dialog.Portal>
         <LocationOverlay />
@@ -144,14 +146,14 @@ export function LocationDialog() {
                     <Select.Group>
                       {orderedStatesByName
                         .filter((uf) => {
-                          if (inputUfValue === "") {
-                            return uf;
+                          if (inputUfValue === '') {
+                            return uf
                           } else if (
                             uf.sigla
                               .toLowerCase()
                               .includes(inputUfValue.toLowerCase())
                           ) {
-                            return uf;
+                            return uf
                           }
                         })
                         .map((uf) => {
@@ -166,7 +168,7 @@ export function LocationDialog() {
                                 <Check />
                               </Select.ItemIndicator>
                             </SelectItem>
-                          );
+                          )
                         })}
                     </Select.Group>
                   </Select.Viewport>
@@ -195,7 +197,7 @@ export function LocationDialog() {
                       e.stopPropagation()
                     }
                     onChange={(e) => {
-                      setInputCityValue(e.target.value);
+                      setInputCityValue(e.target.value)
                     }}
                   />
                   <SelectScrollUpButton>
@@ -207,14 +209,14 @@ export function LocationDialog() {
                       {selectedUf &&
                         city
                           .filter((cityName) => {
-                            if (inputCityValue === "") {
-                              return cityName;
+                            if (inputCityValue === '') {
+                              return cityName
                             } else if (
                               cityName.nome
                                 .toLowerCase()
                                 .includes(inputCityValue.toLowerCase())
                             ) {
-                              return cityName;
+                              return cityName
                             }
                           })
                           .map((city) => {
@@ -229,7 +231,7 @@ export function LocationDialog() {
                                   <Check />
                                 </Select.ItemIndicator>
                               </SelectItem>
-                            );
+                            )
                           })}
                     </Select.Group>
                   </Select.Viewport>
@@ -245,5 +247,5 @@ export function LocationDialog() {
         </LocationContent>
       </Dialog.Portal>
     </Dialog.Root>
-  );
+  )
 }

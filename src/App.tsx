@@ -1,9 +1,9 @@
-import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider } from "styled-components";
-import { GlobalStyle } from "./@types/styles/global";
-import { defaultTheme } from "./@types/styles/themes/default";
-import { Router } from "./Router";
-import { CoffeeContextProvider } from "./contexts/CoffeeContext";
+import { BrowserRouter } from 'react-router-dom'
+import { ThemeProvider } from 'styled-components'
+import { GlobalStyle } from './@types/styles/global'
+import { defaultTheme } from './@types/styles/themes/default'
+import { Router } from './Router'
+import { CoffeeContextProvider } from './contexts/CoffeeContext'
 
 export function App() {
   return (
@@ -15,5 +15,5 @@ export function App() {
       </CoffeeContextProvider>
       <GlobalStyle />
     </ThemeProvider>
-  );
+  )
 }

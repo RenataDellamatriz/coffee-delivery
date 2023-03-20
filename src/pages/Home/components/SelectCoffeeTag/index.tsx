@@ -1,37 +1,35 @@
-import * as Select from "@radix-ui/react-select";
-import { CaretDown, Check } from "phosphor-react";
-import { useContext, useState } from "react";
-import { CoffeeContext } from "../../../../contexts/CoffeeContext";
+import * as Select from '@radix-ui/react-select'
+import { CaretDown, Check } from 'phosphor-react'
+import { useContext } from 'react'
+import { CoffeeContext } from '../../../../contexts/CoffeeContext'
 import {
   SelectContainer,
   SelectContent,
   SelectItem,
   SelectTrigger,
-} from "./styles";
+} from './styles'
 
 export function SelectCoffeeTag({
   value,
   placeholder,
   onValueChange,
 }: {
-  placeholder: string;
-  value?: string;
-  onValueChange: (tag: string) => void;
+  placeholder: string
+  value?: string
+  onValueChange: (tag: string) => void
 }) {
-  const { availableCoffees } = useContext(CoffeeContext);
+  const { availableCoffees } = useContext(CoffeeContext)
 
-  const avaiableTags = availableCoffees.map((coffee) => coffee.tag);
+  const avaiableTags = availableCoffees.map((coffee) => coffee.tag)
 
   const tags = avaiableTags.reduce((acc, current) => {
-    acc.push(...current);
-    return acc;
-  }, [] as string[]);
+    acc.push(...current)
+    return acc
+  }, [] as string[])
 
   const filteredCoffees = tags.filter(
-    (tag, index) => tags.indexOf(tag) === index
-  );
-
-
+    (tag, index) => tags.indexOf(tag) === index,
+  )
 
   return (
     <>
@@ -49,8 +47,7 @@ export function SelectCoffeeTag({
               <SelectContent>
                 <Select.Viewport>
                   <Select.Group>
-                    
-                    <SelectItem value="Tipos de café" >
+                    <SelectItem value="Tipos de café">
                       <Select.ItemText>Tipos de café</Select.ItemText>
                       <Select.ItemIndicator>
                         <Check />
@@ -65,7 +62,7 @@ export function SelectCoffeeTag({
                             <Check />
                           </Select.ItemIndicator>
                         </SelectItem>
-                      );
+                      )
                     })}
                   </Select.Group>
                 </Select.Viewport>
@@ -75,5 +72,5 @@ export function SelectCoffeeTag({
         </SelectContainer>
       )}
     </>
-  );
+  )
 }

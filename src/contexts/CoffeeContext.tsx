@@ -1,93 +1,92 @@
-import { coffeeReducer } from "../reducers/reducer";
+import { coffeeReducer } from '../reducers/reducer'
 import {
   createContext,
   ReactNode,
   useEffect,
   useReducer,
   useState,
-} from "react";
+} from 'react'
 import {
-  ActionTypes,
   createNewBillingAction,
   removeCoffeeAction,
   resetOrderAction,
   updateCoffeeAction,
-} from "../reducers/actions";
-import { Coffee } from "../@types/types/global";
-import { fetchCoffeeData } from "../services/coffeeApi/api";
-import { RegisterFormValidationData } from "../pages/Checkout";
+} from '../reducers/actions'
+import { Coffee } from '../@types/types/global'
+import { fetchCoffeeData } from '../services/coffeeApi/api'
+import { RegisterFormValidationData } from '../pages/Checkout'
 
 interface CoffeeContextType {
-  availableCoffees: Coffee[];
-  order: Coffee[];
-  billing: RegisterFormValidationData;
-  createNewBilling: (data: RegisterFormValidationData) => void;
-  updateCoffee: (data: Coffee) => void;
-  deleteItem: (data: Coffee) => void;
-  resetOrder: () => void;
+  availableCoffees: Coffee[]
+  order: Coffee[]
+  billing: RegisterFormValidationData
+  createNewBilling: (data: RegisterFormValidationData) => void
+  updateCoffee: (data: Coffee) => void
+  deleteItem: (data: Coffee) => void
+  resetOrder: () => void
 }
 
 interface CoffeeContextProviderProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
-export const CoffeeContext = createContext({} as CoffeeContextType);
+export const CoffeeContext = createContext({} as CoffeeContextType)
 
 export function CoffeeContextProvider({
   children,
 }: CoffeeContextProviderProps) {
-  const [availableCoffees, setAvailableCoffes] = useState<Coffee[]>([]);
+  const [availableCoffees, setAvailableCoffes] = useState<Coffee[]>([])
 
   const [coffeeState, dispatch] = useReducer(
     coffeeReducer,
     {
       order: [],
       billing: {
-        cep: "",
-        street: "",
-        number: "",
-        neighborhood: "",
-        city: "",
-        uf: "",
-        paymentMethod: "",
+        cep: '',
+        street: '',
+        number: '',
+        neighborhood: '',
+        city: '',
+        uf: '',
+        paymentMethod: '',
       },
     },
     () => {
       const storedStateAsJSON = localStorage.getItem(
-        "@coffee-delivery:coffees-state-1.0.0"
-      );
+        '@coffee-delivery:coffees-state-1.0.0',
+      )
 
       if (storedStateAsJSON) {
-        return JSON.parse(storedStateAsJSON);
+        return JSON.parse(storedStateAsJSON)
       }
       return {
         order: [],
         billing: {
-          cep: "",
-          street: "",
-          number: "",
-          neighborhood: "",
-          city: "",
-          uf: "",
-          paymentMethod: "",
+          cep: '',
+          street: '',
+          number: '',
+          neighborhood: '',
+          city: '',
+          uf: '',
+          paymentMethod: '',
         },
-      };
-    }
-  );
+      }
+    },
+  )
 
   useEffect(() => {
-    const stateJson = JSON.stringify(coffeeState);
+    const stateJson = JSON.stringify(coffeeState)
 
-    localStorage.setItem("@coffee-delivery:coffees-state-1.0.0", stateJson);
-  }, [coffeeState]);
+    localStorage.setItem('@coffee-delivery:coffees-state-1.0.0', stateJson)
+  }, [coffeeState])
 
   useEffect(() => {
     async function getCoffeeData() {
-      const coffee = await fetchCoffeeData();
-      setAvailableCoffes(coffee);
+      const coffee = await fetchCoffeeData()
+      setAvailableCoffes(coffee)
     }
-    getCoffeeData();
-  }, []);
+    getCoffeeData()
+  }, [])
 
   function createNewBilling(data: RegisterFormValidationData) {
     const newBilling: RegisterFormValidationData = {
@@ -98,8 +97,8 @@ export function CoffeeContextProvider({
       city: data.city,
       uf: data.uf,
       paymentMethod: data.paymentMethod,
-    };
-    dispatch(createNewBillingAction(newBilling));
+    }
+    dispatch(createNewBillingAction(newBilling))
   }
 
   function updateCoffee(data: Coffee) {
@@ -110,17 +109,17 @@ export function CoffeeContextProvider({
       quantity: data.quantity,
       image: data.image,
       tag: data.tag,
-    };
+    }
 
-    dispatch(updateCoffeeAction(newCoffee));
+    dispatch(updateCoffeeAction(newCoffee))
   }
 
   function deleteItem(data: Coffee) {
-    dispatch(removeCoffeeAction(data));
+    dispatch(removeCoffeeAction(data))
   }
 
   function resetOrder() {
-    dispatch(resetOrderAction());
+    dispatch(resetOrderAction())
   }
 
   return (
@@ -137,5 +136,5 @@ export function CoffeeContextProvider({
     >
       {children}
     </CoffeeContext.Provider>
-  );
+  )
 }

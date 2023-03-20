@@ -1,11 +1,12 @@
-import { Coffee } from "../@types/types/global";
-import { RegisterFormValidationData } from "../pages/Checkout";
+/* eslint-disable no-unused-vars */
+import { Coffee } from '../@types/types/global'
+import { RegisterFormValidationData } from '../pages/Checkout'
 
 export enum ActionTypes {
-  UPDATE_ORDER = "UPDATE_ORDER",
-  REMOVE_COFFEE = "REMOVE_COFFEE",
-  CREATE_NEW_BILLING = "CREATE_NEW_BILLING",
-  RESET_ORDER = "RESET_ORDER",
+  UPDATE_ORDER = 'UPDATE_ORDER',
+  REMOVE_COFFEE = 'REMOVE_COFFEE',
+  CREATE_NEW_BILLING = 'CREATE_NEW_BILLING',
+  RESET_ORDER = 'RESET_ORDER',
 }
 
 export function createNewBillingAction(newBilling: RegisterFormValidationData) {
@@ -20,7 +21,7 @@ export function createNewBillingAction(newBilling: RegisterFormValidationData) {
       uf: newBilling.uf,
       paymentMethod: newBilling.paymentMethod,
     },
-  };
+  }
 }
 
 export function updateCoffeeAction(coffee: Coffee) {
@@ -35,7 +36,7 @@ export function updateCoffeeAction(coffee: Coffee) {
         image: coffee.image,
       },
     },
-  };
+  }
 }
 
 export function removeCoffeeAction(coffee: Coffee) {
@@ -46,11 +47,11 @@ export function removeCoffeeAction(coffee: Coffee) {
         id: coffee.id,
       },
     },
-  };
+  }
 }
 
 export function resetOrderAction() {
   return {
-    type: ActionTypes.RESET_ORDER,    
-  };
+    type: ActionTypes.RESET_ORDER,
+  }
 }

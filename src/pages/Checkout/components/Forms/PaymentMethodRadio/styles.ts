@@ -1,25 +1,24 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const PaymentMethodContainer = styled.div`
-  display: flex;  
+  display: flex;
   gap: 6px;
 
- 
   input {
     visibility: hidden;
     appearance: none;
   }
 
   input:checked + label div {
-    background: ${(props) => props.theme["purple-light"]};
-    border-color: ${(props) => props.theme["purple"]};
+    background: ${(props) => props.theme['purple-light']};
+    border-color: ${(props) => props.theme.purple};
   }
 
-  @media (max-width: 768px) {    
+  @media (max-width: 768px) {
     flex-direction: column;
-    width: 100%;    
+    width: 100%;
   }
-`;
+`
 
 export const ContentContainer = styled.div`
   display: flex;
@@ -28,8 +27,8 @@ export const ContentContainer = styled.div`
   gap: 0.75rem;
   cursor: pointer;
 
-  background-color: ${(props) => props.theme["base-button"]};
-  color: ${(props) => props.theme["base-subtitle"]};
+  background-color: ${(props) => props.theme['base-button']};
+  color: ${(props) => props.theme['base-subtitle']};
 
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -45,7 +44,7 @@ export const ContentContainer = styled.div`
   transition: 0.4s;
 
   :hover {
-    background: ${(props) => props.theme["base-hover"]};
+    background: ${(props) => props.theme['base-hover']};
   }
   svg {
     color: ${(props) => props.theme.purple};
@@ -59,4 +58,4 @@ export const ContentContainer = styled.div`
       justify-content: center;
     }
   }
-`;
+`

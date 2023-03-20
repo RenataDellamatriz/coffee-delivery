@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import * as Dialog from "@radix-ui/react-dialog";
-import * as Select from "@radix-ui/react-select";
+import styled from 'styled-components'
+import * as Dialog from '@radix-ui/react-dialog'
+import * as Select from '@radix-ui/react-select'
 
 export const LocationTrigger = styled(Dialog.Trigger)`
   display: flex;
@@ -9,11 +9,11 @@ export const LocationTrigger = styled(Dialog.Trigger)`
   gap: 4px;
 
   font-size: 0.875rem;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
 
-  color: ${(props) => props.theme["purple-dark"]};
-  background-color: ${(props) => props.theme["purple-light"]};
+  color: ${(props) => props.theme['purple-dark']};
+  background-color: ${(props) => props.theme['purple-light']};
 
   padding: 10px;
   border-radius: 6px;
@@ -25,15 +25,15 @@ export const LocationTrigger = styled(Dialog.Trigger)`
     font-size: 1.375rem;
     color: ${(props) => props.theme.purple};
   }
-`;
+`
 
 export const LocationOverlay = styled(Dialog.Overlay)`
-  background-color: ${(props) => props.theme["purple"]};
+  background-color: ${(props) => props.theme.purple};
   opacity: 0.5;
   position: fixed;
   inset: 0;
   /* transition:2s ease-in-out;  */
-`;
+`
 
 export const LocationContent = styled(Dialog.Content)`
   display: flex;
@@ -41,7 +41,7 @@ export const LocationContent = styled(Dialog.Content)`
   justify-content: center;
   align-items: center;
 
-  background-color: ${(props) => props.theme["base-card"]};
+  background-color: ${(props) => props.theme['base-card']};
   border-radius: 6px;
   box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
     hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
@@ -53,13 +53,13 @@ export const LocationContent = styled(Dialog.Content)`
   max-width: 450px;
   max-height: 85vh;
   padding: 25px;
-`;
+`
 
 export const LocationTitle = styled(Dialog.Title)`
-  font-family: "Baloo 2", cursive;
+  font-family: 'Baloo 2', cursive;
   text-align: center;
   font-size: 1.5rem;
-`;
+`
 
 export const SelectContainer = styled.div`
   display: flex;
@@ -70,22 +70,21 @@ export const SelectContainer = styled.div`
 
   gap: 1rem;
   width: 200px;
-`;
+`
 
 export const SelectPortal = styled(Select.Portal)`
   position: fixed;
-  top:55%;
+  top: 55%;
   left: 50%;
   margin-left: -75px;
-  
-`;
+`
 export const SelectScrollUpButton = styled(Select.ScrollUpButton)`
   display: flex;
   align-items: center;
   justify-content: center;
   height: 25px;
   background-color: transparent;
-`;
+`
 
 export const SelectScrollDownButton = styled(Select.ScrollDownButton)`
   display: flex;
@@ -93,7 +92,7 @@ export const SelectScrollDownButton = styled(Select.ScrollDownButton)`
   justify-content: center;
   height: 25px;
   background-color: transparent;
-`;
+`
 
 export const SelectTrigger = styled(Select.Trigger)`
   display: flex;
@@ -103,22 +102,22 @@ export const SelectTrigger = styled(Select.Trigger)`
   position: relative;
 
   font-size: 0.875rem;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
 
-  color: ${(props) => props.theme["purple-dark"]};
-  background-color: ${(props) => props.theme["purple-light"]};
+  color: ${(props) => props.theme['purple-dark']};
+  background-color: ${(props) => props.theme['purple-light']};
 
   padding: 0.75rem;
   border-radius: 6px;
   border: none;
 
   cursor: pointer;
-`;
+`
 
 export const SelectContent = styled(Select.Content)`
-  color: ${(props) => props.theme["purple-dark"]};
-  background-color: ${(props) => props.theme["purple-light"]};
+  color: ${(props) => props.theme['purple-dark']};
+  background-color: ${(props) => props.theme['purple-light']};
 
   overflow: hidden;
   padding: 0.75rem;
@@ -126,7 +125,7 @@ export const SelectContent = styled(Select.Content)`
   cursor: pointer;
 
   font-size: 0.875rem;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
 
   max-width: 150px;
@@ -145,13 +144,12 @@ export const SelectContent = styled(Select.Content)`
     }
 
     :focus {
-      border-color: ${(props) => props.theme["purple"]};
+      border-color: ${(props) => props.theme.purple};
     }
   }
-`;
+`
 
 export const SelectItem = styled(Select.Item)`
   line-height: 1;
   padding: 0.75rem;
- 
-`;
+`

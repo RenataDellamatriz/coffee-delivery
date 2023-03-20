@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const CardContainer = styled.div`
@@ -68,7 +67,7 @@ export const Footer = styled.div`
 export const Price = styled.div`
   font-family: 'Baloo 2', cursive;
   font-size: 1.5rem;
-  font-weight: 800; 
+  font-weight: 800;
 
   color: ${(props) => props.theme['base-text']};
   span {
@@ -77,6 +76,3 @@ export const Price = styled.div`
     font-weight: 400;
   }
 `
-
-
-

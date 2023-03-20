@@ -1,15 +1,15 @@
-import React, { ReactNode, useContext } from "react";
-import { Control, Controller } from "react-hook-form";
-import { formatNamePaymentMethod } from "../../../../../utils";
-import { ContentContainer, PaymentMethodContainer } from "./styles";
+import React, { ReactNode } from 'react'
+import { Control, Controller } from 'react-hook-form'
+import { formatNamePaymentMethod } from '../../../../../utils'
+import { ContentContainer, PaymentMethodContainer } from './styles'
 
 interface PaymentMethodProps {
-  control?: Control;
-  name: string;
+  control?: Control
+  name: string
   options: {
-    value: string;
-    icon?: ReactNode;
-  }[];
+    value: string
+    icon?: ReactNode
+  }[]
 }
 
 export function PaymentMethodRadio({
@@ -17,7 +17,6 @@ export function PaymentMethodRadio({
   name,
   options,
 }: PaymentMethodProps) {
- 
   return (
     <>
       <Controller
@@ -33,7 +32,6 @@ export function PaymentMethodRadio({
                   onChange={onChange}
                   value={method.value}
                   name="paymentMethod"
-                  
                 />
                 <label htmlFor={method.value}>
                   <ContentContainer>
@@ -47,5 +45,5 @@ export function PaymentMethodRadio({
         )}
       />
     </>
-  );
+  )
 }

@@ -1,9 +1,9 @@
-import { CurrencyDollar, MapPin, Timer } from "phosphor-react";
-import { useContext, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import deliveryImage from "../../assets/deliveryImage.svg";
-import { CoffeeContext } from "../../contexts/CoffeeContext";
-import { formatNamePaymentMethod } from "../../utils";
+import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
+import { useContext, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+import deliveryImage from '../../assets/deliveryImage.svg'
+import { CoffeeContext } from '../../contexts/CoffeeContext'
+import { formatNamePaymentMethod } from '../../utils'
 import {
   IconContainer,
   ItemsWrapper,
@@ -14,17 +14,17 @@ import {
   SuccessContainer,
   Title,
   WhiteBoard,
-} from "./styles";
+} from './styles'
 
 export function Success() {
-  const { billing, resetOrder} = useContext(CoffeeContext);
+  const { billing, resetOrder } = useContext(CoffeeContext)
   const location = useLocation()
 
   useEffect(() => {
     if (location.pathname === '/success') {
-      resetOrder();
+      resetOrder()
     }
-  }, []);
+  }, [location.pathname, resetOrder])
 
   return (
     <>
@@ -43,7 +43,7 @@ export function Success() {
                   </IconContainer>
                   <SpanWrapper>
                     <span>
-                      Entrega em {""}
+                      Entrega em {''}
                       <strong>
                         Rua {billing?.street}, {billing?.number}
                       </strong>
@@ -81,9 +81,9 @@ export function Success() {
             </OrderInfoContainer>
 
             <img src={deliveryImage} alt="" />
-          </MainContent>          
+          </MainContent>
         </SuccessContainer>
       )}
     </>
-  );
+  )
 }

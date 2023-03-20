@@ -1,38 +1,37 @@
-import { Bank, CreditCard, CurrencyDollar, Money } from "phosphor-react";
+import { Bank, CreditCard, CurrencyDollar, Money } from 'phosphor-react'
 
-import { useFormContext } from "react-hook-form";
-import { PaymentMethodRadio } from "../PaymentMethodRadio";
+import { useFormContext } from 'react-hook-form'
+import { PaymentMethodRadio } from '../PaymentMethodRadio'
 
 import {
   FormWrapper,
   IconContainer,
   PaymentMethodWrapper,
   Subtitle,
-} from "./styles";
+} from './styles'
 
 export const paymentMethods = [
   {
     icon: <CreditCard />,
-    value: "credit",
+    value: 'credit',
   },
   {
     icon: <Bank />,
-    value: "debit",
+    value: 'debit',
   },
   {
     icon: <Money />,
-    value: "money",
+    value: 'money',
   },
-];
+]
 
 export function PaymentForm() {
   const {
     control,
     formState: { errors },
-  } = useFormContext();
+  } = useFormContext()
 
-  const paymentMethodError = errors?.paymentMethod
-    ?.message as unknown as string;
+  const paymentMethodError = errors?.paymentMethod?.message as unknown as string
 
   return (
     <>
@@ -59,5 +58,5 @@ export function PaymentForm() {
         </PaymentMethodWrapper>
       </FormWrapper>
     </>
-  );
+  )
 }

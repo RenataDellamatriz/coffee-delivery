@@ -1,15 +1,15 @@
-export type IconVariant = "darkYellow" | "yellow" | "gray" | "purple";
+export type IconVariant = 'darkYellow' | 'yellow' | 'gray' | 'purple'
 
 export interface IconContainerProps {
-  variant: IconVariant;
+  variant: IconVariant
 }
 
 export interface Coffee {
-  id: string;
-  name: string;
-  image: string;
-  tag: [string];
-  description?: string;
-  price: string;
+  id: string
+  name: string
+  image: string
+  tag: [string]
+  description?: string
+  price: string
   quantity: number
 }
